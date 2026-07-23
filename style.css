@@ -1,1 +1,31 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
 
+body {
+    background: #f5f9ff;
+    color: #123;
+    min-height: 100vh;
+    text-align: center;
+}
+
+
+/* الهيدر */
+h1 {
+    background: linear-gradient(135deg, #0057b8, #00a8e8);
+    color: white;
+    padding: 35px 20px;
+    font-size: 40px;
+    border-radius: 0 0 30px 30px;
+}
+
+
+p {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #555;
+}
