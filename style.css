@@ -1,31 +1,52 @@
-/* إعدادات عامة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Arial", sans-serif;
-}
+/* الكروت التعليمية */
 
-body {
-    background: #f5f9ff;
-    color: #123;
-    min-height: 100vh;
-    text-align: center;
+.courses {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 50px 20px;
 }
 
 
-/* الهيدر */
-h1 {
-    background: linear-gradient(135deg, #0057b8, #00a8e8);
+.card {
+    background: white;
+    width: 300px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+
+.card h2 {
+    color: #0057b8;
+    margin-bottom: 15px;
+}
+
+
+.card p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+
+button {
+    background: #0057b8;
     color: white;
-    padding: 35px 20px;
-    font-size: 40px;
-    border-radius: 0 0 30px 30px;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 
-p {
-    margin-top: 30px;
-    font-size: 22px;
-    color: #555;
+button:hover {
+    background: #003f87;
 }
