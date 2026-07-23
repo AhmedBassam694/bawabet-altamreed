@@ -221,3 +221,48 @@ loadQuestion();
 };
 
 loadQuestion(); 
+// =====================
+// Timer
+// =====================
+
+let timeLeft = 600; // 10 دقائق
+
+const timer = document.getElementById("timer");
+
+function startTimer() {
+
+    const countdown = setInterval(function () {
+
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        timer.innerHTML = "⏱️ الوقت: " + minutes + ":" + seconds;
+
+        timeLeft--;
+
+        if (timeLeft < 0) {
+
+            clearInterval(countdown);
+
+            question.innerHTML = "⏰ انتهى وقت الاختبار";
+
+            let percentage = Math.round((score / questions.length) * 100);
+
+            answers.innerHTML = `
+            <h2>درجتك: ${score} / ${questions.length}</h2>
+            <h2>النسبة: ${percentage}%</h2>
+            `;
+
+            nextBtn.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+startTimer();
