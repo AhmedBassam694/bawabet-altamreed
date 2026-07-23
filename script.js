@@ -1,5 +1,4 @@
 const questions = [
-
 {
 question:"1- Inflammation is the body's reaction against:",
 answers:[
@@ -65,8 +64,7 @@ answers:[
 ],
 correct:1
 },
-
-{
+ {
 question:"7- Carbuncle is:",
 answers:[
 "A) A group of boils",
@@ -112,157 +110,220 @@ correct:2
 
 ];
 
-let currentQuestion=0;
-let score=0;
-let answered=false;
 
-const question=document.getElementById("question");
-const answers=document.getElementById("answers");
-const nextBtn=document.getElementById("nextBtn");
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const question = document.getElementById("question");
+const answers = document.getElementById("answers");
+const nextBtn = document.getElementById("nextBtn");
+
+const progress = document.getElementById("progress");
+const progressFill = document.getElementById("progressFill");
+const timer = document.getElementById("timer");
+
+
+let timeLeft = 600;
+let timerInterval;
+
 
 function loadQuestion(){
 
-answered=false;
+answered = false;
 
-answers.innerHTML="";
+answers.innerHTML = "";
 
-question.innerHTML=questions[currentQuestion].question;
+question.innerHTML = questions[currentQuestion].question;
+
+
+progress.innerHTML =
+"السؤال " + (currentQuestion + 1) + " من " + questions.length;
+
+
+progressFill.style.width =
+((currentQuestion) / questions.length * 100) + "%";
+
 
 questions[currentQuestion].answers.forEach((answer,index)=>{
 
-const button=document.createElement("button");
 
-button.innerHTML=answer;
+let button = document.createElement("button");
 
-button.onclick=function(){
+button.innerHTML = answer;
+
+
+button.onclick = function(){
+
 
 if(answered) return;
 
-answered=true;
 
-const buttons=document.querySelectorAll("#answers button");
+answered = true;
 
-buttons.forEach(btn=>btn.disabled=true);
 
-buttons[questions[currentQuestion].correct].style.background="green";
+let allButtons = document.querySelectorAll("#answers button");
 
-if(index===questions[currentQuestion].correct){
+
+allButtons.forEach(btn=>{
+btn.disabled = true;
+});
+
+
+if(index === questions[currentQuestion].correct){
 
 score++;
+
+button.style.background="green";
+
 
 }else{
 
 button.style.background="red";
 
+allButtons[questions[currentQuestion].correct].style.background="green";
+
 }
- };
+
+
+};
+
 
 answers.appendChild(button);
 
+
 });
 
+
 }
+// زر التالي
 
 nextBtn.onclick = function(){
 
+
 if(!answered){
-alert("من فضلك اختر إجابة أولاً.");
+
+alert("اختر إجابة أولاً");
+
 return;
+
 }
 
+
 currentQuestion++;
+
 
 if(currentQuestion < questions.length){
 
 loadQuestion();
 
+
 }else{
+
+
+clearInterval(timerInterval);
+
+
+progressFill.style.width="100%";
+
+
+question.innerHTML="🎉 انتهى الاختبار";
+
 
 let percentage = Math.round((score / questions.length) * 100);
 
-let message = "";
-
-if(percentage >= 50){
-
-message = "🎉 مبروك! لقد نجحت.";
-
-}else{
-
-message = "❌ حاول مرة أخرى.";
-
-}
-
-question.innerHTML = "انتهى الاختبار";
 
 answers.innerHTML = `
+
 <h2>درجتك: ${score} / ${questions.length}</h2>
+
 <h2>النسبة: ${percentage}%</h2>
-<h3>${message}</h3>
+
+<h3>
+${percentage >= 50 ? "🎉 مبروك لقد نجحت" : "❌ حاول مرة أخرى"}
+</h3>
+
 `;
 
-nextBtn.innerHTML = "إعادة الاختبار";
 
-nextBtn.onclick = function(){
+nextBtn.innerHTML="إعادة الاختبار";
 
-currentQuestion = 0;
-score = 0;
-answered = false;
 
-nextBtn.innerHTML = "التالي";
+nextBtn.onclick=function(){
 
-nextBtn.onclick = arguments.callee;
+location.reload();
+
+};
+
+
+}
+
+
+};
+
+
+
+// المؤقت
+
+function startTimer(){
+
+
+timerInterval = setInterval(function(){
+
+
+let minutes = Math.floor(timeLeft / 60);
+
+let seconds = timeLeft % 60;
+
+
+if(seconds < 10){
+
+seconds = "0" + seconds;
+
+}
+
+
+timer.innerHTML = 
+"⏱️ الوقت: " + minutes + ":" + seconds;
+
+
+
+timeLeft--;
+
+
+
+if(timeLeft < 0){
+
+
+clearInterval(timerInterval);
+
+
+question.innerHTML="⏰ انتهى وقت الاختبار";
+
+
+answers.innerHTML = `
+
+<h2>انتهى الوقت</h2>
+
+<h2>درجتك: ${score} / ${questions.length}</h2>
+
+`;
+
+nextBtn.style.display="none";
+
+
+}
+
+
+},1000);
+
+
+}
+
+
+
+// تشغيل الاختبار
 
 loadQuestion();
-
-};
-
-}
-
-};
-
-loadQuestion(); 
-// =====================
-// Timer
-// =====================
-
-let timeLeft = 600; // 10 دقائق
-
-const timer = document.getElementById("timer");
-
-function startTimer() {
-
-    const countdown = setInterval(function () {
-
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-
-        timer.innerHTML = "⏱️ الوقت: " + minutes + ":" + seconds;
-
-        timeLeft--;
-
-        if (timeLeft < 0) {
-
-            clearInterval(countdown);
-
-            question.innerHTML = "⏰ انتهى وقت الاختبار";
-
-            let percentage = Math.round((score / questions.length) * 100);
-
-            answers.innerHTML = `
-            <h2>درجتك: ${score} / ${questions.length}</h2>
-            <h2>النسبة: ${percentage}%</h2>
-            `;
-
-            nextBtn.style.display = "none";
-
-        }
-
-    }, 1000);
-
-}
 
 startTimer();
