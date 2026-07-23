@@ -1,4 +1,42 @@
-/* الكروت التعليمية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background: #f5f9ff;
+    color: #123;
+    min-height: 100vh;
+}
+
+
+/* الهيدر */
+
+header {
+    background: linear-gradient(135deg, #0057b8, #00a8e8);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 0 0 30px 30px;
+}
+
+
+header h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+
+header p {
+    font-size: 22px;
+}
+
+
+
+/* الأقسام */
 
 .courses {
     display: flex;
@@ -9,11 +47,15 @@
 }
 
 
+
+/* الكروت */
+
 .card {
     background: white;
     width: 300px;
     padding: 30px;
     border-radius: 20px;
+    text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
@@ -31,10 +73,14 @@
 
 
 .card p {
+    color: #555;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
+
+
+/* الأزرار */
 
 button {
     background: #0057b8;
