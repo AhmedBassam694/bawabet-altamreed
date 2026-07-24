@@ -166,3 +166,48 @@ header p{
 }
 
 }
+.note{
+
+background:#e8f4ff;
+
+border-right:6px solid #2196f3;
+
+padding:20px;
+
+margin:20px 0;
+
+border-radius:15px;
+
+}
+
+
+
+.warning{
+
+background:#fff3cd;
+
+border-right:6px solid #ff9800;
+
+padding:20px;
+
+margin:20px 0;
+
+border-radius:15px;
+
+}
+
+
+
+.exam-tip{
+
+background:#e8ffe8;
+
+border-right:6px solid #4caf50;
+
+padding:20px;
+
+margin:20px 0;
+
+border-radius:15px;
+
+}
