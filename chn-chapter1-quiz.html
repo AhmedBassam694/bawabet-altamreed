@@ -194,6 +194,9 @@ resetState();
 
 let q=questions[currentQuestion];
 
+document.getElementById("progressBar").style.width =
+((currentQuestion + 1) / questions.length) * 100 + "%";
+  
 questionElement.innerHTML=(currentQuestion+1)+". "+q.question;
 
 q.answers.forEach(answer=>{
@@ -248,11 +251,7 @@ showQuestion();
 
 }else{
 
-questionElement.innerHTML="🎉 Your Score: "+score+" / "+questions.length;
-
-answersElement.innerHTML="";
-
-nextButton.style.display="none";
+showResult();
 
 }
 
