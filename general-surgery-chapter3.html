@@ -3,45 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>General Surgery - Chapter 3</title>
-<link rel="stylesheet" href="style.css">
+
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    font-family:Arial,sans-serif;
-    background:#f5f7fa;
-    margin:0;
-    padding:20px;
+background:#eef4ff;
+padding:20px;
+color:#333;
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
+max-width:900px;
+margin:auto;
+}
+
+.main-title{
+text-align:center;
+font-size:38px;
+font-weight:bold;
+color:#1565ff;
+margin-bottom:25px;
 }
 
 .card{
-    background:#fff;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+background:#fff;
+border-radius:22px;
+padding:25px;
+margin-bottom:25px;
+position:relative;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
 
-h1,h2,h3{
-    color:#0d6efd;
+.card::after{
+content:"";
+position:absolute;
+right:0;
+top:0;
+width:12px;
+height:100%;
+background:#1e88e5;
+border-radius:20px;
 }
 
-.button-link{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 20px;
-    background:#0d6efd;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+.blue::after{
+background:#1e88e5;
 }
 
-.button-link:hover{
-    background:#084298;
+.green::after{
+background:#43a047;
+}
+
+.orange::after{
+background:#fb8c00;
+}
+
+.red::after{
+background:#e53935;
+}
+
+.purple::after{
+background:#8e24aa;
+}
+
+.card h2{
+color:#1565ff;
+font-size:34px;
+margin-bottom:15px;
+}
+
+.card h3{
+color:#0d47a1;
+font-size:28px;
+margin-bottom:12px;
+}
+
+.card p{
+font-size:24px;
+line-height:1.8;
+margin-bottom:10px;
+}
+
+.card ul{
+padding-left:28px;
+}
+
+.card li{
+font-size:23px;
+margin-bottom:10px;
+line-height:1.7;
+}
+
+.icon{
+position:absolute;
+top:18px;
+right:25px;
+font-size:42px;
+opacity:.18;
+}
+
+.button{
+display:block;
+width:260px;
+margin:35px auto;
+text-align:center;
+background:#1565ff;
+color:#fff;
+text-decoration:none;
+padding:18px;
+font-size:24px;
+font-weight:bold;
+border-radius:15px;
+transition:.3s;
+}
+
+.button:hover{
+background:#0d47a1;
 }
 </style>
 </head>
@@ -50,16 +135,21 @@ h1,h2,h3{
 
 <div class="container">
 
-<div class="card">
-<h1>📖 Chapter Three</h1>
+<h1 class="main-title">📚 Chapter Three<br>Shock</h1>
+
+<div class="card blue">
+<span class="icon">🫀</span>
+
 <h2>Shock</h2>
 
 <p>
 Shock is a drop in blood circulation caused by an imbalance between blood volume and circulatory capacity, leading to inadequate oxygen supply to body tissues.
 </p>
+
 </div>
 
-<div class="card">
+<div class="card green">
+<span class="icon">📋</span>
 
 <h2>Types of Shock</h2>
 
@@ -67,12 +157,12 @@ Shock is a drop in blood circulation caused by an imbalance between blood volume
 <li>Surgical Shock</li>
 <li>Neurogenic Shock</li>
 <li>Septic Shock</li>
-
 </ul>
 
 </div>
 
-<div class="card">
+<div class="card orange">
+<span class="icon">⚠️</span>
 
 <h2>Stages of Shock</h2>
 
@@ -85,176 +175,117 @@ Responds to treatment with improvement in pulse, blood pressure and urine output
 <h3>2. Irreversible Shock</h3>
 
 <p>
-Does not respond to treatment and vital signs continue to deteriorate.
+Does not respond to treatment and the patient shows no improvement in vital signs.
 </p>
 
 </div>
 
-<div class="card">
+<div class="card red">
+
+<span class="icon">🩸</span>
 
 <h2>Surgical Shock</h2>
 
-<h3>Causes</h3>
+<p><b>Cause:</b></p>
 
 <ul>
-
-<li>Massive blood loss</li>
-
-<li>Burns</li>
-
-<li>Vomiting</li>
-
-<li>Severe diarrhea</li>
-
+<li>Massive blood loss.</li>
+<li>Fluid loss.</li>
+<li>Burns.</li>
+<li>Vomiting.</li>
+<li>Severe diarrhea.</li>
 </ul>
 
-<h3>Symptoms</h3>
+<p><b>Symptoms:</b></p>
 
 <ul>
-
-<li>Pallor</li>
-
-<li>Profuse sweating</li>
-
-<li>Rapid weak pulse</li>
-
-<li>Low blood pressure</li>
-
-<li>Rapid shallow breathing</li>
-
+<li>Pale face.</li>
+<li>Profuse sweating.</li>
+<li>Rapid weak pulse.</li>
+<li>Low blood pressure.</li>
+<li>Rapid shallow breathing.</li>
 </ul>
-
-<h3>Treatment</h3>
+<p><b>Treatment:</b></p>
 
 <ul>
-
-<li>Lay patient flat with head lowered</li>
-
-<li>Blood transfusion</li>
-
-<li>IV fluids (Ringer's, Lactated Ringer's, Glucose Saline)</li>
-
-<li>Vasopressors</li>
-
-<li>Hydrocortisone</li>
-
-<li>Treat the cause</li>
-
+<li>Lay the patient flat with the head lowered.</li>
+<li>Administer blood intravenously.</li>
+<li>Give IV fluids (Glucose Saline, Ringer's, Lactated Ringer's).</li>
+<li>Administer vasopressors and Hydrocortisone.</li>
+<li>Treat the underlying cause.</li>
 </ul>
 
 </div>
 
-<div class="card">
+<div class="card purple">
+
+<span class="icon">🧠</span>
 
 <h2>Neurogenic Shock</h2>
 
-<h3>Cause</h3>
+<p><b>Cause:</b></p>
 
 <ul>
-
-<li>Severe pain</li>
-
+<li>Severe pain.</li>
 </ul>
 
-<h3>Symptoms</h3>
+<p><b>Symptoms:</b></p>
 
 <ul>
-
-<li>Slow weak pulse</li>
-
-<li>Low blood pressure</li>
-
-<li>Pallor</li>
-
-<li>Sweating</li>
-
+<li>Slow weak pulse.</li>
+<li>Low blood pressure.</li>
+<li>Pallor.</li>
+<li>Profuse sweating.</li>
 </ul>
 
-<h3>Treatment</h3>
+<p><b>Treatment:</b></p>
 
 <ul>
-
-<li>Lay patient flat with head lowered</li>
-
-<li>Stimulate the patient</li>
-
-<li>IV fluids</li>
-
+<li>Lay the patient flat with the head lowered.</li>
+<li>Stimulate the patient.</li>
+<li>Administer IV fluids.</li>
 </ul>
 
 </div>
 
-<div class="card">
+<div class="card blue">
+
+<span class="icon">🦠</span>
 
 <h2>Septic Shock</h2>
 
-<h3>Causes</h3>
+<p><b>Cause:</b></p>
+
+<p>
+Severe infection such as pneumonia, urinary infection, gangrene, internal abscess or advanced peritonitis.
+</p>
+
+<p><b>Symptoms:</b></p>
 
 <ul>
-
-<li>Severe infection</li>
-
-<li>Pneumonia</li>
-
-<li>Peritonitis</li>
-
-<li>Internal abscess</li>
-
-<li>Gangrenous wounds</li>
-
+<li>High temperature.</li>
+<li>Rapid pulse.</li>
+<li>Low blood pressure.</li>
+<li>Local signs of infection.</li>
 </ul>
 
-<h3>Symptoms</h3>
+<p><b>Treatment:</b></p>
 
 <ul>
-
-<li>High temperature</li>
-
-<li>Rapid pulse</li>
-
-<li>Low blood pressure</li>
-
-<li>Local signs of infection</li>
-
-</ul>
-
-<h3>Treatment</h3>
-
-<ul>
-
-<li>Treat the cause</li>
-
-<li>IV fluids</li>
-
-<li>Blood & Plasma transfusion</li>
-
-<li>Strong antibiotics</li>
-
-<li>IV Zantac</li>
-
-<li>Improve oxygenation</li>
-
+<li>Treat the cause (usually surgery).</li>
+<li>Give IV fluids, plasma and blood.</li>
+<li>Administer strong antibiotics.</li>
+<li>Give IV Zantac to prevent gastric ulcers.</li>
+<li>Improve breathing to increase oxygen.</li>
 </ul>
 
 </div>
 
-<div class="card" style="text-align:center;">
-
-<a class="button-link" href="#">
-🎥 Watch on YouTube
+<a class="button" href="gs-chapter3-quiz.html">
+📝 Take Quiz
 </a>
-
-<br><br>
-
-<a class="button-link" href="gs-chapter3-quiz.html">
-
-📝 Start Quiz
-
-</a>
-
-</div>
 
 </div>
 
 </body>
-  </html>
+</html>
