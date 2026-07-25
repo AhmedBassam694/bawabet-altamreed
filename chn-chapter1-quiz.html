@@ -258,6 +258,64 @@ nextButton.style.display="none";
 
 }
 
+  function showResult(){
+
+clearInterval(countdown);
+
+let percentage=Math.round((score/questions.length)*100);
+
+let message="";
+
+if(percentage>=90){
+
+message="🏆 ممتاز! أداء رائع.";
+
+}
+
+else if(percentage>=75){
+
+message="👏 أحسنت، مستواك ممتاز.";
+
+}
+
+else if(percentage>=50){
+
+message="👍 جيد، راجع الشابتر مرة أخرى.";
+
+}
+
+else{
+
+message="📚 تحتاج إلى مراجعة الشابتر ثم إعادة الاختبار.";
+
+}
+
+document.querySelector(".card").innerHTML=`
+
+<div class="result-box">
+
+<h2>🎉 انتهى الاختبار</h2>
+
+<p>النتيجة</p>
+
+<h1>${score} / ${questions.length}</h1>
+
+<h2>${percentage}%</h2>
+
+<p>${message}</p>
+
+<button onclick="location.reload()">🔄 إعادة الاختبار</button>
+
+<br><br>
+
+<button onclick="history.back()">🏠 العودة للشابتر</button>
+
+</div>
+
+`;
+
+  }
+  
 showQuestion();
 
 </script>
