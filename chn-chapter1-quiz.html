@@ -144,6 +144,41 @@ answers:[
 ];
 
 let currentQuestion=0;
+let score=0;
+
+let timeLeft=300;
+
+const timer=document.getElementById("timer");
+
+const countdown=setInterval(function(){
+
+if(timeLeft<=0){
+
+clearInterval(countdown);
+
+showResult();
+
+return;
+
+}
+
+timeLeft--;
+
+let minutes=Math.floor(timeLeft/60);
+
+let seconds=timeLeft%60;
+
+timer.innerHTML=
+
+String(minutes).padStart(2,"0")
+
++":"
+
++
+
+String(seconds).padStart(2,"0");
+
+},1000);
 
 let score=0;
 
