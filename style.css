@@ -229,3 +229,45 @@ transition:.3s;
 .button-link:hover{
 background:#003f87;
 }
+.timer{
+background:#dc3545;
+color:white;
+padding:10px;
+border-radius:10px;
+font-size:22px;
+font-weight:bold;
+margin-bottom:20px;
+text-align:center;
+}
+
+.progress{
+width:100%;
+height:12px;
+background:#ddd;
+border-radius:20px;
+margin-bottom:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#0d6efd;
+transition:.3s;
+border-radius:20px;
+}
+
+.result-box{
+text-align:center;
+padding:30px;
+}
+
+.result-box h2{
+color:#0057b8;
+margin-bottom:20px;
+}
+
+.result-box p{
+font-size:22px;
+margin:15px 0;
+}
