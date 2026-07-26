@@ -29,6 +29,8 @@
 
 </ul>
 
+<button onclick="logout()">🚪 تسجيل الخروج</button>
+
 </nav>
 
 <header>
@@ -125,13 +127,39 @@
 <script src="script.js"></script>
 
 <script>
-auth.onAuthStateChanged(function(user) {
-    if (!user) {
-        window.location.href = "login.html";
+
+auth.onAuthStateChanged(function(user){
+
+    if(!user){
+
+        window.location.href="login.html";
+
     }
+
 });
+
+function logout(){
+
+    auth.signOut()
+
+    .then(function(){
+
+        alert("تم تسجيل الخروج");
+
+        window.location.href="login.html";
+
+    })
+
+    .catch(function(error){
+
+        alert(error.message);
+
+    });
+
+}
+
 </script>
-  
+
 </body>
 
 </html>
