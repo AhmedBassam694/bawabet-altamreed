@@ -1246,3 +1246,109 @@ section {
 
 
   }
+
+/* ==============================
+   Fix Home Page Cards
+============================== */
+
+.years {
+    padding: 40px 20px;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+
+.card {
+
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    transition: 0.3s;
+    border: 2px solid #e8f1ff;
+
+}
+
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+}
+
+
+.card h3 {
+
+    font-size: 22px;
+    color: #06283d;
+    margin-bottom: 15px;
+
+}
+
+
+.card p {
+
+    color: #555;
+    line-height: 1.8;
+    min-height: 70px;
+
+}
+
+
+/* زر الدخول */
+
+.button-link {
+
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg,#0d6efd,#20c997);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: .3s;
+
+}
+
+
+.button-link:hover {
+
+    transform: scale(1.05);
+    opacity: .9;
+
+}
+
+
+
+/* موبايل */
+
+@media(max-width:768px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .card{
+
+        padding:25px 15px;
+
+    }
+
+
+    .card h3{
+
+        font-size:19px;
+
+    }
+
+}
