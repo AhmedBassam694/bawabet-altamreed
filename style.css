@@ -1352,3 +1352,107 @@ section {
     }
 
 }
+
+/* ==============================
+   Admission Page Fix
+============================== */
+
+.years > h2 {
+
+    text-align: center;
+    color: #06283d;
+    font-size: 30px;
+    margin-bottom: 35px;
+
+}
+
+
+.years .cards {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px;
+
+}
+
+
+.years .card {
+
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 35px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    border-top: 6px solid #0d6efd;
+    transition: .3s;
+
+}
+
+
+.years .card:hover {
+
+    transform: translateY(-10px);
+
+}
+
+
+.years .card h3 {
+
+    font-size: 24px;
+    color:#0d6efd;
+    margin-bottom:20px;
+
+}
+
+
+.years .card p {
+
+    color:#555;
+    line-height:1.8;
+    min-height:80px;
+
+}
+
+
+.years .button-link {
+
+    display:block;
+    margin-top:25px;
+    background:linear-gradient(135deg,#0d6efd,#20c997);
+    color:white;
+    padding:14px;
+    border-radius:15px;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+
+.years .button-link:hover {
+
+    opacity:.85;
+
+}
+
+
+
+/* موبايل */
+
+@media(max-width:768px){
+
+    .years .cards{
+
+        grid-template-columns:1fr;
+        padding:10px;
+
+    }
+
+
+    .years .card h3{
+
+        font-size:21px;
+
+    }
+
+}
