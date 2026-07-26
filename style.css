@@ -1,9 +1,23 @@
-/*==================================
-      بوابة التمريض
-      STYLE.CSS - PART 1
-==================================*/
+/*====================================
+   بوابة التمريض - Mobile First
+   PART 1
+====================================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap');
+
+:root{
+
+--primary:#0d6efd;
+--primary-dark:#084298;
+--secondary:#20c997;
+--bg:#f5f8fc;
+--white:#ffffff;
+--text:#222;
+--gray:#666;
+--radius:18px;
+--shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
 
 *{
 margin:0;
@@ -16,488 +30,68 @@ scroll-behavior:smooth;
 }
 
 body{
+
 font-family:'Cairo',sans-serif;
-background:#f4f8fc;
-color:#222;
+background:var(--bg);
+color:var(--text);
 line-height:1.8;
+overflow-x:hidden;
+
 }
 
 a{
-text-decoration:none;
-}
 
-img{
-max-width:100%;
-display:block;
+text-decoration:none;
+color:inherit;
+
 }
 
 ul{
+
 list-style:none;
+
+}
+
+img{
+
+max-width:100%;
+display:block;
+
 }
 
 button{
+
 font-family:'Cairo',sans-serif;
 cursor:pointer;
 border:none;
+
 }
 
-/*=========================
+/*=====================
 NAVBAR
-=========================*/
+=====================*/
 
 nav{
+
+background:var(--primary);
+
+padding:15px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:15px;
 
 position:sticky;
+
 top:0;
+
 z-index:999;
 
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-
-padding:15px 6%;
-
-background:#0b5ed7;
-
-box-shadow:0 4px 15px rgba(0,0,0,.12);
-
-}
-
-.logo{
-
-font-size:28px;
-font-weight:800;
-color:#fff;
-
-}
-
-nav ul{
-
-display:flex;
-gap:20px;
-align-items:center;
-
-}
-
-nav ul li a{
-
-color:#fff;
-padding:10px 14px;
-border-radius:10px;
-font-weight:700;
-transition:.3s;
-
-}
-
-nav ul li a:hover{
-
-background:rgba(255,255,255,.15);
-
-}
-
-nav button{
-
-background:#fff;
-color:#0b5ed7;
-padding:10px 18px;
-border-radius:10px;
-font-weight:bold;
-transition:.3s;
-
-}
-
-nav button:hover{
-
-background:#eef5ff;
-
-}
-
-/*=========================
-HEADER
-=========================*/
-
-header{
-
-background:linear-gradient(135deg,#0b5ed7,#38a3ff);
-
-padding:70px 20px;
-
-text-align:center;
-
-color:#fff;
-
-}
-
-header h1{
-
-font-size:42px;
-margin-bottom:15px;
-
-}
-
-header p{
-
-font-size:20px;
-max-width:750px;
-margin:auto;
-
-}
-
-/*=========================
-MAIN
-=========================*/
-
-.years{
-
-width:90%;
-max-width:1200px;
-
-margin:50px auto;
-
-}
-
-.years h2{
-
-text-align:center;
-font-size:30px;
-color:#0b5ed7;
-
-margin-bottom:35px;
-
-}
-
-.cards{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-
-gap:25px;
-
-}
-
-.card{
-
-background:#fff;
-
-border-radius:18px;
-
-padding:25px;
-
-text-align:center;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-transition:.3s;
-
-border-top:5px solid #0b5ed7;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 14px 30px rgba(0,0,0,.15);
-
-}
-
-.card h3{
-
-font-size:23px;
-
-color:#0b5ed7;
-
-margin-bottom:15px;
-
-}
-
-.card p{
-
-color:#555;
-
-margin-bottom:22px;
-
-min-height:70px;
-
-}
-
-/*=========================
-BUTTONS
-=========================*/
-
-.button-link,
-.card button{
-
-display:inline-block;
-
-background:#0b5ed7;
-
-color:#fff;
-
-padding:12px 25px;
-
-border-radius:12px;
-
-font-weight:bold;
-
-transition:.3s;
-
-}
-
-.button-link:hover,
-.card button:hover{
-
-background:#084298;
-
-}
-/*==================================
-      STYLE.CSS - PART 2
-==================================*/
-
-/* Cards داخل المواد */
-
-.card a{
-display:inline-block;
-width:100%;
-}
-
-.card button{
-width:100%;
-font-size:16px;
-}
-
-.button-link{
-width:100%;
-text-align:center;
-}
-
-/* Sections */
-
-section{
-padding:20px 0;
-}
-
-/* Footer */
-
-footer{
-
-margin-top:60px;
-
-background:#06283d;
-
-color:#fff;
-
-text-align:center;
-
-padding:22px 15px;
-
-}
-
-footer p{
-
-font-size:15px;
-
-}
-
-/* Quiz */
-
-.quiz-container{
-
-background:#fff;
-
-padding:25px;
-
-border-radius:18px;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.question{
-
-font-size:22px;
-
-font-weight:700;
-
-margin-bottom:20px;
-
-color:#0b5ed7;
-
-}
-
-.options{
-
-display:flex;
-
-flex-direction:column;
-
-gap:15px;
-
-}
-
-.options label{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-padding:15px;
-
-background:#eef5ff;
-
-border-radius:12px;
-
-cursor:pointer;
-
-transition:.3s;
-
-border:2px solid transparent;
-
-}
-
-.options label:hover{
-
-background:#dcecff;
-
-border-color:#0b5ed7;
-
-}
-
-.options input{
-
-transform:scale(1.2);
-
-}
-
-/* Progress */
-
-.progress{
-
-width:100%;
-
-height:10px;
-
-background:#ddd;
-
-border-radius:20px;
-
-overflow:hidden;
-
-margin:20px 0;
-
-}
-
-.progress-bar{
-
-width:0;
-
-height:100%;
-
-background:#0b5ed7;
-
-transition:.4s;
-
-}
-
-/* Inputs */
-
-input,
-select,
-textarea{
-
-width:100%;
-
-padding:12px;
-
-border:1px solid #ccc;
-
-border-radius:10px;
-
-font-size:15px;
-
-font-family:'Cairo',sans-serif;
-
-margin-bottom:15px;
-
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-
-border-color:#0b5ed7;
-
-outline:none;
-
-box-shadow:0 0 8px rgba(11,94,215,.2);
-
-}
-
-/* Tables */
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-background:#fff;
-
-border-radius:15px;
-
-overflow:hidden;
-
-}
-
-th{
-
-background:#0b5ed7;
-
-color:#fff;
-
-padding:14px;
-
-}
-
-td{
-
-padding:14px;
-
-border-bottom:1px solid #eee;
-
-text-align:center;
-
-   }
-/*==================================
-      STYLE.CSS - PART 3
-      Mobile Responsive
-==================================*/
-
-@media (max-width:992px){
-
-nav{
-
-flex-direction:column;
-
-gap:15px;
-
-padding:15px;
-
-}
-
-nav ul{
-
-width:100%;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-gap:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
 
 }
 
@@ -505,47 +99,23 @@ gap:10px;
 
 font-size:24px;
 
-}
+font-weight:800;
 
-header{
+color:#fff;
 
-padding:60px 20px;
-
-}
-
-header h1{
-
-font-size:34px;
-
-}
-
-header p{
-
-font-size:18px;
-
-}
-
-}
-
-@media (max-width:768px){
-
-body{
-
-font-size:15px;
-
-}
-
-nav{
-
-padding:15px;
+text-align:center;
 
 }
 
 nav ul{
 
+width:100%;
+
+display:flex;
+
 flex-direction:column;
 
-width:100%;
+gap:10px;
 
 }
 
@@ -559,13 +129,25 @@ nav ul li a{
 
 display:block;
 
-width:100%;
+padding:14px;
+
+background:rgba(255,255,255,.10);
+
+color:#fff;
+
+border-radius:12px;
 
 text-align:center;
 
-padding:14px;
+font-weight:700;
 
-background:rgba(255,255,255,.08);
+transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+background:rgba(255,255,255,.20);
 
 }
 
@@ -573,13 +155,33 @@ nav button{
 
 width:100%;
 
-margin-top:8px;
+padding:14px;
+
+border-radius:12px;
+
+background:#fff;
+
+color:var(--primary);
+
+font-weight:bold;
 
 }
+/*====================================
+   بوابة التمريض - Mobile First
+   PART 2
+====================================*/
+
+/*========== HEADER ==========*/
 
 header{
 
-padding:45px 15px;
+background:linear-gradient(135deg,#0d6efd,#36a2ff);
+
+color:#fff;
+
+text-align:center;
+
+padding:45px 20px;
 
 }
 
@@ -587,31 +189,51 @@ header h1{
 
 font-size:28px;
 
+font-weight:800;
+
+margin-bottom:12px;
+
 }
 
 header p{
 
 font-size:16px;
 
+line-height:1.9;
+
+max-width:650px;
+
+margin:auto;
+
 }
+
+/*========== MAIN ==========*/
 
 .years{
 
 width:94%;
 
-margin:35px auto;
+margin:30px auto;
 
 }
 
 .years h2{
 
+text-align:center;
+
 font-size:24px;
+
+color:#0d6efd;
 
 margin-bottom:20px;
 
 }
 
+/*========== CARDS ==========*/
+
 .cards{
+
+display:grid;
 
 grid-template-columns:1fr;
 
@@ -621,15 +243,35 @@ gap:18px;
 
 .card{
 
-padding:20px;
+background:#fff;
 
-border-radius:15px;
+border-radius:18px;
+
+padding:22px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+border-top:5px solid #0d6efd;
+
+transition:.3s;
+
+text-align:center;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
 
 }
 
 .card h3{
 
-font-size:20px;
+font-size:21px;
+
+color:#0d6efd;
+
+margin-bottom:15px;
 
 }
 
@@ -637,163 +279,366 @@ font-size:20px;
 
 font-size:15px;
 
-min-height:auto;
+color:#555;
 
-}
+line-height:1.9;
+
+margin-bottom:20px;
+
+      }
+/*====================================
+   بوابة التمريض - Mobile First
+   PART 3
+====================================*/
+
+/*========== BUTTONS ==========*/
 
 .button-link,
-
 .card button{
+
+display:block;
 
 width:100%;
 
-font-size:15px;
+padding:14px 18px;
 
-padding:14px;
+background:linear-gradient(135deg,#0d6efd,#2b8cff);
+
+color:#fff;
+
+font-size:16px;
+
+font-weight:700;
+
+text-align:center;
+
+border:none;
+
+border-radius:14px;
+
+transition:.3s;
 
 }
 
-.quiz-container{
+.button-link:hover,
+.card button:hover{
+
+background:linear-gradient(135deg,#084298,#0d6efd);
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 18px rgba(13,110,253,.25);
+
+}
+
+/*========== LESSONS ==========*/
+
+.lesson-box{
+
+background:#fff;
 
 padding:18px;
+
+border-radius:16px;
+
+margin-bottom:15px;
+
+box-shadow:0 6px 15px rgba(0,0,0,.08);
+
+border-right:5px solid #0d6efd;
+
+}
+
+.lesson-box h4{
+
+font-size:18px;
+
+color:#0d6efd;
+
+margin-bottom:8px;
+
+}
+
+.lesson-box p{
+
+font-size:14px;
+
+color:#666;
+
+margin-bottom:15px;
+
+}
+
+/*========== QUIZ ==========*/
+
+.quiz-container{
+
+background:#fff;
+
+padding:20px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
 
 }
 
 .question{
 
-font-size:18px;
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+color:#222;
+
+}
+
+.options{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
 
 }
 
 .options label{
 
-padding:12px;
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:14px;
+
+border-radius:12px;
+
+background:#eef5ff;
+
+border:2px solid transparent;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.options label:hover{
+
+border-color:#0d6efd;
+
+background:#dcecff;
+
+}
+
+.options input{
+
+transform:scale(1.15);
+
+}
+/*====================================
+   بوابة التمريض - Mobile First
+   PART 4
+====================================*/
+
+/*========== FOOTER ==========*/
+
+footer{
+background:#06283d;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+}
+
+footer p{
+font-size:15px;
+}
+
+/*========== FORM ==========*/
+
+input,
+select,
+textarea{
+
+width:100%;
+padding:14px;
+
+border:1px solid #d8d8d8;
+border-radius:12px;
 
 font-size:15px;
+
+font-family:'Cairo',sans-serif;
+
+margin-bottom:15px;
+
+background:#fff;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+outline:none;
+border-color:#0d6efd;
+
+box-shadow:0 0 0 3px rgba(13,110,253,.15);
+
+}
+
+/*========== TABLE ==========*/
+
+.table-box{
+
+overflow-x:auto;
+
+border-radius:15px;
 
 }
 
 table{
 
-display:block;
+width:100%;
 
-overflow-x:auto;
+border-collapse:collapse;
+
+background:#fff;
+
+}
+
+th{
+
+background:#0d6efd;
+
+color:#fff;
+
+padding:14px;
 
 white-space:nowrap;
 
 }
 
-}
+td{
 
-@media (max-width:480px){
+padding:14px;
 
-.logo{
+border-bottom:1px solid #eee;
 
-font-size:21px;
+text-align:center;
 
-}
-
-header h1{
-
-font-size:24px;
+white-space:nowrap;
 
 }
 
-header p{
+/*========== PROGRESS ==========*/
 
-font-size:14px;
+.progress{
+
+width:100%;
+
+height:10px;
+
+background:#e5e5e5;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin:20px 0;
 
 }
+
+.progress-bar{
+
+height:100%;
+
+width:0%;
+
+background:#0d6efd;
+
+transition:.4s;
+
+}
+
+/*========== ANIMATION ==========*/
 
 .card{
 
-padding:18px;
+animation:fadeUp .5s ease;
 
-}
-
-.card h3{
-
-font-size:18px;
-
-}
-
-footer{
-
-font-size:13px;
-
-padding:18px;
-
-}
-
-}
-/*==================================
-      STYLE.CSS - PART 4
-      Final Professional Finish
-==================================*/
-
-/* Hover Effects */
-
-.card,
-.button-link,
-.card button,
-nav ul li a,
-nav button{
-transition:all .3s ease;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,.15);
-}
-
-.button-link:hover,
-.card button:hover{
-transform:scale(1.04);
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-track{
-background:#eef3fa;
-}
-
-::-webkit-scrollbar-thumb{
-background:#0b5ed7;
-border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-background:#084298;
-}
-
-/* Selection */
-
-::selection{
-background:#0b5ed7;
-color:#fff;
-}
-
-/* Animations */
-
-.fade-up{
-animation:fadeUp .6s ease;
 }
 
 @keyframes fadeUp{
 
 from{
+
 opacity:0;
-transform:translateY(25px);
+
+transform:translateY(20px);
+
 }
 
 to{
+
 opacity:1;
+
 transform:translateY(0);
+
 }
+
+      }
+/*====================================
+   بوابة التمريض - Mobile First
+   PART 5
+====================================*/
+
+/* Containers */
+
+.container{
+width:94%;
+max-width:1200px;
+margin:auto;
+}
+
+/* Titles */
+
+h1,h2,h3,h4{
+font-weight:700;
+}
+
+.text-center{
+text-align:center;
+}
+
+/* Spacing */
+
+.mt-20{margin-top:20px;}
+.mt-30{margin-top:30px;}
+.mt-40{margin-top:40px;}
+
+.mb-20{margin-bottom:20px;}
+.mb-30{margin-bottom:30px;}
+.mb-40{margin-bottom:40px;}
+
+/* Images */
+
+img{
+
+border-radius:15px;
+
+}
+
+/* Shadow */
+
+.shadow{
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
 
 }
 
@@ -801,15 +646,13 @@ transform:translateY(0);
 
 .success{
 
-background:#d1e7dd;
+background:#d4edda;
 
-color:#0f5132;
+color:#155724;
 
 padding:15px;
 
-border-radius:10px;
-
-margin:15px 0;
+border-radius:12px;
 
 }
 
@@ -817,13 +660,11 @@ margin:15px 0;
 
 background:#f8d7da;
 
-color:#842029;
+color:#721c24;
 
 padding:15px;
 
-border-radius:10px;
-
-margin:15px 0;
+border-radius:12px;
 
 }
 
@@ -835,9 +676,7 @@ color:#055160;
 
 padding:15px;
 
-border-radius:10px;
-
-margin:15px 0;
+border-radius:12px;
 
 }
 
@@ -851,7 +690,7 @@ height:45px;
 
 border:5px solid #ddd;
 
-border-top:5px solid #0b5ed7;
+border-top:5px solid #0d6efd;
 
 border-radius:50%;
 
@@ -864,47 +703,9 @@ margin:auto;
 @keyframes spin{
 
 100%{
+
 transform:rotate(360deg);
-}
 
 }
 
-/* Images */
-
-img{
-
-border-radius:12px;
-
 }
-
-/* Utility */
-
-.text-center{
-text-align:center;
-}
-
-.mt-20{
-margin-top:20px;
-}
-
-.mt-30{
-margin-top:30px;
-}
-
-.mb-20{
-margin-bottom:20px;
-}
-
-.mb-30{
-margin-bottom:30px;
-}
-
-.hidden{
-display:none;
-}
-
-.show{
-display:block;
-}
-
-/* End */
