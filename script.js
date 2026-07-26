@@ -1,6 +1,12 @@
+let currentUser = null;
+
 firebase.auth().onAuthStateChanged(function(user){
 
-if(!user){
+if(user){
+
+currentUser = user;
+
+}else{
 
 alert("يجب تسجيل الدخول أولاً");
 
@@ -9,7 +15,6 @@ window.location.href = "login.html";
 }
 
 });
-
 
 const questions = [
 
@@ -258,6 +263,30 @@ nextBtn.onclick = function(){
         `;
 
 
+if(currentUser){
+
+db.collection("results").add({
+
+uid: currentUser.uid,
+
+email: currentUser.email,
+
+subject: "General Surgery",
+
+chapter: "Chapter 1",
+
+score: score,
+
+total: questions.length,
+
+percentage: percentage,
+
+date: firebase.firestore.FieldValue.serverTimestamp()
+
+});
+
+}
+        
         nextBtn.innerHTML = "إعادة الاختبار";
 
 
