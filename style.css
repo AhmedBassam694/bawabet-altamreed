@@ -1069,3 +1069,55 @@ width:100%;
 margin-top:15px;
 
 }
+
+/* Quiz Answers Fix */
+
+#answers button{
+
+display:block;
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:12px;
+
+background:#eef5ff;
+
+color:#222;
+
+border:2px solid #dbeafe;
+
+border-radius:15px;
+
+font-size:16px;
+
+font-weight:600;
+
+text-align:right;
+
+font-family:'Cairo',sans-serif;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+#answers button:hover{
+
+background:#dbeafe;
+
+border-color:#0d6efd;
+
+}
+
+
+#answers button:disabled{
+
+cursor:not-allowed;
+
+opacity:1;
+
+}
