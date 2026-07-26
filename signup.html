@@ -57,31 +57,20 @@ placeholder="كلمة المرور">
 <br><br>
 
 <button onclick="signUp()">
-
 إنشاء حساب
-
 </button>
 
 <br><br>
 
 <p>
-
 لديك حساب؟
-
-<a href="login.html">
-
-تسجيل الدخول
-
-</a>
-
+<a href="login.html">تسجيل الدخول</a>
 </p>
 
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script src="firebase.js"></script>
@@ -91,22 +80,18 @@ placeholder="كلمة المرور">
 function signUp(){
 
 const name = document.getElementById("name").value.trim();
-
 const grade = document.getElementById("grade").value;
-
 const email = document.getElementById("email").value.trim();
-
 const password = document.getElementById("password").value;
 
-if(name==="" || grade==="" || email==="" || password===""){
+if(name === "" || grade === "" || email === "" || password === ""){
 
 alert("من فضلك أكمل جميع البيانات");
-
 return;
 
 }
 
-auth.createUserWithEmailAndPassword(email,password)
+auth.createUserWithEmailAndPassword(email, password)
 
 .then((userCredential)=>{
 
@@ -114,13 +99,10 @@ const user = userCredential.user;
 
 return db.collection("users").doc(user.uid).set({
 
-name:name,
-
-email:email,
-
-grade:grade,
-
-createdAt:firebase.firestore.FieldValue.serverTimestamp()
+name: name,
+email: email,
+grade: grade,
+createdAt: firebase.firestore.FieldValue.serverTimestamp()
 
 });
 
@@ -130,15 +112,37 @@ createdAt:firebase.firestore.FieldValue.serverTimestamp()
 
 alert("✅ تم إنشاء الحساب بنجاح");
 
-window.location.href="login.html";
+window.location.href = "login.html";
 
 })
 
-catch((error)=>{
+.catch((error)=>{
 
-alert("Error Code: " + error.code);
+if(error.code === "auth/email-already-in-use"){
+
+alert("❌ هذا البريد الإلكتروني مستخدم بالفعل");
+
+}
+
+else if(error.code === "auth/weak-password"){
+
+alert("❌ كلمة المرور يجب أن تكون 6 أحرف أو أكثر");
+
+}
+
+else if(error.code === "auth/invalid-email"){
+
+alert("❌ البريد الإلكتروني غير صحيح");
+
+}
+
+else{
+
+alert("❌ " + error.code);
 
 console.log(error);
+
+}
 
 });
 
