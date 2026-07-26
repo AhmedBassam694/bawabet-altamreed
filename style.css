@@ -1,53 +1,44 @@
-/* ===========================
-   Bawabet Altamreed
-   Style.css
+/* =====================================
+   بوابة التمريض - Style.css
    Part 1
-=========================== */
+===================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap');
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-background:#f5f9ff;
-color:#222;
-line-height:1.7;
+    font-family:'Cairo',sans-serif;
+    background:#f5f8fc;
+    color:#222;
+    line-height:1.8;
 }
 
 a{
-text-decoration:none;
-color:inherit;
+    text-decoration:none;
 }
 
 ul{
-list-style:none;
+    list-style:none;
 }
 
 img{
-max-width:100%;
-display:block;
+    max-width:100%;
+    display:block;
 }
 
 button{
-cursor:pointer;
-font-family:'Cairo',sans-serif;
-transition:.3s;
-border:none;
-outline:none;
-}
-
-input{
-font-family:'Cairo',sans-serif;
-outline:none;
+    font-family:'Cairo',sans-serif;
+    cursor:pointer;
+    border:none;
 }
 
 /* ===========================
@@ -55,121 +46,74 @@ outline:none;
 =========================== */
 
 nav{
-
-position:sticky;
-
-top:0;
-
-z-index:999;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:18px 8%;
-
-background:#0b5ed7;
-
-box-shadow:0 5px 20px rgba(0,0,0,.15);
-
+    background:#0b5ed7;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
 .logo{
-
-font-size:28px;
-
-font-weight:800;
-
-color:#fff;
-
+    font-size:28px;
+    font-weight:800;
+    color:#fff;
 }
 
 nav ul{
-
-display:flex;
-
-gap:25px;
-
-align-items:center;
-
+    display:flex;
+    gap:20px;
 }
 
 nav ul li a{
-
-color:#fff;
-
-font-weight:700;
-
-transition:.3s;
-
-padding:8px 12px;
-
-border-radius:8px;
-
+    color:#fff;
+    padding:10px 15px;
+    border-radius:8px;
+    transition:.3s;
+    font-weight:700;
 }
 
 nav ul li a:hover{
-
-background:rgba(255,255,255,.15);
-
+    background:rgba(255,255,255,.18);
 }
 
 nav button{
-
-background:#fff;
-
-color:#0b5ed7;
-
-padding:10px 18px;
-
-border-radius:10px;
-
-font-weight:bold;
-
+    background:#fff;
+    color:#0b5ed7;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
 }
 
 nav button:hover{
-
-transform:translateY(-2px);
-
-background:#eaf3ff;
-
+    background:#e8f1ff;
 }
 
 /* ===========================
-   HERO
+   HEADER
 =========================== */
 
 header{
-
-padding:80px 20px;
-
-text-align:center;
-
-background:linear-gradient(135deg,#0b5ed7,#3da5ff);
-
-color:white;
-
+    background:linear-gradient(135deg,#0b5ed7,#2f9bff);
+    color:#fff;
+    text-align:center;
+    padding:70px 20px;
 }
 
 header h1{
-
-font-size:48px;
-
-margin-bottom:20px;
-
-font-weight:800;
-
+    font-size:42px;
+    margin-bottom:15px;
 }
 
 header p{
-
-font-size:22px;
-
-opacity:.95;
-
+    font-size:20px;
+    max-width:700px;
+    margin:auto;
 }
 
 /* ===========================
@@ -177,1282 +121,474 @@ opacity:.95;
 =========================== */
 
 .years{
-
-padding:70px 8%;
-
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
 }
 
+.years h2{
+    text-align:center;
+    color:#0b5ed7;
+    margin-bottom:35px;
+    font-size:30px;
+}
+/* =====================================
+   Part 2 - Cards & Buttons
+===================================== */
+
 .cards{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:30px;
-
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
 }
 
 .card{
-
-background:#fff;
-
-padding:30px;
-
-border-radius:20px;
-
-box-shadow:0 12px 35px rgba(0,0,0,.08);
-
-transition:.35s;
-
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+    border-top:5px solid #0b5ed7;
 }
 
 .card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 20px 45px rgba(0,0,0,.12);
-
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
 .card h3{
-
-font-size:24px;
-
-color:#0b5ed7;
-
-margin-bottom:15px;
-
+    color:#0b5ed7;
+    font-size:24px;
+    margin-bottom:15px;
 }
 
 .card p{
+    color:#555;
+    line-height:1.9;
+    margin-bottom:25px;
+    min-height:70px;
+}
 
-color:#555;
+/* ===========================
+   BUTTONS
+=========================== */
 
-margin-bottom:25px;
+.button-link,
+.card a button{
 
-line-height:1.9;
+    display:inline-block;
+    background:#0b5ed7;
+    color:#fff;
+    padding:12px 24px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+    border:none;
+
+}
+
+.button-link:hover,
+.card a button:hover{
+
+    background:#084298;
+    transform:scale(1.05);
+
+}
+
+.card a button{
+    width:100%;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    margin-top:60px;
+    background:#06283d;
+    color:#fff;
+    text-align:center;
+    padding:22px;
+
+}
+
+footer p{
+
+    margin:0;
 
 }
 
 /* ===========================
-BUTTONS
+   SIMPLE ANIMATIONS
 =========================== */
 
-.button-link{
+.card{
 
-display:inline-block;
+    animation:fadeUp .5s ease;
 
-padding:14px 25px;
-
-background:#0b5ed7;
-
-color:#fff;
-
-border-radius:12px;
-
-font-weight:bold;
-
-transition:.3s;
-
-}
-
-.button-link:hover{
-
-background:#084298;
-
-transform:scale(1.05);
-
-}
-
-/* ==============================
-   Cards Section
-============================== */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    border-top: 5px solid #0d6efd;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-}
-
-.card h3 {
-    color: #0d6efd;
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.card p {
-    color: #555;
-    line-height: 1.8;
-}
-
-
-/* ==============================
-   Buttons
-============================== */
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 30px;
-    background: #0d6efd;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #084298;
-    transform: scale(1.05);
-}
-
-
-.btn-secondary {
-    background: #20c997;
-}
-
-.btn-secondary:hover {
-    background: #138d75;
-}
-
-
-/* ==============================
-   Lessons Section
-============================== */
-
-.lessons {
-    margin-top: 40px;
-}
-
-.lesson-box {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-}
-
-.lesson-box h4 {
-    color: #222;
-    font-size: 20px;
-}
-
-.lesson-box span {
-    color: #0d6efd;
-    font-weight: bold;
-}
-
-
-/* ==============================
-   Quiz Design
-============================== */
-
-.quiz-container {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.question {
-    font-size: 22px;
-    margin-bottom: 25px;
-    color: #222;
-}
-
-.options label {
-    display: block;
-    padding: 15px;
-    background: #f1f5ff;
-    margin: 10px 0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.options label:hover {
-    background: #dbeafe;
-}
-
-.options input {
-    margin-left: 10px;
-}
-
-
-/* ==============================
-   Progress Bar
-============================== */
-
-.progress {
-    width: 100%;
-    height: 12px;
-    background: #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 20px 0;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #0d6efd;
-    transition: 0.4s;
-}
-
-
-/* ==============================
-   Footer
-============================== */
-
-footer {
-    background: #06283d;
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 50px;
-}
-
-footer p {
-    margin: 0;
-}
-
-/* ==============================
-   Mobile Responsive
-============================== */
-
-@media (max-width: 768px) {
-
-    body {
-        font-size: 15px;
-    }
-
-
-    /* Header */
-
-    header {
-        padding: 15px;
-        text-align: center;
-    }
-
-    header h1 {
-        font-size: 26px;
-    }
-
-    header p {
-        font-size: 14px;
-    }
-
-
-    /* Navbar */
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-        padding: 15px;
-    }
-
-    nav a {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        border-radius: 10px;
-    }
-
-
-    /* Container */
-
-    .container {
-        width: 92%;
-        margin: auto;
-    }
-
-
-    /* Hero */
-
-    .hero {
-        padding: 30px 15px;
-        text-align: center;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-
-    /* Cards */
-
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-
-    /* Lessons */
-
-    .lesson-box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .lesson-box h4 {
-        font-size: 18px;
-    }
-
-
-    /* Buttons */
-
-    .btn {
-        width: 100%;
-        text-align: center;
-        padding: 14px;
-    }
-
-
-    /* Quiz */
-
-    .quiz-container {
-        padding: 20px;
-    }
-
-    .question {
-        font-size: 18px;
-    }
-
-    .options label {
-        font-size: 15px;
-        padding: 12px;
-    }
-
-
-    /* Images */
-
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 12px;
-    }
-
-
-    /* Tables */
-
-    table {
-        width: 100%;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-
-    /* Footer */
-
-    footer {
-        padding: 20px 10px;
-        font-size: 14px;
-    }
-
-}
-
-
-
-/* ==============================
-   Small Mobile Devices
-============================== */
-
-@media (max-width: 400px) {
-
-    header h1 {
-        font-size: 22px;
-    }
-
-
-    .hero h1 {
-        font-size: 23px;
-    }
-
-
-    .card h3 {
-        font-size: 19px;
-    }
-
-
-    .btn {
-        font-size: 14px;
-    }
-
-
-    .question {
-        font-size: 16px;
-    }
-
-}
-
-
-
-/* ==============================
-   Animations
-============================== */
-
-.fade-in {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-
-.slide-up {
-    animation: slideUp 0.7s ease;
-}
-
-
-@keyframes slideUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-
-/* Loading */
-
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-}
-
-
-.spinner {
-    width: 45px;
-    height: 45px;
-    border: 5px solid #ddd;
-    border-top-color: #0d6efd;
-    border-radius: 50%;
-    animation: rotate 1s linear infinite;
-}
-
-
-@keyframes rotate {
-
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-
-  }
-
-/* ==============================
-   Nursing Gate Theme
-============================== */
-
-:root {
-    --primary: #0d6efd;
-    --secondary: #20c997;
-    --dark: #06283d;
-    --light: #f8faff;
-    --text: #333;
-}
-
-
-body {
-    background: var(--light);
-    color: var(--text);
-    font-family: "Arial", sans-serif;
-}
-
-
-/* ==============================
-   Main Sections
-============================== */
-
-section {
-    padding: 50px 0;
-}
-
-
-.section-title {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-
-.section-title h2 {
-    color: var(--dark);
-    font-size: 32px;
-    position: relative;
-}
-
-
-.section-title h2::after {
-    content: "";
-    width: 70px;
-    height: 4px;
-    background: var(--primary);
-    display: block;
-    margin: 12px auto;
-    border-radius: 20px;
-}
-
-
-
-/* ==============================
-   Subject Cards
-============================== */
-
-.subject-card {
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    text-align: center;
-    transition: .3s;
-    box-shadow: 0 8px 25px rgba(0,0,0,.08);
-}
-
-
-.subject-card:hover {
-    transform: translateY(-10px);
-}
-
-
-.subject-icon {
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    border-radius: 50%;
-    background: #e7f1ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-}
-
-
-.subject-card h3 {
-    margin: 20px 0 10px;
-    color: var(--primary);
-}
-
-
-.subject-card p {
-    line-height: 1.8;
-    color: #666;
-}
-
-
-
-/* ==============================
-   Course Page
-============================== */
-
-.course-header {
-
-    background: linear-gradient(
-        135deg,
-        #0d6efd,
-        #20c997
-    );
-
-    color:white;
-    padding:40px 20px;
-    border-radius:25px;
-    text-align:center;
-
-}
-
-
-.course-header h1 {
-    font-size:35px;
-}
-
-
-.course-header p {
-    margin-top:15px;
-    font-size:18px;
-}
-
-
-
-/* ==============================
-   Video Cards
-============================== */
-
-.video-card {
-
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,.1);
-    transition:.3s;
-
-}
-
-
-.video-card:hover {
-
-    transform:scale(1.03);
-
-}
-
-
-.video-card img {
-
-    width:100%;
-    display:block;
-
-}
-
-
-.video-content {
-
-    padding:20px;
-
-}
-
-
-.video-content h3 {
-
-    color:var(--dark);
-    font-size:20px;
-
-}
-
-
-
-/* ==============================
-   Profile / Login Box
-============================== */
-
-.profile-box {
-
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-    text-align:center;
-
-}
-
-
-.profile-image {
-
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-bottom:20px;
-
-}
-
-
-
-/* ==============================
-   Alert Messages
-============================== */
-
-.alert {
-
-    padding:15px 20px;
-    border-radius:12px;
-    margin:15px 0;
-
-}
-
-
-.alert-success {
-
-    background:#d1e7dd;
-    color:#0f5132;
-
-}
-
-
-.alert-danger {
-
-    background:#f8d7da;
-    color:#842029;
-
-}
-
-
-.alert-info {
-
-    background:#cff4fc;
-    color:#055160;
-
-}
-
-
-
-/* ==============================
-   Mobile Final Fix
-============================== */
-
-@media(max-width:768px){
-
-    section{
-        padding:30px 0;
-    }
-
-
-    .section-title h2{
-        font-size:24px;
-    }
-
-
-    .course-header h1{
-        font-size:25px;
-    }
-
-
-    .subject-icon{
-        width:65px;
-        height:65px;
-        font-size:28px;
-    }
-
-
-    .video-card:hover{
-        transform:none;
-    }
-
-      }
-
-/* ==============================
-   Professional Header
-============================== */
-
-.main-header {
-
-    background: linear-gradient(
-        135deg,
-        #06283d,
-        #0d6efd
-    );
-
-    color:white;
-    padding:25px 0;
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
-
-}
-
-
-.main-header .logo {
-
-    font-size:30px;
-    font-weight:bold;
-
-}
-
-
-.main-header .logo span {
-
-    color:#20c997;
-
-}
-
-
-
-/* ==============================
-   Navigation Menu
-============================== */
-
-.nav-menu {
-
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-
-}
-
-
-.nav-menu a {
-
-    color:white;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:25px;
-    transition:.3s;
-
-}
-
-
-.nav-menu a:hover {
-
-    background:white;
-    color:#0d6efd;
-
-}
-
-
-
-/* ==============================
-   Floating Buttons
-============================== */
-
-.floating-btn {
-
-    position:fixed;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:25px;
-    text-decoration:none;
-    z-index:999;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
-
-}
-
-
-.whatsapp-btn {
-
-    bottom:25px;
-    right:25px;
-    background:#25d366;
-
-}
-
-
-.youtube-btn {
-
-    bottom:90px;
-    right:25px;
-    background:#ff0000;
-
-}
-
-
-.floating-btn:hover {
-
-    transform:scale(1.1);
-
-}
-
-
-
-/* ==============================
-   Search Box
-============================== */
-
-.search-box {
-
-    width:100%;
-    max-width:500px;
-    margin:20px auto;
-    position:relative;
-
-}
-
-
-.search-box input {
-
-    width:100%;
-    padding:15px 20px;
-    border-radius:30px;
-    border:1px solid #ddd;
-    outline:none;
-    font-size:16px;
-
-}
-
-
-.search-box input:focus {
-
-    border-color:#0d6efd;
-
-}
-
-
-
-/* ==============================
-   Dark Mode
-============================== */
-
-.dark-mode {
-
-    background:#121212;
-    color:white;
-
-}
-
-
-.dark-mode .card,
-.dark-mode .subject-card,
-.dark-mode .video-card,
-.dark-mode .quiz-container,
-.dark-mode .profile-box {
-
-    background:#1e1e1e;
-    color:white;
-
-}
-
-
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3,
-.dark-mode h4 {
-
-    color:white;
-
-}
-
-
-.dark-mode p {
-
-    color:#ddd;
-
-}
-
-
-
-/* ==============================
-   Empty State
-============================== */
-
-.empty-box {
-
-    text-align:center;
-    padding:50px 20px;
-    background:white;
-    border-radius:20px;
-
-}
-
-
-.empty-box h3 {
-
-    color:#0d6efd;
-
-}
-
-
-
-/* ==============================
-   Scroll Animation
-============================== */
-
-.reveal {
-
-    opacity:0;
-    transform:translateY(30px);
-    transition:.8s;
-
-}
-
-
-.reveal.active {
-
-    opacity:1;
-    transform:translateY(0);
-
 }
-
-
-
-/* ==============================
-   Final Mobile Adjustments
-============================== */
 
-@media(max-width:768px){
+@keyframes fadeUp{
 
-    .main-header .logo {
+    from{
 
-        font-size:24px;
+        opacity:0;
+        transform:translateY(20px);
 
     }
 
+    to{
 
-    .nav-menu {
+        opacity:1;
+        transform:translateY(0);
 
+    }
+
+}
+/* =====================================
+   Part 3 - Responsive Design
+===================================== */
+
+@media (max-width:991px){
+
+    nav{
+
+        flex-direction:column;
+        gap:15px;
+
+    }
+
+    nav ul{
+
+        flex-wrap:wrap;
+        justify-content:center;
         gap:10px;
 
     }
 
+    header{
 
-    .nav-menu a {
-
-        width:90%;
-        text-align:center;
+        padding:50px 20px;
 
     }
 
+    header h1{
 
-    .floating-btn {
-
-        width:50px;
-        height:50px;
-        font-size:22px;
+        font-size:34px;
 
     }
 
+    header p{
 
-  }
+        font-size:18px;
 
-/* ==============================
-   Fix Home Page Cards
-============================== */
-
-.years {
-    padding: 40px 20px;
-}
-
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-
-.card {
-
-    background: white;
-    border-radius: 20px;
-    padding: 30px 20px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
-    transition: 0.3s;
-    border: 2px solid #e8f1ff;
+    }
 
 }
 
+@media (max-width:768px){
 
-.card:hover {
+    .years{
 
-    transform: translateY(-8px);
+        width:95%;
+        margin:35px auto;
 
-}
-
-
-.card h3 {
-
-    font-size: 22px;
-    color: #06283d;
-    margin-bottom: 15px;
-
-}
-
-
-.card p {
-
-    color: #555;
-    line-height: 1.8;
-    min-height: 70px;
-
-}
-
-
-/* زر الدخول */
-
-.button-link {
-
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: linear-gradient(135deg,#0d6efd,#20c997);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    transition: .3s;
-
-}
-
-
-.button-link:hover {
-
-    transform: scale(1.05);
-    opacity: .9;
-
-}
-
-
-
-/* موبايل */
-
-@media(max-width:768px){
+    }
 
     .cards{
 
         grid-template-columns:1fr;
+        gap:20px;
 
     }
-
 
     .card{
 
-        padding:25px 15px;
+        padding:20px;
 
     }
-
 
     .card h3{
 
-        font-size:19px;
+        font-size:22px;
+
+    }
+
+    .card p{
+
+        min-height:auto;
+        font-size:15px;
+
+    }
+
+    nav{
+
+        padding:15px;
+
+    }
+
+    .logo{
+
+        font-size:24px;
+
+    }
+
+    nav ul{
+
+        width:100%;
+        flex-direction:column;
+
+    }
+
+    nav ul li{
+
+        width:100%;
+
+    }
+
+    nav ul li a{
+
+        display:block;
+        width:100%;
+        text-align:center;
+
+    }
+
+    nav button{
+
+        width:100%;
+
+    }
+
+    header h1{
+
+        font-size:28px;
+
+    }
+
+    header p{
+
+        font-size:16px;
+
+    }
+
+    .button-link,
+    .card a button{
+
+        width:100%;
 
     }
 
 }
 
-/* ==============================
-   Admission Page Fix
-============================== */
+@media (max-width:480px){
 
-.years > h2 {
+    header{
 
-    text-align: center;
-    color: #06283d;
-    font-size: 30px;
-    margin-bottom: 35px;
+        padding:40px 15px;
+
+    }
+
+    header h1{
+
+        font-size:24px;
+
+    }
+
+    header p{
+
+        font-size:15px;
+
+    }
+
+    .years h2{
+
+        font-size:24px;
+
+    }
+
+    .card{
+
+        border-radius:15px;
+
+    }
+
+    .card h3{
+
+        font-size:20px;
+
+    }
+
+}
+/* =====================================
+   Part 4 - Extra Styles
+===================================== */
+
+/* Titles */
+
+h1,h2,h3,h4{
+    font-weight:700;
+}
+
+section{
+    margin-bottom:40px;
+}
+
+/* Tables */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+table th{
+    background:#0b5ed7;
+    color:#fff;
+    padding:15px;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+}
+
+/* Forms */
+
+input,
+select,
+textarea{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-family:'Cairo',sans-serif;
 
 }
 
+input:focus,
+select:focus,
+textarea:focus{
 
-.years .cards {
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    padding: 20px;
-
-}
-
-
-.years .card {
-
-    background: #ffffff;
-    border-radius: 25px;
-    padding: 35px 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.12);
-    border-top: 6px solid #0d6efd;
-    transition: .3s;
+    border-color:#0b5ed7;
+    outline:none;
 
 }
 
+/* Quiz */
 
-.years .card:hover {
+.quiz-container{
 
-    transform: translateY(-10px);
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 
 }
 
+.question{
 
-.years .card h3 {
-
-    font-size: 24px;
-    color:#0d6efd;
+    font-size:22px;
     margin-bottom:20px;
+    color:#0b5ed7;
 
 }
 
-
-.years .card p {
-
-    color:#555;
-    line-height:1.8;
-    min-height:80px;
-
-}
-
-
-.years .button-link {
+.options label{
 
     display:block;
-    margin-top:25px;
-    background:linear-gradient(135deg,#0d6efd,#20c997);
-    color:white;
-    padding:14px;
-    border-radius:15px;
-    text-decoration:none;
-    font-weight:bold;
+    background:#eef5ff;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+    cursor:pointer;
+    transition:.3s;
 
 }
 
+.options label:hover{
 
-.years .button-link:hover {
-
-    opacity:.85;
+    background:#dcecff;
 
 }
 
+.progress{
 
+    width:100%;
+    height:10px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
 
-/* موبايل */
+}
 
-@media(max-width:768px){
+.progress-bar{
 
-    .years .cards{
+    width:0;
+    height:100%;
+    background:#0b5ed7;
+    transition:.4s;
 
-        grid-template-columns:1fr;
-        padding:10px;
+}
 
+/* Alerts */
+
+.success{
+
+    background:#d4edda;
+    color:#155724;
+    padding:15px;
+    border-radius:10px;
+
+}
+
+.error{
+
+    background:#f8d7da;
+    color:#721c24;
+    padding:15px;
+    border-radius:10px;
+
+}
+
+/* Loading */
+
+.spinner{
+
+    width:40px;
+    height:40px;
+    border:4px solid #ddd;
+    border-top:4px solid #0b5ed7;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    100%{
+        transform:rotate(360deg);
     }
 
-
-    .years .card h3{
-
-        font-size:21px;
-
-    }
-
 }
+
+/* Smooth */
+
+.card,
+.button-link,
+.card a button,
+nav ul li a,
+nav button{
+
+    transition:.3s;
+
+       }
