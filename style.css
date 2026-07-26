@@ -75,15 +75,15 @@ nav{
 
 background:var(--primary);
 
-padding:15px;
+padding:15px 20px;
 
 display:flex;
 
-flex-direction:column;
+justify-content:space-between;
 
 align-items:center;
 
-gap:15px;
+flex-wrap:wrap;
 
 box-shadow:0 5px 15px rgba(0,0,0,.12);
 
@@ -96,8 +96,6 @@ font-size:24px;
 font-weight:800;
 
 color:#fff;
-
-text-align:center;
 
 }
 
@@ -712,25 +710,29 @@ transform:rotate(360deg);
 
 .menu-toggle{
 
-display:block;
+display:flex;
 
-width:100%;
+justify-content:center;
 
-padding:12px;
+align-items:center;
 
-font-size:26px;
+width:48px;
 
-font-weight:bold;
+height:48px;
 
-background:#ffffff;
+background:#fff;
 
 color:#0d6efd;
+
+font-size:28px;
 
 border:none;
 
 border-radius:12px;
 
 cursor:pointer;
+
+margin-right:auto;
 
 }
 
