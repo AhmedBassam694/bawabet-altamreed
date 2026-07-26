@@ -134,31 +134,11 @@ window.location.href="login.html";
 
 })
 
-.catch((error)=>{
+catch((error)=>{
 
-if(error.code==="auth/email-already-in-use"){
+alert("Error Code: " + error.code);
 
-alert("❌ هذا البريد الإلكتروني مستخدم بالفعل");
-
-}
-
-else if(error.code==="auth/weak-password"){
-
-alert("❌ كلمة المرور يجب أن تكون 6 أحرف أو أكثر");
-
-}
-
-else if(error.code==="auth/invalid-email"){
-
-alert("❌ البريد الإلكتروني غير صحيح");
-
-}
-
-else{
-
-alert("❌ حدث خطأ، حاول مرة أخرى");
-
-}
+console.log(error);
 
 });
 
