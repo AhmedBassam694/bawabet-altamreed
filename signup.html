@@ -19,7 +19,10 @@
 
 <h2>🩺 إنشاء حساب</h2>
 
-<input type="text" id="name" placeholder="الاسم بالكامل">
+<input
+type="text"
+id="name"
+placeholder="الاسم بالكامل">
 
 <br><br>
 
@@ -27,23 +30,29 @@
 
 <option value="">اختر الصف الدراسي</option>
 
-<option value="اختبارات القبول">اختبارات القبول</option>
+<option value="الصف الأول الثانوي التمريض">
+الصف الأول الثانوي التمريض
+</option>
 
-<option value="الصف الأول الثانوي تمريض">الصف الأول الثانوي تمريض</option>
-
-<option value="الصف الثاني الثانوي تمريض">الصف الثاني الثانوي تمريض</option>
-
-<option value="الصف الثالث الثانوي تمريض">الصف الثالث الثانوي تمريض</option>
+<option value="الصف الثاني الثانوي التمريض">
+الصف الثاني الثانوي التمريض
+</option>
 
 </select>
 
 <br><br>
 
-<input type="email" id="email" placeholder="البريد الإلكتروني">
+<input
+type="email"
+id="email"
+placeholder="البريد الإلكتروني">
 
 <br><br>
 
-<input type="password" id="password" placeholder="كلمة المرور">
+<input
+type="password"
+id="password"
+placeholder="كلمة المرور">
 
 <br><br>
 
@@ -52,6 +61,8 @@
 إنشاء حساب
 
 </button>
+
+<br><br>
 
 <p>
 
@@ -79,15 +90,15 @@
 
 function signUp(){
 
-const name = document.getElementById("name").value;
+const name = document.getElementById("name").value.trim();
 
 const grade = document.getElementById("grade").value;
 
-const email = document.getElementById("email").value;
+const email = document.getElementById("email").value.trim();
 
 const password = document.getElementById("password").value;
 
-if(name=="" || grade=="" || email=="" || password==""){
+if(name==="" || grade==="" || email==="" || password===""){
 
 alert("من فضلك أكمل جميع البيانات");
 
@@ -117,7 +128,7 @@ createdAt:firebase.firestore.FieldValue.serverTimestamp()
 
 .then(()=>{
 
-alert("تم إنشاء الحساب بنجاح ✅");
+alert("✅ تم إنشاء الحساب بنجاح");
 
 window.location.href="login.html";
 
@@ -125,19 +136,19 @@ window.location.href="login.html";
 
 .catch((error)=>{
 
-if(error.code === "auth/email-already-in-use"){
+if(error.code==="auth/email-already-in-use"){
 
 alert("❌ هذا البريد الإلكتروني مستخدم بالفعل");
 
 }
 
-else if(error.code === "auth/weak-password"){
+else if(error.code==="auth/weak-password"){
 
 alert("❌ كلمة المرور يجب أن تكون 6 أحرف أو أكثر");
 
 }
 
-else if(error.code === "auth/invalid-email"){
+else if(error.code==="auth/invalid-email"){
 
 alert("❌ البريد الإلكتروني غير صحيح");
 
