@@ -265,9 +265,19 @@ nextBtn.onclick = function(){
 
 if(currentUser){
 
-db.collection("results").add({
+db.collection("users").doc(currentUser.uid).get()
+
+.then((doc)=>{
+
+const userData = doc.data();
+
+return db.collection("results").add({
 
 uid: currentUser.uid,
+
+name: userData.name,
+
+grade: userData.grade,
 
 email: currentUser.email,
 
@@ -282,6 +292,8 @@ total: questions.length,
 percentage: percentage,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
+
+});
 
 });
 
