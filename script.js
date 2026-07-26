@@ -184,7 +184,9 @@ document.getElementById("progressFill").style.width =
         };
 
 
-        answers.appendChild(button);
+        button.className = "quiz-answer";
+
+answers.appendChild(button);
 
 
     });
