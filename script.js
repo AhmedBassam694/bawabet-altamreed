@@ -115,7 +115,7 @@ let currentQuestion = 0;
 let score = 0;
 let answered = false;
 
-let timeLeft = 600;
+let timeLeft = 420;
 let timerInterval;
 
 
@@ -134,7 +134,13 @@ function loadQuestion(){
 
     question.innerHTML = questions[currentQuestion].question;
 
+document.getElementById("questionNumber").innerHTML =
+"السؤال " + (currentQuestion + 1) + " / " + questions.length;
 
+
+document.getElementById("progressFill").style.width =
+((currentQuestion + 1) / questions.length) * 100 + "%";
+    
     questions[currentQuestion].answers.forEach((answer,index)=>{
 
         let button = document.createElement("button");
