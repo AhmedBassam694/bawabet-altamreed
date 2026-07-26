@@ -271,6 +271,10 @@ db.collection("users").doc(currentUser.uid).get()
 
 const userData = doc.data();
 
+console.log(userData);
+
+alert(userData.name + " - " + userData.grade);
+    
 return db.collection("results").add({
 
 uid: currentUser.uid,
