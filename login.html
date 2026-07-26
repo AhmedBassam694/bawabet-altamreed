@@ -69,9 +69,37 @@ window.location.href="index.html";
 
 })
 
-.catch(function(error){
+.catch((error)=>{
 
-alert(error.message);
+if(error.code === "auth/wrong-password"){
+
+alert("❌ كلمة المرور غير صحيحة");
+
+}
+
+else if(error.code === "auth/user-not-found"){
+
+alert("❌ البريد الإلكتروني غير موجود");
+
+}
+
+else if(error.code === "auth/invalid-email"){
+
+alert("❌ البريد الإلكتروني غير صحيح");
+
+}
+
+else if(error.code === "auth/invalid-credential"){
+
+alert("❌ البريد الإلكتروني أو كلمة المرور غير صحيحة");
+
+}
+
+else{
+
+alert("❌ البريد الإلكتروني أو كلمة المرور غير صحيحة");
+
+}
 
 });
 
