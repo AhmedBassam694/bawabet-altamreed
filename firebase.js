@@ -1,4 +1,7 @@
+// ===============================
 // Firebase Configuration
+// بوابة التمريض
+// ===============================
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLVKbfkhFsTGunLWEJmBN2eGg0tdqePyc",
@@ -9,11 +12,8 @@ const firebaseConfig = {
   appId: "1:668697400713:web:ec5611e587dc3d3c237d58"
 };
 
-// Initialize Firebase
+// تهيئة Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Authentication
 const auth = firebase.auth();
-
-// Firestore Database
-const db = firebase.firestore();
