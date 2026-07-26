@@ -1,3 +1,16 @@
+firebase.auth().onAuthStateChanged(function(user){
+
+if(!user){
+
+alert("يجب تسجيل الدخول أولاً");
+
+window.location.href = "login.html";
+
+}
+
+});
+
+
 const questions = [
 
 {
