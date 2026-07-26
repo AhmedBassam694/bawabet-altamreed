@@ -14,24 +14,67 @@
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav>
 
 <div class="logo">
 🩺 بوابة التمريض
 </div>
 
-<ul>
+<button class="menu-toggle" onclick="toggleMenu()">
+☰
+</button>
 
-<li><a href="index.html">الرئيسية</a></li>
-<li><a href="admission.html">اختبارات القبول</a></li>
-<li><a href="first-year.html">الصف الأول</a></li>
-<li><a href="second-year.html">الصف الثاني</a></li>
+<ul id="menu">
+
+<li>
+<a href="index.html">
+🏠 الرئيسية
+</a>
+</li>
+
+<li>
+<a href="admission.html">
+📝 اختبارات القبول
+</a>
+</li>
+
+<li>
+<a href="first-year.html">
+📘 الصف الأول
+</a>
+</li>
+
+<li>
+<a href="second-year.html">
+📗 الصف الثاني
+</a>
+</li>
+
+<li>
+<a href="books.html">
+📚 الكتب
+</a>
+</li>
+
+<li>
+
+<button class="logout-btn" onclick="logout()">
+🚪 تسجيل الخروج
+</button>
+
+</li>
 
 </ul>
 
-<button onclick="logout()">🚪 تسجيل الخروج</button>
-
 </nav>
+
+<!-- =========================
+      HEADER
+========================= -->
 
 <header>
 
@@ -40,23 +83,38 @@
 </h1>
 
 <p>
-منصة تعليمية لطلاب التمريض
-<br>
-شروحات • اختبارات • مراجعات • ملفات
+
+منصة تعليمية متكاملة لطلاب مدارس التمريض
+
+</p>
+
+<p>
+
+شروحات • اختبارات • مراجعات • ملفات PDF
+
 </p>
 
 </header>
 
+<!-- =========================
+      HOME CARDS
+========================= -->
+
 <section class="years">
 
-<div class="cards">
+<h2>
 
-<div class="card">
+مرحبًا بك 👋
+
+</h2>
+
+<div class="cards">
+    <div class="card">
 
 <h3>📝 اختبارات القبول</h3>
 
 <p>
-تدرب على اختبارات القبول لمدارس التمريض.
+ابدأ التدريب على اختبارات القبول لمدارس التمريض من خلال الفيديوهات والأسئلة.
 </p>
 
 <a class="button-link" href="admission.html">
@@ -70,11 +128,11 @@
 <h3>📘 الصف الأول الثانوي تمريض</h3>
 
 <p>
-جميع مواد الصف الأول مع الشرح والاختبارات.
+ادخل إلى جميع مواد الصف الأول، الشروحات، الاختبارات والملفات.
 </p>
 
 <a class="button-link" href="first-year.html">
-دخول
+دخول الصف الأول
 </a>
 
 </div>
@@ -84,25 +142,25 @@
 <h3>📗 الصف الثاني الثانوي تمريض</h3>
 
 <p>
-جميع مواد الصف الثاني مع الشرح والاختبارات.
+ادخل إلى جميع مواد الصف الثاني مع الشابترات والاختبارات.
 </p>
 
 <a class="button-link" href="second-year.html">
-دخول
+دخول الصف الثاني
 </a>
 
 </div>
 
 <div class="card">
 
-<h3>📚 كتب بوابة التمريض</h3>
+<h3>📚 مكتبة بوابة التمريض</h3>
 
 <p>
-اشترِ الكتب والملخصات الرسمية الخاصة ببوابة التمريض لمساعدتك في الدراسة والاستعداد للامتحانات.
+الكتب والملخصات والملفات الرسمية الخاصة ببوابة التمريض.
 </p>
 
 <a class="button-link" href="books.html">
-📖 دخول المكتبة
+دخول المكتبة
 </a>
 
 </div>
@@ -110,6 +168,56 @@
 </div>
 
 </section>
+
+<section class="years">
+
+<h2>
+
+⭐ لماذا بوابة التمريض؟
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>🎥 شروحات فيديو</h3>
+
+<p>
+شرح مبسط لجميع المواد مع أمثلة وأسئلة متوقعة.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>📝 اختبارات تفاعلية</h3>
+
+<p>
+اختبر نفسك بعد كل درس واعرف نتيجتك فورًا.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>📄 ملفات PDF</h3>
+
+<p>
+ملخصات منظمة تساعدك على المراجعة بسرعة.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<!-- =========================
+      FOOTER
+========================= -->
 
 <footer>
 
@@ -119,49 +227,63 @@
 
 </footer>
 
-<!-- Firebase -->
+<!-- =========================
+      FIREBASE
+========================= -->
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    
+
 <script src="firebase.js"></script>
+
 <script src="script.js"></script>
+
+<!-- =========================
+      MENU
+========================= -->
 
 <script>
 
+function toggleMenu(){
+
+document.getElementById("menu").classList.toggle("show");
+
+}
+
 auth.onAuthStateChanged(function(user){
 
-    if(!user){
+if(!user){
 
-        window.location.href="login.html";
+window.location.href="login.html";
 
-    }
+}
 
 });
 
 function logout(){
 
-    auth.signOut()
+auth.signOut()
 
-    .then(function(){
+.then(function(){
 
-        alert("تم تسجيل الخروج");
+alert("تم تسجيل الخروج بنجاح");
 
-        window.location.href="login.html";
+window.location.href="login.html";
 
-    })
+})
 
-    .catch(function(error){
+.catch(function(error){
 
-        alert(error.message);
+alert(error.message);
 
-    });
+});
 
 }
 
-</script>
-
-</body>
+       </script>
+       </body>
 
 </html>
