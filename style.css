@@ -921,3 +921,57 @@ color:#fff;
 box-shadow:0 8px 20px rgba(13,110,253,.25);
 
 }
+
+/* تحسين كروت الصفحة الرئيسية */
+
+.card-icon{
+
+width:75px;
+
+height:75px;
+
+margin:0 auto 18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(135deg,#0d6efd,#36a2ff);
+
+border-radius:20px;
+
+font-size:34px;
+
+color:#fff;
+
+box-shadow:0 10px 25px rgba(13,110,253,.25);
+
+}
+
+.card{
+
+overflow:hidden;
+
+}
+
+.card h3{
+
+margin-top:8px;
+
+}
+
+.card p{
+
+min-height:65px;
+
+}
+
+.card:hover .card-icon{
+
+transform:rotate(-5deg) scale(1.08);
+
+transition:.3s;
+
+}
