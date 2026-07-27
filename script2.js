@@ -403,6 +403,8 @@ nextBtn.style.display = "none";
 // Start Quiz
 // =========================
 
+alert("Before Load Question");
+
 loadQuestion();
 
 startTimer();
