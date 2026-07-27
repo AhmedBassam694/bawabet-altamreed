@@ -115,6 +115,7 @@ correct: 0
 let currentQuestion = 0;
 let score = 0;
 let selectedAnswer = null;
+let answered = false;
 
 const question = document.getElementById("question");
 const answers = document.getElementById("answers");
@@ -125,6 +126,7 @@ const progressFill = document.getElementById("progressFill");
 function loadQuestion() {
 
 selectedAnswer = null;
+answered = false;
 
 const q = questions[currentQuestion];
 
@@ -148,12 +150,30 @@ btn.innerHTML = answer;
 
 btn.onclick = () => {
 
+if(answered) return;
+
+answered = true;
+
 selectedAnswer = index;
 
-document.querySelectorAll(".answer-btn")
-.forEach(b => b.classList.remove("selected"));
+const allBtns = document.querySelectorAll(".answer-btn");
 
-btn.classList.add("selected");
+allBtns.forEach(b => b.disabled = true);
+
+if(index === q.correct){
+
+btn.style.background = "#28a745";
+btn.style.color = "#fff";
+
+}else{
+
+btn.style.background = "#dc3545";
+btn.style.color = "#fff";
+
+allBtns[q.correct].style.background = "#28a745";
+allBtns[q.correct].style.color = "#fff";
+
+}
 
 };
 
@@ -162,7 +182,6 @@ answers.appendChild(btn);
 });
 
 }
-
 nextBtn.onclick = () => {
 
 if(selectedAnswer === null){
@@ -189,8 +208,22 @@ loadQuestion();
 
 clearInterval(timer);
 
-question.innerHTML =
-`🎉 انتهى الاختبار <br><br> درجتك ${score} من ${questions.length}`;
+question.innerHTML = `
+<h2>🎉 انتهى الاختبار</h2>
+
+<p style="font-size:24px;margin:20px 0;">
+درجتك
+<br><br>
+<b>${score} / ${questions.length}</b>
+</p>
+
+<p style="font-size:20px;">
+${score >= 8 ? "🏆 ممتاز جدًا" :
+score >= 6 ? "👏 جيد جدًا" :
+score >= 5 ? "🙂 جيد" :
+"📚 تحتاج إلى مذاكرة أكثر"}
+</p>
+`;
 
 answers.innerHTML = "";
 
@@ -200,7 +233,7 @@ questionNumber.innerHTML = "";
 
 progressFill.style.width = "100%";
 
-document.getElementById("timer").innerHTML = "✅ انتهى الوقت";
+document.getElementById("timer").innerHTML = "✅ انتهى الاختبار";
 
 }
 
@@ -223,8 +256,19 @@ if(timeLeft < 0){
 
 clearInterval(timer);
 
-question.innerHTML =
-`⏰ انتهى الوقت <br><br> درجتك ${score} من ${questions.length}`;
+question.innerHTML = `
+<h2>⏰ انتهى الوقت</h2>
+
+<p style="font-size:24px;margin:20px 0;">
+درجتك
+<br><br>
+<b>${score} / ${questions.length}</b>
+</p>
+
+<p>
+انتهى الوقت قبل إكمال الاختبار.
+</p>
+`;
 
 answers.innerHTML = "";
 
