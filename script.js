@@ -129,6 +129,7 @@ correct:2
 }
 
 ];
+
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
@@ -136,134 +137,110 @@ let answered = false;
 let timeLeft = 420;
 let timerInterval;
 
-
 const question = document.getElementById("question");
 const answers = document.getElementById("answers");
 const nextBtn = document.getElementById("nextBtn");
 const timer = document.getElementById("timer");
 
-
-
 function loadQuestion(){
 
-    answered = false;
+answered = false;
 
-    answers.innerHTML = "";
+answers.innerHTML = "";
 
-    question.innerHTML = questions[currentQuestion].question;
+question.innerHTML = questions[currentQuestion].question;
 
 document.getElementById("questionNumber").innerHTML =
 "السؤال " + (currentQuestion + 1) + " / " + questions.length;
 
-
 document.getElementById("progressFill").style.width =
 ((currentQuestion + 1) / questions.length) * 100 + "%";
-    
-    questions[currentQuestion].answers.forEach((answer,index)=>{
 
-        let button = document.createElement("button");
+questions[currentQuestion].answers.forEach((answer,index)=>{
 
-        button.innerHTML = answer;
+let button = document.createElement("button");
 
+button.innerHTML = answer;
 
-        button.onclick = function(){
+button.className = "quiz-answer";
 
-            if(answered) return;
+button.onclick = function(){
 
+if(answered) return;
 
-            answered = true;
+answered = true;
 
+let allButtons = document.querySelectorAll("#answers button");
 
-            let allButtons = document.querySelectorAll("#answers button");
+allButtons.forEach(btn=>{
 
+btn.disabled = true;
 
-            allButtons.forEach(btn=>{
-                btn.disabled = true;
-            });
+});
 
+if(index === questions[currentQuestion].correct){
 
+score++;
 
-            if(index === questions[currentQuestion].correct){
+button.style.background = "green";
+button.style.color = "#fff";
 
-                score++;
+}else{
 
-                button.style.background = "green";
+button.style.background = "red";
+button.style.color = "#fff";
 
-            }else{
+allButtons[questions[currentQuestion].correct].style.background = "green";
+allButtons[questions[currentQuestion].correct].style.color = "#fff";
 
-                button.style.background = "red";
+}
 
-                allButtons[questions[currentQuestion].correct]
-                .style.background = "green";
-
-            }
-
-
-        };
-
-
-        button.className = "quiz-answer";
+};
 
 answers.appendChild(button);
 
+});
 
-    });
-
-         }
-// زر التالي
+}
 
 nextBtn.onclick = function(){
 
-    if(!answered){
+if(!answered){
 
-        alert("من فضلك اختر إجابة أولاً");
-        return;
+alert("من فضلك اختر إجابة أولاً");
 
-    }
+return;
 
+}
 
-    currentQuestion++;
+currentQuestion++;
 
+if(currentQuestion < questions.length){
 
-    if(currentQuestion < questions.length){
+loadQuestion();
 
-        loadQuestion();
+}else{
 
+clearInterval(timerInterval);
 
-    }else{
+let percentage = Math.round(
+(score / questions.length) * 100
+);
 
+saveResult(percentage);
 
-        clearInterval(timerInterval);
+}
 
+};
 
-        question.innerHTML = "🎉 انتهى الاختبار";
+function saveResult(percentage){
 
+if(!currentUser){
 
-        let percentage = Math.round(
-            (score / questions.length) * 100
-        );
+showResult(percentage);
+return;
 
-
-        answers.innerHTML = `
-
-        <h2>
-        درجتك: ${score} / ${questions.length}
-        </h2>
-
-        <h2>
-        النسبة: ${percentage}%
-        </h2>
-
-        <h3>
-        ${percentage >= 50 ? 
-        "🎉 مبروك لقد نجحت" :
-        "❌ حاول مرة أخرى"}
-        </h3>
-
-        `;
-
-
-if(currentUser){
+}
 
 db.collection("users").doc(currentUser.uid).get()
 
@@ -271,10 +248,6 @@ db.collection("users").doc(currentUser.uid).get()
 
 const userData = doc.data();
 
-console.log(userData);
-
-alert(userData.name + " - " + userData.grade);
-    
 return db.collection("results").add({
 
 uid: currentUser.uid,
@@ -302,21 +275,17 @@ date: firebase.firestore.FieldValue.serverTimestamp()
 .then(()=>{
 
 return db.collection("leaderboard")
-
 .doc(currentUser.uid)
-
 .get();
 
 })
 
-.then((doc)=>{
+.then((leaderDoc)=>{
 
-if(!doc.exists || percentage > doc.data().percentage){
+if(!leaderDoc.exists || percentage > leaderDoc.data().percentage){
 
 return db.collection("leaderboard")
-
 .doc(currentUser.uid)
-
 .set({
 
 uid: currentUser.uid,
@@ -331,9 +300,9 @@ subject: "General Surgery",
 
 chapter: "Chapter 1",
 
-percentage: percentage,
-
 score: score,
+
+percentage: percentage,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
 
@@ -343,89 +312,116 @@ date: firebase.firestore.FieldValue.serverTimestamp()
 
 });
 
+})
+
+.then(()=>{
+
+showResult(percentage);
+
+})
+
+.catch((error)=>{
+
+console.log(error);
+
+showResult(percentage);
+
+});
+
 }
-        
-        nextBtn.innerHTML = "إعادة الاختبار";
 
+function showResult(percentage){
 
-        nextBtn.onclick = function(){
+question.innerHTML = "🎉 انتهى الاختبار";
 
-            location.reload();
+answers.innerHTML = `
 
-        };
+<h2>
+درجتك: ${score} / ${questions.length}
+</h2>
 
+<h2>
+النسبة: ${percentage}%
+</h2>
 
-    }
+<h3>
+${percentage >= 50 ?
+"🎉 مبروك لقد نجحت" :
+"❌ حاول مرة أخرى"}
+</h3>
+
+`;
+
+nextBtn.innerHTML = "إعادة الاختبار";
+
+nextBtn.onclick = function(){
+
+location.reload();
 
 };
 
+}
 
-
-// المؤقت
+// =========================
+// Timer
+// =========================
 
 function startTimer(){
 
+timerInterval = setInterval(()=>{
 
-    timerInterval = setInterval(()=>{
+let minutes = Math.floor(timeLeft / 60);
 
+let seconds = timeLeft % 60;
 
-        let minutes = Math.floor(timeLeft / 60);
+if(seconds < 10){
 
-        let seconds = timeLeft % 60;
-
-
-        if(seconds < 10){
-
-            seconds = "0" + seconds;
-
-        }
-
-
-        timer.innerHTML =
-        "⏱️ الوقت: " + minutes + ":" + seconds;
-
-
-
-        timeLeft--;
-
-
-
-        if(timeLeft < 0){
-
-
-            clearInterval(timerInterval);
-
-
-            question.innerHTML =
-            "⏰ انتهى الوقت";
-
-
-            answers.innerHTML =
-            `
-            <h2>
-            انتهى وقت الاختبار
-            </h2>
-
-            <h2>
-            درجتك: ${score} / ${questions.length}
-            </h2>
-            `;
-
-
-            nextBtn.style.display="none";
-
-
-        }
-
-
-    },1000);
-
+seconds = "0" + seconds;
 
 }
 
+timer.innerHTML =
+"⏱️ الوقت: " + minutes + ":" + seconds;
 
+timeLeft--;
 
-// تشغيل
+if(timeLeft < 0){
+
+clearInterval(timerInterval);
+
+let percentage = Math.round(
+(score / questions.length) * 100
+);
+
+question.innerHTML = "⏰ انتهى الوقت";
+
+answers.innerHTML = `
+
+<h2>
+انتهى وقت الاختبار
+</h2>
+
+<h2>
+درجتك: ${score} / ${questions.length}
+</h2>
+
+<h2>
+النسبة: ${percentage}%
+</h2>
+
+`;
+
+nextBtn.style.display = "none";
+
+}
+
+},1000);
+
+}
+
+// =========================
+// Start Quiz
+// =========================
 
 loadQuestion();
 
