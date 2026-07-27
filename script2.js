@@ -1,4 +1,4 @@
-alert("script2 loaded");
+alert("Chapter 2 JS Working");
 
 let currentUser = null;
 
