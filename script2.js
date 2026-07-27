@@ -1,3 +1,5 @@
+alert("script2 loaded");
+
 let currentUser = null;
 
 firebase.auth().onAuthStateChanged(function(user){
