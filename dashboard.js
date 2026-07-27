@@ -1,3 +1,5 @@
+alert("dashboard.js شغال");
+
 firebase.auth().onAuthStateChanged(function(user){
 
 if(!user){
