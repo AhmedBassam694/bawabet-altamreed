@@ -1,17 +1,15 @@
 const leaderboardDiv = document.getElementById("leaderboard");
 
 
+// تحميل لوحة المتصدرين حسب الصف
 function loadLeaderboard(grade){
 
-
 leaderboardDiv.innerHTML = "⏳ جاري تحميل الترتيب...";
-
 
 
 db.collection("results")
 .where("grade","==",grade)
 .get()
-
 
 .then((snapshot)=>{
 
@@ -19,7 +17,7 @@ db.collection("results")
 if(snapshot.empty){
 
 leaderboardDiv.innerHTML =
-"❌ لا توجد نتائج حتى الآن";
+"❌ لا توجد نتائج لهذا الصف حتى الآن";
 
 return;
 
@@ -30,67 +28,56 @@ return;
 let students = {};
 
 
+// تجميع نتائج كل طالب
 
 snapshot.forEach((doc)=>{
-
 
 let data = doc.data();
 
 
-
 if(!students[data.uid]){
-
 
 students[data.uid] = {
 
-name: data.name,
+name:data.name,
 
-grade: data.grade,
+grade:data.grade,
 
-scores: []
+scores:[]
 
 };
 
-
 }
-
 
 
 students[data.uid].scores.push(data.percentage);
 
 
-
 });
 
-
-
-
-// تحويل البيانات لمصفوفة
-
-let leaderboard = Object.values(students);
 
 
 
 // حساب المتوسط النهائي لكل طالب
 
+let leaderboard = Object.values(students);
+
+
 leaderboard.forEach(student=>{
 
 
-let total = 0;
+let sum = 0;
 
 
 student.scores.forEach(score=>{
 
-
-total += score;
-
+sum += score;
 
 });
 
 
 student.average =
-(total / student.scores.length).toFixed(2);
-
+(sum / student.scores.length).toFixed(2);
 
 
 });
@@ -102,20 +89,16 @@ student.average =
 
 leaderboard.sort((a,b)=>{
 
-
 return b.average - a.average;
-
 
 });
 
 
 
 
+// عرض البيانات
 
 let html = "";
-
-
-
 
 
 leaderboard.forEach((student,index)=>{
@@ -126,41 +109,34 @@ let medal;
 
 if(index === 0){
 
-medal = "🥇";
+medal="🥇";
+
+}else if(index === 1){
+
+medal="🥈";
+
+}else if(index === 2){
+
+medal="🥉";
+
+}else{
+
+medal="🏅";
 
 }
-else if(index === 1){
-
-medal = "🥈";
-
-}
-else if(index === 2){
-
-medal = "🥉";
-
-}
-else{
-
-medal = "🏅";
-
-}
-
-
 
 
 
 html += `
-
 
 <div class="card leaderboard-card">
 
 
 <h2>
 
-${medal} المركز ${index + 1}
+${medal} المركز ${index+1}
 
 </h2>
-
 
 
 <h3>
@@ -170,7 +146,6 @@ ${medal} المركز ${index + 1}
 </h3>
 
 
-
 <p>
 
 📚 ${student.grade}
@@ -178,14 +153,11 @@ ${medal} المركز ${index + 1}
 </p>
 
 
-
 <div class="leader-score">
-
 
 ⭐ المتوسط النهائي
 
 <br>
-
 
 <b>
 
@@ -197,7 +169,6 @@ ${student.average}%
 </div>
 
 
-
 <p>
 
 📝 عدد الاختبارات:
@@ -206,9 +177,7 @@ ${student.scores.length}
 </p>
 
 
-
 </div>
-
 
 
 `;
@@ -219,14 +188,10 @@ ${student.scores.length}
 
 
 
-
-
 leaderboardDiv.innerHTML = html;
 
 
-
 })
-
 
 
 .catch((error)=>{
@@ -235,10 +200,8 @@ leaderboardDiv.innerHTML = html;
 console.log(error);
 
 
-
 leaderboardDiv.innerHTML =
-
-"❌ حدث خطأ في تحميل البيانات";
+"❌ حدث خطأ في تحميل لوحة المتصدرين";
 
 
 });
@@ -248,7 +211,6 @@ leaderboardDiv.innerHTML =
 
 
 
-
-// تحميل الصف الثاني تلقائياً
+// فتح الصفحة على الصف الثاني افتراضيًا
 
 loadLeaderboard("الصف الثاني الثانوي التمريض");
