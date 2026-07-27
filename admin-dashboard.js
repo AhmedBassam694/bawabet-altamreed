@@ -1,3 +1,5 @@
+alert("admin-dashboard.js version 2");
+
 let currentUser = null;
 
 firebase.auth().onAuthStateChanged(function(user){
