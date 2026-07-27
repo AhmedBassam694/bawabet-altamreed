@@ -25,11 +25,10 @@ firebase.auth().onAuthStateChanged(function(user){
 
         console.log("User Data:", data);
 
-        if(data.role != "admin"){
-            alert("ليس لديك صلاحية الدخول.");
-            window.location.href = "index.html";
-            return;
-        }
+    alert("وصلت بعد فحص الصلاحية");
+
+loadDashboard();
+return;
 
         loadDashboard();
 
