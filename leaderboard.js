@@ -1,85 +1,191 @@
-firebase.auth().onAuthStateChanged(function(user){
+const leaderboard = document.getElementById("leaderboard");
 
-if(!user){
 
-window.location.href = "login.html";
-return;
+// تحميل المتصدرين حسب الصف
+function loadLeaderboard(grade){
 
-}
 
-db.collection("leaderboard")
+leaderboard.innerHTML = `
+<p>
+⏳ جاري تحميل ترتيب ${grade}...
+</p>
+`;
 
-.orderBy("percentage","desc")
 
-.limit(20)
-
+// جلب كل النتائج
+db.collection("results")
 .get()
 
 .then((snapshot)=>{
 
-let html = "";
 
-let rank = 1;
+let students = {};
 
+
+// تجميع درجات كل طالب
 snapshot.forEach((doc)=>{
 
-const data = doc.data();
 
-let medal = "🏅";
+let data = doc.data();
 
-if(rank == 1){
 
-medal = "🥇";
+// التأكد من الصف المطلوب
+if(data.grade !== grade) return;
 
-}else if(rank == 2){
 
-medal = "🥈";
 
-}else if(rank == 3){
+if(!students[data.uid]){
 
-medal = "🥉";
+
+students[data.uid] = {
+
+name:data.name,
+
+grade:data.grade,
+
+total:0,
+
+count:0
+
+};
+
 
 }
 
-html += `
 
-<div class="card">
+// إضافة الدرجة
+students[data.uid].total += data.percentage;
 
-<h2>${medal} المركز ${rank}</h2>
+students[data.uid].count++;
 
-<p><b>👤 ${data.name}</b></p>
 
-<p>🏫 ${data.grade}</p>
+});
 
-<p>📚 ${data.chapter}</p>
 
-<p>📊 ${data.percentage}%</p>
+
+// حساب المتوسط النهائي
+
+let ranking = [];
+
+
+for(let uid in students){
+
+
+let student = students[uid];
+
+
+student.average =
+(student.total / student.count).toFixed(2);
+
+
+ranking.push(student);
+
+
+}
+
+
+
+// ترتيب من الأعلى للأقل
+
+ranking.sort((a,b)=>{
+
+return b.average - a.average;
+
+});
+
+
+
+// عرض النتائج
+
+if(ranking.length === 0){
+
+
+leaderboard.innerHTML = `
+
+<h3>
+لا يوجد طلاب في هذا الصف حتى الآن
+</h3>
+
+`;
+
+return;
+
+}
+
+
+
+leaderboard.innerHTML="";
+
+
+
+ranking.forEach((student,index)=>{
+
+
+let medal="🏅";
+
+
+if(index===0) medal="🥇";
+
+if(index===1) medal="🥈";
+
+if(index===2) medal="🥉";
+
+
+
+leaderboard.innerHTML += `
+
+<div class="card" style="margin:15px 0;">
+
+
+<h3>
+
+${medal} ${student.name}
+
+</h3>
+
+
+<p>
+
+🎓 ${student.grade}
+
+</p>
+
+
+<p>
+
+📊 المتوسط النهائي:
+
+<b>
+${student.average}%
+</b>
+
+</p>
+
 
 </div>
 
 `;
 
-rank++;
 
 });
 
-if(snapshot.empty){
 
-html = "<p>لا يوجد طلاب حتى الآن.</p>";
-
-}
-
-document.getElementById("leaderboard").innerHTML = html;
 
 })
 
+
 .catch((error)=>{
+
 
 console.log(error);
 
-document.getElementById("leaderboard").innerHTML =
-"<p>حدث خطأ أثناء تحميل البيانات.</p>";
+
+leaderboard.innerHTML=
+
+"<p>حدث خطأ أثناء تحميل البيانات</p>";
+
 
 });
 
-});
+
+}
