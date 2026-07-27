@@ -340,11 +340,27 @@ document.getElementById("menu").classList.toggle("show");
 
 auth.onAuthStateChanged(function(user){
 
-if(!user){
+    if(!user){
+        window.location.href = "login.html";
+        return;
+    }
 
-window.location.href="login.html";
+    db.collection("users")
+    .doc(user.uid)
+    .get()
+    .then(function(doc){
 
-}
+        if(doc.exists){
+
+            const data = doc.data();
+
+            if(data.role === "admin"){
+                document.getElementById("adminCard").style.display = "block";
+            }
+
+        }
+
+    });
 
 });
 
