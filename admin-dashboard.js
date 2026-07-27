@@ -1,5 +1,3 @@
-alert("admin-dashboard.js version 2");
-
 let currentUser = null;
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -14,7 +12,8 @@ firebase.auth().onAuthStateChanged(function(user){
     db.collection("users")
     .doc(user.uid)
     .get()
-    .then((doc)=>{
+
+    .then(function(doc){
 
         if(!doc.exists){
             alert("المستخدم غير موجود");
@@ -24,10 +23,9 @@ firebase.auth().onAuthStateChanged(function(user){
 
         const data = doc.data();
 
-console.log(data);
-alert("Role = " + data.role);
-        
-        if(data.role !== "admin"){
+        console.log("User Data:", data);
+
+        if(data.role != "admin"){
             alert("ليس لديك صلاحية الدخول.");
             window.location.href = "index.html";
             return;
@@ -35,19 +33,30 @@ alert("Role = " + data.role);
 
         loadDashboard();
 
+    })
+
+    .catch(function(error){
+
+        console.log(error);
+        alert(error.message);
+
     });
 
 });
 
 
+
 function loadDashboard(){
 
     Promise.all([
+
         db.collection("users").get(),
+
         db.collection("results").get()
+
     ])
 
-    .then(([usersSnapshot, resultsSnapshot])=>{
+    .then(function([usersSnapshot, resultsSnapshot]){
 
         let totalUsers = usersSnapshot.size;
         let totalResults = resultsSnapshot.size;
@@ -55,7 +64,7 @@ function loadDashboard(){
         let firstYear = 0;
         let secondYear = 0;
 
-        usersSnapshot.forEach(doc=>{
+        usersSnapshot.forEach(function(doc){
 
             const user = doc.data();
 
@@ -70,25 +79,41 @@ function loadDashboard(){
         });
 
         document.getElementById("stats").innerHTML = `
-            <div class="card">
-                <h3>👨‍🎓 عدد الطلاب</h3>
-                <h2>${totalUsers}</h2>
-            </div>
 
-            <div class="card">
-                <h3>📚 الصف الأول</h3>
-                <h2>${firstYear}</h2>
-            </div>
+        <div class="card">
+            <h3>👨‍🎓 عدد الطلاب</h3>
+            <h2>${totalUsers}</h2>
+        </div>
 
-            <div class="card">
-                <h3>📚 الصف الثاني</h3>
-                <h2>${secondYear}</h2>
-            </div>
+        <div class="card">
+            <h3>📚 الصف الأول</h3>
+            <h2>${firstYear}</h2>
+        </div>
 
-            <div class="card">
-                <h3>📝 عدد الاختبارات</h3>
-                <h2>${totalResults}</h2>
-            </div>
+        <div class="card">
+            <h3>📚 الصف الثاني</h3>
+            <h2>${secondYear}</h2>
+        </div>
+
+        <div class="card">
+            <h3>📝 عدد الاختبارات</h3>
+            <h2>${totalResults}</h2>
+        </div>
+
+        `;
+
+    })
+
+    .catch(function(error){
+
+        console.log(error);
+
+        alert("خطأ أثناء تحميل بيانات لوحة الأدمن");
+
+        document.getElementById("stats").innerHTML = `
+            <p style="color:red;">
+                ${error.message}
+            </p>
         `;
 
     });
