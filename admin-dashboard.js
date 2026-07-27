@@ -22,11 +22,14 @@ firebase.auth().onAuthStateChanged(function(user){
 
         const data = doc.data();
 
-        if(data.role !== "admin"){
-            alert("ليس لديك صلاحية الدخول.");
-            window.location.href = "index.html";
-            return;
-        }
+        alert("Role = [" + data.role + "]");
+alert("Email = [" + user.email + "]");
+
+if(data.role !== "admin"){
+    alert("ليس لديك صلاحية الدخول.");
+    window.location.href = "index.html";
+    return;
+}
 
         loadDashboard();
 
