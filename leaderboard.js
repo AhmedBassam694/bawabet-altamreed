@@ -7,15 +7,12 @@ return;
 
 }
 
-loadLeaderboard();
+db.collection("leaderboard")
 
-});
-
-function loadLeaderboard(){
-
-db.collection("results")
 .orderBy("percentage","desc")
+
 .limit(20)
+
 .get()
 
 .then((snapshot)=>{
@@ -28,23 +25,19 @@ snapshot.forEach((doc)=>{
 
 const data = doc.data();
 
-let medal = "";
+let medal = "🏅";
 
-if(rank === 1){
+if(rank == 1){
 
 medal = "🥇";
 
-}else if(rank === 2){
+}else if(rank == 2){
 
 medal = "🥈";
 
-}else if(rank === 3){
+}else if(rank == 3){
 
 medal = "🥉";
-
-}else{
-
-medal = "🏅";
 
 }
 
@@ -52,7 +45,7 @@ html += `
 
 <div class="card">
 
-<h3>${medal} #${rank}</h3>
+<h2>${medal} المركز ${rank}</h2>
 
 <p><b>👤 ${data.name}</b></p>
 
@@ -72,7 +65,7 @@ rank++;
 
 if(snapshot.empty){
 
-html = "<p>لا توجد نتائج حتى الآن.</p>";
+html = "<p>لا يوجد طلاب حتى الآن.</p>";
 
 }
 
@@ -85,8 +78,8 @@ document.getElementById("leaderboard").innerHTML = html;
 console.log(error);
 
 document.getElementById("leaderboard").innerHTML =
-"<p>حدث خطأ أثناء تحميل النتائج.</p>";
+"<p>حدث خطأ أثناء تحميل البيانات.</p>";
 
 });
 
-}
+});
