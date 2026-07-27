@@ -14,13 +14,35 @@
 
 <body>
 
+<!-- =========================
+        NAVBAR
+========================= -->
+
 <nav>
 
 <div class="logo">
 🩺 بوابة التمريض | لوحة الأدمن
 </div>
 
+<ul>
+
+<li>
+<a href="index.html">🏠 الرئيسية</a>
+</li>
+
+<li>
+<button class="logout-btn" onclick="logout()">
+🚪 تسجيل الخروج
+</button>
+</li>
+
+</ul>
+
 </nav>
+
+<!-- =========================
+        HEADER
+========================= -->
 
 <header>
 
@@ -29,20 +51,28 @@
 </h1>
 
 <p>
-إدارة الطلاب والاختبارات والإحصائيات الخاصة بالمنصة
+
+إدارة الطلاب والاختبارات والإحصائيات الخاصة بمنصة بوابة التمريض
+
 </p>
 
 </header>
 
+<!-- =========================
+      STATISTICS
+========================= -->
+
 <section class="years">
+
+<h2>
+📊 إحصائيات المنصة
+</h2>
 
 <div id="stats">
 
 <div class="card">
 
-<h2>
 ⏳ جاري تحميل الإحصائيات...
-</h2>
 
 </div>
 
@@ -50,17 +80,53 @@
 
 </section>
 
+<!-- =========================
+      SEARCH
+========================= -->
+
+<section class="years">
+
+<div class="card">
+
+<h2>
+🔍 البحث عن طالب
+</h2>
+
+<input
+type="text"
+id="searchStudent"
+placeholder="اكتب اسم الطالب أو البريد الإلكتروني..."
+onkeyup="searchStudents()">
+
+<br><br>
+
+<button onclick="loadDashboard()">
+
+🔄 تحديث البيانات
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+      STUDENTS
+========================= -->
+
 <section class="years">
 
 <h2>
+
 👨‍🎓 جميع الطلاب
+
 </h2>
 
 <div id="students">
 
 <div class="card">
 
-جاري تحميل الطلاب...
+⏳ جاري تحميل الطلاب...
 
 </div>
 
@@ -68,17 +134,23 @@
 
 </section>
 
+<!-- =========================
+      RESULTS
+========================= -->
+
 <section class="years">
 
 <h2>
-📝 آخر نتائج الاختبارات
+
+📝 جميع نتائج الاختبارات
+
 </h2>
 
 <div id="results">
 
 <div class="card">
 
-جاري تحميل النتائج...
+⏳ جاري تحميل النتائج...
 
 </div>
 
@@ -86,20 +158,49 @@
 
 </section>
 
+<!-- =========================
+      FOOTER
+========================= -->
+
 <footer>
 
 <p>
-© 2026 بوابة التمريض
+
+© 2026 بوابة التمريض - لوحة الأدمن
+
 </p>
 
 </footer>
 
+<!-- =========================
+      FIREBASE
+========================= -->
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script src="firebase.js"></script>
+
 <script src="admin-dashboard.js"></script>
+
+<script>
+
+function logout(){
+
+    firebase.auth().signOut()
+
+    .then(function(){
+
+        window.location.href="login.html";
+
+    });
+
+}
+
+</script>
 
 </body>
 
