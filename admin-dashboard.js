@@ -12,7 +12,6 @@ firebase.auth().onAuthStateChanged(function(user){
     db.collection("users")
     .doc(user.uid)
     .get()
-
     .then(function(doc){
 
         if(!doc.exists){
@@ -23,12 +22,11 @@ firebase.auth().onAuthStateChanged(function(user){
 
         const data = doc.data();
 
-        console.log("User Data:", data);
-
-    alert("وصلت بعد فحص الصلاحية");
-
-loadDashboard();
-return;
+        if(data.role !== "admin"){
+            alert("ليس لديك صلاحية الدخول.");
+            window.location.href = "index.html";
+            return;
+        }
 
         loadDashboard();
 
@@ -42,7 +40,6 @@ return;
     });
 
 });
-
 
 
 function loadDashboard(){
@@ -100,6 +97,38 @@ function loadDashboard(){
         </div>
 
         `;
+
+        let resultsHTML = "";
+
+        resultsSnapshot.forEach(function(doc){
+
+            const result = doc.data();
+
+            resultsHTML += `
+
+            <div class="card">
+
+                <h3>👨‍🎓 ${result.name}</h3>
+
+                <p>📚 ${result.grade}</p>
+
+                <p>📖 ${result.subject}</p>
+
+                <p>📄 ${result.chapter}</p>
+
+                <p>⭐ ${result.percentage}%</p>
+
+            </div>
+
+            `;
+
+        });
+
+        if(resultsHTML === ""){
+            resultsHTML = "<p>لا توجد نتائج حتى الآن.</p>";
+        }
+
+        document.getElementById("results").innerHTML = resultsHTML;
 
     })
 
