@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
 
@@ -7,399 +7,124 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>General Surgery Chapter 4 Quiz</title>
+<title>اختبار Chapter 4 | بوابة التمريض</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
+
+
+<nav>
+
+<div class="logo">
+🩺 بوابة التمريض
+</div>
+
+</nav>
+
+
 
 <header>
 
-<h1>📝 General Surgery</h1>
+<h1>
+اختبار Chapter 4
+</h1>
 
-<p>Chapter 4 Quiz</p>
+<p>
+Postoperative Complications Quiz
+</p>
 
 </header>
 
+
+
+
 <section class="years">
+
 
 <div class="card">
 
-<div class="timer">
-⏳ <span id="timer">05:00</span>
+
+
+<div class="quiz-top">
+
+<div id="timer">
+⏱️ 5:00
 </div>
 
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
 </div>
+
+
+
+<div class="quiz-info">
+
+<div id="questionNumber">
+
+السؤال 1 / 10
+
+</div>
+
+</div>
+
+
+
+<div class="progress">
+
+<div class="progress-bar" id="progressFill"></div>
+
+</div>
+
+
 
 <h2 id="question"></h2>
 
+
 <div id="answers"></div>
 
+
+
 <button id="nextBtn">
-▶️ Next
+
+التالي
+
 </button>
 
+
+
 </div>
+
 
 </section>
 
-<script>
 
-const questions=[
 
-{
+<footer>
 
-question:"Which of the following is a postoperative complication?",
+<p>
+© 2026 بوابة التمريض جميع الحقوق محفوظة 
+</p>
 
-answers:[
+</footer>
 
-{text:"Diabetes",correct:false},
 
-{text:"Complications of anesthesia",correct:true},
 
-{text:"Hypertension",correct:false},
 
-{text:"Asthma",correct:false}
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-]
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
-},
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-{
 
-question:"Malignant hyperthermia is a complication of:",
+<script src="firebase.js"></script>
 
-answers:[
 
-{text:"Spinal anesthesia",correct:false},
+<script src="script4.js"></script>
 
-{text:"Blood transfusion",correct:false},
 
-{text:"General anesthesia",correct:true},
-
-{text:"Kidney disease",correct:false}
-
-]
-
-},
-
-{
-
-question:"Which is a complication of spinal anesthesia?",
-
-answers:[
-
-{text:"Urinary retention",correct:true},
-
-{text:"Liver failure",correct:false},
-
-{text:"Pneumonia",correct:false},
-
-{text:"Jaundice",correct:false}
-
-]
-
-},
-
-{
-
-question:"Fluid leakage around the cannula is considered:",
-
-answers:[
-
-{text:"Respiratory complication",correct:false},
-
-{text:"General complication",correct:false},
-
-{text:"Local complication",correct:true},
-
-{text:"Cardiac complication",correct:false}
-
-]
-
-},
-
-{
-
-question:"Air embolism is prevented by:",
-
-answers:[
-
-{text:"Giving antibiotics",correct:false},
-
-{text:"Keeping air out of IV lines",correct:true},
-
-{text:"Giving oxygen only",correct:false},
-
-{text:"Using painkillers",correct:false}
-
-]
-
-},
-  {
-
-question:"Pulmonary embolism may occur due to:",
-
-answers:[
-
-{text:"Kidney stones",correct:false},
-
-{text:"Deep vein thrombosis",correct:true},
-
-{text:"Appendicitis",correct:false},
-
-{text:"Liver disease",correct:false}
-
-]
-
-},
-
-{
-
-question:"Atelectasis is mainly a:",
-
-answers:[
-
-{text:"Cardiac complication",correct:false},
-
-{text:"Respiratory complication",correct:true},
-
-{text:"Digestive complication",correct:false},
-
-{text:"Urinary complication",correct:false}
-
-]
-
-},
-
-{
-
-question:"Deep Vein Thrombosis (DVT) commonly affects the:",
-
-answers:[
-
-{text:"Brain",correct:false},
-
-{text:"Arms",correct:false},
-
-{text:"Leg veins",correct:true},
-
-{text:"Liver",correct:false}
-
-]
-
-},
-
-{
-
-question:"Which blood group reacts with both Anti-A and Anti-B sera?",
-
-answers:[
-
-{text:"Group O",correct:false},
-
-{text:"Group A",correct:false},
-
-{text:"Group B",correct:false},
-
-{text:"Group AB",correct:true}
-
-]
-
-},
-
-{
-
-question:"The first action when blood incompatibility occurs is:",
-
-answers:[
-
-{text:"Increase blood flow",correct:false},
-
-{text:"Stop blood transfusion immediately",correct:true},
-
-{text:"Give food",correct:false},
-
-{text:"Start antibiotics",correct:false}
-
-]
-
-}
-
-];
-
-let currentQuestion=0;
-let score=0;
-
-let timeLeft=300;
-
-const timer=document.getElementById("timer");
-
-const countdown=setInterval(function(){
-
-if(timeLeft<=0){
-
-clearInterval(countdown);
-
-showResult();
-
-return;
-
-}
-
-timeLeft--;
-
-let minutes=Math.floor(timeLeft/60);
-
-let seconds=timeLeft%60;
-
-timer.innerHTML=
-String(minutes).padStart(2,"0")
-+":"
-+
-String(seconds).padStart(2,"0");
-
-},1000);
-
-const questionElement=document.getElementById("question");
-const answersElement=document.getElementById("answers");
-const nextButton=document.getElementById("nextBtn");
-const progressBar=document.getElementById("progressBar");
-
-function showQuestion(){
-
-resetState();
-
-progressBar.style.width=((currentQuestion/questions.length)*100)+"%";
-
-let q=questions[currentQuestion];
-
-questionElement.innerHTML=(currentQuestion+1)+". "+q.question;
-
-q.answers.forEach(answer=>{
-
-const button=document.createElement("button");
-
-button.innerHTML=answer.text;
-
-button.onclick=()=>selectAnswer(answer.correct,button);
-
-answersElement.appendChild(button);
-
-});
-
-  }
-  function resetState(){
-
-nextButton.style.display="none";
-
-answersElement.innerHTML="";
-
-}
-
-function selectAnswer(correct,button){
-
-if(correct){
-
-score++;
-
-button.style.background="green";
-
-}else{
-
-button.style.background="red";
-
-}
-
-Array.from(answersElement.children).forEach(btn=>{
-
-btn.disabled=true;
-
-});
-
-nextButton.style.display="block";
-
-}
-
-function showResult(){
-
-clearInterval(countdown);
-
-progressBar.style.width="100%";
-
-let message="";
-
-if(score==10){
-
-message="🏆 Excellent! Perfect Score!";
-
-}else if(score>=8){
-
-message="🌟 Very Good!";
-
-}else if(score>=5){
-
-message="👍 Good Job!";
-
-}else{
-
-message="📚 Keep Studying and Try Again.";
-
-}
-
-document.querySelector(".card").innerHTML=`
-
-<div class="result-box">
-
-<h2>${message}</h2>
-
-<p><strong>Your Score:</strong></p>
-
-<p>${score} / ${questions.length}</p>
-
-<button onclick="location.reload()">
-
-🔄 Restart Quiz
-
-</button>
-
-<br><br>
-
-<button onclick="window.location.href='general-surgery-chapter4.html'">
-
-📖 Back to Chapter
-
-</button>
-
-</div>
-
-`;
-
-}
-
-nextButton.onclick=function(){
-
-currentQuestion++;
-
-if(currentQuestion<questions.length){
-
-showQuestion();
-
-}else{
-
-showResult();
-
-}
-
-}
-
-showQuestion();
-
-</script>
 
 </body>
 
