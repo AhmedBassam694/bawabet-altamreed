@@ -8,8 +8,6 @@ leaderboardDiv.innerHTML = "⏳ جاري تحميل الترتيب...";
 
 db.collection("results")
 .where("grade","==",grade)
-.orderBy("percentage","desc")
-.limit(20)
 .get()
 
 .then((snapshot)=>{
@@ -18,17 +16,16 @@ db.collection("results")
 if(snapshot.empty){
 
 leaderboardDiv.innerHTML =
-"لا توجد نتائج حتى الآن";
+"❌ لا توجد نتائج حتى الآن";
 
 return;
 
 }
 
 
-let html = "";
 
+let students = {};
 
-let rank = 1;
 
 
 snapshot.forEach((doc)=>{
@@ -37,47 +34,137 @@ snapshot.forEach((doc)=>{
 let data = doc.data();
 
 
-html += `
+if(!students[data.uid]){
 
-<div class="card">
+students[data.uid] = {
 
-<h3>
-🏅 ${rank} - ${data.name}
-</h3>
+name:data.name,
 
-<p>
-📚 المادة: ${data.subject}
-</p>
+grade:data.grade,
 
-<p>
-📖 ${data.chapter}
-</p>
+scores:[]
 
-<p>
-⭐ النتيجة: ${data.percentage}%
-</p>
+};
 
-</div>
+}
 
-`;
 
-rank++;
+
+students[data.uid].scores.push(data.percentage);
+
 
 
 });
 
 
+
+
+
+let leaderboard = Object.values(students);
+
+
+
+// حساب المتوسط النهائي
+
+leaderboard.forEach(student=>{
+
+
+let total = 0;
+
+
+student.scores.forEach(score=>{
+
+total += score;
+
+});
+
+
+student.average =
+(total / student.scores.length).toFixed(2);
+
+
+
+});
+
+
+
+
+// ترتيب من الأعلى للأقل
+
+leaderboard.sort((a,b)=>{
+
+return b.average - a.average;
+
+});
+
+
+
+
+let html = "";
+
+
+
+leaderboard.forEach((student,index)=>{
+
+
+html += `
+
+<div class="card">
+
+
+<h3>
+
+${index + 1} 🏆 ${student.name}
+
+</h3>
+
+
+<p>
+
+📚 الصف: ${student.grade}
+
+</p>
+
+
+<p>
+
+⭐ المتوسط النهائي: ${student.average}%
+
+</p>
+
+
+<p>
+
+📝 عدد الاختبارات: ${student.scores.length}
+
+</p>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
 leaderboardDiv.innerHTML = html;
+
 
 
 })
 
 .catch((error)=>{
 
+
 console.log(error);
+
 
 leaderboardDiv.innerHTML =
 "حدث خطأ في تحميل البيانات";
+
 
 });
 
@@ -85,5 +172,7 @@ leaderboardDiv.innerHTML =
 }
 
 
-// تحميل الصف الثاني افتراضياً
+
+// عرض الصف الثاني عند فتح الصفحة
+
 loadLeaderboard("الصف الثاني الثانوي التمريض");
