@@ -144,6 +144,8 @@ const timer = document.getElementById("timer");
 
 function loadQuestion(){
 
+alert("Inside Load Question");
+  
 answered = false;
 
 answers.innerHTML = "";
