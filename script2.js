@@ -18,111 +18,111 @@ window.location.href = "login.html";
 const questions = [
 
 {
-question:"1- Water constitutes about ____ of body weight.",
+question:"1- Shock is:",
 answers:[
-"A) 40%",
-"B) 60%",
-"C) 25%",
-"D) 80%"
+"A) A lung disease",
+"B) A drop in blood circulation",
+"C) A bone disease",
+"D) An increase in blood pressure"
 ],
 correct:1
 },
 
 {
-question:"2- The largest amount of body water is found in:",
+question:"2- Which type of shock is caused by severe blood loss?",
 answers:[
-"A) Plasma",
-"B) Blood vessels",
-"C) Intracellular fluid",
-"D) Interstitial fluid"
+"A) Neurogenic Shock",
+"B) Septic Shock",
+"C) Surgical Shock",
+"D) Cardiogenic Shock"
 ],
 correct:2
 },
 
 {
-question:"3- The normal potassium level is:",
+question:"3- Which stage of shock responds to treatment?",
 answers:[
-"A) 8 - 10 mEq/L",
-"B) 1 - 2 mEq/L",
-"C) 3.5 - 5.0 mEq/L",
-"D) 6 - 8 mEq/L"
-],
-correct:2
-},
-
-{
-question:"4- A common cause of dehydration is:",
-answers:[
-"A) Reading",
-"B) Walking",
-"C) Severe diarrhea",
-"D) Sleeping"
-],
-correct:2
-},
-
-{
-question:"5- One symptom of dehydration is:",
-answers:[
-"A) Ear pain",
-"B) Dry mouth",
-"C) Hair loss",
-"D) Blurred vision"
-],
-correct:1
-},
-
-{
-question:"6- Low potassium may cause:",
-answers:[
-"A) Skin rash",
-"B) Hearing loss",
-"C) High fever",
-"D) Muscle weakness"
+"A) Septic Shock",
+"B) Terminal Shock",
+"C) Irreversible Shock",
+"D) Reversible Shock"
 ],
 correct:3
 },
 
 {
-question:"7- Rapid IV potassium may lead to:",
+question:"4- A common symptom of Surgical Shock is:",
 answers:[
-"A) Weight gain",
-"B) Cardiac arrest",
-"C) Improved vision",
-"D) High appetite"
-],
-correct:1
-},
-
-{
-question:"8- Calcium Gluconate should be given:",
-answers:[
-"A) By inhalation",
-"B) Only orally",
-"C) Slowly IV",
-"D) Rapid IV push"
+"A) High blood pressure",
+"B) Bradycardia",
+"C) Rapid weak pulse",
+"D) Slow breathing"
 ],
 correct:2
 },
 
 {
-question:"9- One cause of sodium deficiency is:",
+question:"5- Neurogenic Shock is mainly caused by:",
 answers:[
-"A) Exercise",
-"B) Hair cutting",
-"C) Reading books",
-"D) Diarrhea"
+"A) Severe pain",
+"B) Infection",
+"C) Bleeding",
+"D) Burns"
+],
+correct:0
+},
+
+{
+question:"6- Which type of shock is caused by severe infection?",
+answers:[
+"A) Hypovolemic Shock",
+"B) Septic Shock",
+"C) Surgical Shock",
+"D) Neurogenic Shock"
+],
+correct:1
+},
+
+{
+question:"7- One treatment for Septic Shock is:",
+answers:[
+"A) Calcium tablets",
+"B) Bed rest only",
+"C) Strong antibiotics",
+"D) Vitamin C only"
+],
+correct:2
+},
+
+{
+question:"8- Which IV fluid may be used in Surgical Shock?",
+answers:[
+"A) Distilled Water",
+"B) Fruit Juice",
+"C) Milk",
+"D) Ringer's Solution"
 ],
 correct:3
 },
 
 {
-question:"10- Rapid correction of sodium deficiency may cause:",
+question:"9- Low blood pressure is a symptom of:",
 answers:[
-"A) Better memory",
-"B) High blood sugar",
-"C) Brain damage",
-"D) Improved appetite"
+"A) Hypertension",
+"B) Shock",
+"C) Common Cold",
+"D) Asthma"
+],
+correct:1
+},
+
+{
+question:"10- The first step in managing shock is:",
+answers:[
+"A) Delay treatment",
+"B) Allow the patient to walk",
+"C) Treat the cause",
+"D) Give antibiotics to everyone"
 ],
 correct:2
 }
@@ -292,7 +292,7 @@ email: currentUser.email,
 
 subject:"General Surgery",
 
-chapter:"Chapter 2",
+chapter:"Chapter 3",
 
 score:score,
 
@@ -342,6 +342,7 @@ showResult(percentage);
 
 
 
+
 function showResult(percentage){
 
 
@@ -380,6 +381,8 @@ location.reload();
 
 
 }
+
+
 
 
 
@@ -442,6 +445,7 @@ showResult(percentage);
 
 
 }
+
 
 
 
