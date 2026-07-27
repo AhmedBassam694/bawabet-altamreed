@@ -107,6 +107,84 @@ let html = "";
 leaderboard.forEach((student,index)=>{
 
 
+let medal = "";
+
+if(index === 0){
+
+medal = "🥇";
+
+}else if(index === 1){
+
+medal = "🥈";
+
+}else if(index === 2){
+
+medal = "🥉";
+
+}else{
+
+medal = "🏅";
+
+}
+
+
+
+html += `
+
+<div class="card leaderboard-card">
+
+
+<h2>
+
+${medal} المركز ${index + 1}
+
+</h2>
+
+
+<h3>
+
+👨‍🎓 ${student.name}
+
+</h3>
+
+
+<p>
+
+📚 ${student.grade}
+
+</p>
+
+
+<div class="leader-score">
+
+⭐ المتوسط النهائي
+
+<br>
+
+<b>
+${student.average}%
+</b>
+
+</div>
+
+
+<p>
+
+📝 عدد الاختبارات:
+${student.scores.length}
+
+</p>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
 html += `
 
 <div class="card">
