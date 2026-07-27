@@ -297,7 +297,49 @@ percentage: percentage,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
 
+})
+
+.then(()=>{
+
+return db.collection("leaderboard")
+
+.doc(currentUser.uid)
+
+.get();
+
+})
+
+.then((doc)=>{
+
+if(!doc.exists || percentage > doc.data().percentage){
+
+return db.collection("leaderboard")
+
+.doc(currentUser.uid)
+
+.set({
+
+uid: currentUser.uid,
+
+name: userData.name,
+
+grade: userData.grade,
+
+email: currentUser.email,
+
+subject: "General Surgery",
+
+chapter: "Chapter 1",
+
+percentage: percentage,
+
+score: score,
+
+date: firebase.firestore.FieldValue.serverTimestamp()
+
 });
+
+}
 
 });
 
