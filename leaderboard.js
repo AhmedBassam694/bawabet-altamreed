@@ -3,12 +3,15 @@ const leaderboardDiv = document.getElementById("leaderboard");
 
 function loadLeaderboard(grade){
 
+
 leaderboardDiv.innerHTML = "⏳ جاري تحميل الترتيب...";
+
 
 
 db.collection("results")
 .where("grade","==",grade)
 .get()
+
 
 .then((snapshot)=>{
 
@@ -34,17 +37,20 @@ snapshot.forEach((doc)=>{
 let data = doc.data();
 
 
+
 if(!students[data.uid]){
+
 
 students[data.uid] = {
 
-name:data.name,
+name: data.name,
 
-grade:data.grade,
+grade: data.grade,
 
-scores:[]
+scores: []
 
 };
+
 
 }
 
@@ -59,12 +65,13 @@ students[data.uid].scores.push(data.percentage);
 
 
 
+// تحويل البيانات لمصفوفة
 
 let leaderboard = Object.values(students);
 
 
 
-// حساب المتوسط النهائي
+// حساب المتوسط النهائي لكل طالب
 
 leaderboard.forEach(student=>{
 
@@ -74,7 +81,9 @@ let total = 0;
 
 student.scores.forEach(score=>{
 
+
 total += score;
+
 
 });
 
@@ -89,13 +98,16 @@ student.average =
 
 
 
-// ترتيب من الأعلى للأقل
+// ترتيب الطلاب
 
 leaderboard.sort((a,b)=>{
 
+
 return b.average - a.average;
 
+
 });
+
 
 
 
@@ -104,24 +116,30 @@ let html = "";
 
 
 
+
+
 leaderboard.forEach((student,index)=>{
 
 
-let medal = "";
+let medal;
+
 
 if(index === 0){
 
 medal = "🥇";
 
-}else if(index === 1){
+}
+else if(index === 1){
 
 medal = "🥈";
 
-}else if(index === 2){
+}
+else if(index === 2){
 
 medal = "🥉";
 
-}else{
+}
+else{
 
 medal = "🏅";
 
@@ -129,7 +147,10 @@ medal = "🏅";
 
 
 
+
+
 html += `
+
 
 <div class="card leaderboard-card">
 
@@ -141,11 +162,13 @@ ${medal} المركز ${index + 1}
 </h2>
 
 
+
 <h3>
 
 👨‍🎓 ${student.name}
 
 </h3>
+
 
 
 <p>
@@ -155,17 +178,24 @@ ${medal} المركز ${index + 1}
 </p>
 
 
+
 <div class="leader-score">
+
 
 ⭐ المتوسط النهائي
 
 <br>
 
+
 <b>
+
 ${student.average}%
+
 </b>
 
+
 </div>
+
 
 
 <p>
@@ -176,7 +206,10 @@ ${student.scores.length}
 </p>
 
 
+
 </div>
+
+
 
 `;
 
@@ -185,46 +218,6 @@ ${student.scores.length}
 });
 
 
-html += `
-
-<div class="card">
-
-
-<h3>
-
-${index + 1} 🏆 ${student.name}
-
-</h3>
-
-
-<p>
-
-📚 الصف: ${student.grade}
-
-</p>
-
-
-<p>
-
-⭐ المتوسط النهائي: ${student.average}%
-
-</p>
-
-
-<p>
-
-📝 عدد الاختبارات: ${student.scores.length}
-
-</p>
-
-
-</div>
-
-
-`;
-
-
-});
 
 
 
@@ -234,14 +227,18 @@ leaderboardDiv.innerHTML = html;
 
 })
 
+
+
 .catch((error)=>{
 
 
 console.log(error);
 
 
+
 leaderboardDiv.innerHTML =
-"حدث خطأ في تحميل البيانات";
+
+"❌ حدث خطأ في تحميل البيانات";
 
 
 });
@@ -251,6 +248,7 @@ leaderboardDiv.innerHTML =
 
 
 
-// عرض الصف الثاني عند فتح الصفحة
+
+// تحميل الصف الثاني تلقائياً
 
 loadLeaderboard("الصف الثاني الثانوي التمريض");
