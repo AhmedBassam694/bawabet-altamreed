@@ -259,19 +259,11 @@ percentage: percentage,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
 
+});
+
 })
 
 .then(()=>{
-
-return db.collection("leaderboard")
-.doc(currentUser.uid)
-.get();
-
-})
-
-.then((leaderDoc)=>{
-
-if(!leaderDoc.exists || percentage > leaderDoc.data().percentage){
 
 return db.collection("leaderboard")
 .doc(currentUser.uid)
@@ -279,25 +271,19 @@ return db.collection("leaderboard")
 
 uid: currentUser.uid,
 
-name: userData.name,
-
-grade: userData.grade,
-
-email: currentUser.email,
+name: currentUser.email,
 
 subject: "General Surgery",
 
 chapter: "Chapter 2",
 
-score: score,
-
 percentage: percentage,
+
+score: score,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
 
 });
-
-}
 
 })
 
@@ -305,7 +291,21 @@ date: firebase.firestore.FieldValue.serverTimestamp()
 
 showResult(percentage);
 
+})
+
+.catch((error)=>{
+
+console.log(error);
+
+showResult(percentage);
+
 });
+
+}else{
+
+showResult(percentage);
+
+}
 
 }
 
