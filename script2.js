@@ -1,5 +1,3 @@
-alert("Chapter 2 JS Working");
-
 let currentUser = null;
 
 firebase.auth().onAuthStateChanged(function(user){
