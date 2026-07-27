@@ -1,191 +1,89 @@
-const leaderboard = document.getElementById("leaderboard");
+const leaderboardDiv = document.getElementById("leaderboard");
 
 
-// تحميل المتصدرين حسب الصف
 function loadLeaderboard(grade){
 
-
-leaderboard.innerHTML = `
-<p>
-⏳ جاري تحميل ترتيب ${grade}...
-</p>
-`;
+leaderboardDiv.innerHTML = "⏳ جاري تحميل الترتيب...";
 
 
-// جلب كل النتائج
 db.collection("results")
+.where("grade","==",grade)
+.orderBy("percentage","desc")
+.limit(20)
 .get()
 
 .then((snapshot)=>{
 
 
-let students = {};
+if(snapshot.empty){
 
-
-// تجميع درجات كل طالب
-snapshot.forEach((doc)=>{
-
-
-let data = doc.data();
-
-
-// التأكد من الصف المطلوب
-if(data.grade !== grade) return;
-
-
-
-if(!students[data.uid]){
-
-
-students[data.uid] = {
-
-name:data.name,
-
-grade:data.grade,
-
-total:0,
-
-count:0
-
-};
-
-
-}
-
-
-// إضافة الدرجة
-students[data.uid].total += data.percentage;
-
-students[data.uid].count++;
-
-
-});
-
-
-
-// حساب المتوسط النهائي
-
-let ranking = [];
-
-
-for(let uid in students){
-
-
-let student = students[uid];
-
-
-student.average =
-(student.total / student.count).toFixed(2);
-
-
-ranking.push(student);
-
-
-}
-
-
-
-// ترتيب من الأعلى للأقل
-
-ranking.sort((a,b)=>{
-
-return b.average - a.average;
-
-});
-
-
-
-// عرض النتائج
-
-if(ranking.length === 0){
-
-
-leaderboard.innerHTML = `
-
-<h3>
-لا يوجد طلاب في هذا الصف حتى الآن
-</h3>
-
-`;
+leaderboardDiv.innerHTML =
+"لا توجد نتائج حتى الآن";
 
 return;
 
 }
 
 
-
-leaderboard.innerHTML="";
-
+let html = "";
 
 
-ranking.forEach((student,index)=>{
+let rank = 1;
 
 
-let medal="🏅";
+snapshot.forEach((doc)=>{
 
 
-if(index===0) medal="🥇";
-
-if(index===1) medal="🥈";
-
-if(index===2) medal="🥉";
+let data = doc.data();
 
 
+html += `
 
-leaderboard.innerHTML += `
-
-<div class="card" style="margin:15px 0;">
-
+<div class="card">
 
 <h3>
-
-${medal} ${student.name}
-
+🏅 ${rank} - ${data.name}
 </h3>
 
-
 <p>
-
-🎓 ${student.grade}
-
+📚 المادة: ${data.subject}
 </p>
 
-
 <p>
-
-📊 المتوسط النهائي:
-
-<b>
-${student.average}%
-</b>
-
+📖 ${data.chapter}
 </p>
 
+<p>
+⭐ النتيجة: ${data.percentage}%
+</p>
 
 </div>
 
 `;
 
+rank++;
+
 
 });
 
 
+leaderboardDiv.innerHTML = html;
+
 
 })
 
-
 .catch((error)=>{
-
 
 console.log(error);
 
-
-leaderboard.innerHTML=
-
-"<p>حدث خطأ أثناء تحميل البيانات</p>";
-
+leaderboardDiv.innerHTML =
+"حدث خطأ في تحميل البيانات";
 
 });
 
 
 }
+
+
+// تحميل الصف الثاني افتراضياً
+loadLeaderboard("الصف الثاني الثانوي التمريض");
