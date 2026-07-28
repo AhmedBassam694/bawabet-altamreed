@@ -436,3 +436,62 @@ function getTopStudents(){
     console.log(list);
 
     }
+
+// ===============================
+// Add YouTube Video
+// ===============================
+
+function addVideo(){
+
+    const title = document.getElementById("videoTitle").value.trim();
+
+    const url = document.getElementById("videoUrl").value.trim();
+
+    const grade = document.getElementById("videoGrade").value;
+
+    const subject = document.getElementById("videoSubject").value.trim();
+
+    const chapter = document.getElementById("videoChapter").value.trim();
+
+    if(title=="" || url=="" || subject=="" || chapter==""){
+
+        alert("يرجى إدخال جميع البيانات.");
+
+        return;
+
+    }
+
+    db.collection("videos").add({
+
+        title:title,
+
+        url:url,
+
+        grade:grade,
+
+        subject:subject,
+
+        chapter:chapter,
+
+        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+
+    })
+
+    .then(function(){
+
+        alert("✅ تم إضافة الفيديو بنجاح");
+
+        document.getElementById("videoTitle").value="";
+        document.getElementById("videoUrl").value="";
+        document.getElementById("videoSubject").value="";
+        document.getElementById("videoChapter").value="";
+
+    })
+
+    .catch(function(error){
+
+        alert(error.message);
+
+    });
+
+}
