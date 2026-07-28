@@ -51,9 +51,7 @@
 </h1>
 
 <p>
-
 إدارة الطلاب والاختبارات والإحصائيات الخاصة بمنصة بوابة التمريض
-
 </p>
 
 </header>
@@ -64,16 +62,12 @@
 
 <section class="years">
 
-<h2>
-📊 إحصائيات المنصة
-</h2>
+<h2>📊 إحصائيات المنصة</h2>
 
 <div id="stats">
 
 <div class="card">
-
 ⏳ جاري تحميل الإحصائيات...
-
 </div>
 
 </div>
@@ -88,9 +82,7 @@
 
 <div class="card">
 
-<h2>
-🔍 البحث عن طالب
-</h2>
+<h2>🔍 البحث عن طالب</h2>
 
 <input
 type="text"
@@ -101,9 +93,7 @@ onkeyup="searchStudents()">
 <br><br>
 
 <button onclick="loadDashboard()">
-
 🔄 تحديث البيانات
-
 </button>
 
 </div>
@@ -116,25 +106,25 @@ onkeyup="searchStudents()">
 
 <section class="years">
 
-<h2>
-
-👨‍🎓 جميع الطلاب
-
-</h2>
+<h2>👨‍🎓 جميع الطلاب</h2>
 
 <div id="students">
 
 <div class="card">
-
 ⏳ جاري تحميل الطلاب...
+</div>
 
 </div>
 
+</section>
+
+<!-- =========================
+      ADD VIDEO
+========================= -->
+
 <section class="years">
 
-<h2>
-🎥 إضافة فيديو جديد
-</h2>
+<h2>🎥 إضافة فيديو جديد</h2>
 
 <div class="card">
 
@@ -155,11 +145,11 @@ placeholder="رابط فيديو اليوتيوب">
 <select id="videoGrade">
 
 <option value="الصف الأول الثانوي التمريض">
-الصف الأول
+الصف الأول الثانوي
 </option>
 
 <option value="الصف الثاني الثانوي التمريض">
-الصف الثاني
+الصف الثاني الثانوي
 </option>
 
 </select>
@@ -181,15 +171,9 @@ placeholder="اسم الشابتر">
 <br><br>
 
 <button onclick="addVideo()">
-
 ➕ إضافة الفيديو
-
 </button>
 
-</div>
-
-</section>
-        
 </div>
 
 </section>
@@ -200,18 +184,12 @@ placeholder="اسم الشابتر">
 
 <section class="years">
 
-<h2>
-
-📝 جميع نتائج الاختبارات
-
-</h2>
+<h2>📝 جميع نتائج الاختبارات</h2>
 
 <div id="results">
 
 <div class="card">
-
 ⏳ جاري تحميل النتائج...
-
 </div>
 
 </div>
@@ -225,9 +203,7 @@ placeholder="اسم الشابتر">
 <footer>
 
 <p>
-
 © 2026 بوابة التمريض - لوحة الأدمن
-
 </p>
 
 </footer>
@@ -250,13 +226,13 @@ placeholder="اسم الشابتر">
 
 function logout(){
 
-    firebase.auth().signOut()
+firebase.auth().signOut()
 
-    .then(function(){
+.then(function(){
 
-        window.location.href="login.html";
+window.location.href="login.html";
 
-    });
+});
 
 }
 
