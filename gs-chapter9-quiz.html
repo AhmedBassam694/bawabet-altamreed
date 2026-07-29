@@ -2,72 +2,73 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chapter 9 Quiz | General Surgery</title>
+<title>اختبار Chapter 9 | بوابة التمريض</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <nav>
-<div class="logo">🩺 بوابة التمريض</div>
 
-<ul>
-<li><a href="index.html">الرئيسية</a></li>
-<li><a href="all-quizzes.html">الاختبارات</a></li>
-</ul>
+<div class="logo">
+🩺 بوابة التمريض
+</div>
+
 </nav>
 
 <header>
 
-<h1>📝 Chapter 9 Quiz</h1>
+<h1>
+اختبار Chapter 9
+</h1>
 
 <p>
-Diseases of the Nose, Ear and Throat
+Diseases of the Nose, Ear and Throat Quiz
 </p>
 
 </header>
 
-<section class="quiz-container">
+<section class="years">
 
-<div class="quiz-header">
+<div class="card">
 
-<h2>اختبار الفصل التاسع</h2>
+<div class="quiz-top">
 
-<p id="timer">⏳ 06:00</p>
-
-<p id="question-number"></p>
-
-</div>
-
-<div id="quiz-box">
-
-<h3 id="question"></h3>
-
-<div class="answers">
-
-<button class="answer-btn" onclick="checkAnswer(0)" id="btn0"></button>
-
-<button class="answer-btn" onclick="checkAnswer(1)" id="btn1"></button>
-
-<button class="answer-btn" onclick="checkAnswer(2)" id="btn2"></button>
-
-<button class="answer-btn" onclick="checkAnswer(3)" id="btn3"></button>
-
+<div id="timer">
+⏱️ 6:00
 </div>
 
 </div>
 
-<div id="result" style="display:none;">
+<div class="quiz-info">
 
-<h2 id="score"></h2>
+<div id="questionNumber">
+السؤال 1 / 10
+</div>
 
-<a href="all-quizzes.html" class="button-link">
-⬅ العودة للاختبارات
-</a>
+</div>
+
+<div class="progress">
+
+<div class="progress-bar" id="progressFill"></div>
+
+</div>
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<button id="nextBtn">
+
+التالي
+
+</button>
 
 </div>
 
@@ -75,11 +76,21 @@ Diseases of the Nose, Ear and Throat
 
 <footer>
 
-<p>© 2026 بوابة التمريض</p>
+<p>
+© 2026 بوابة التمريض
+</p>
 
 </footer>
 
-<script type="module" src="script9.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="firebase.js"></script>
+
+<script src="script9.js"></script>
 
 </body>
 
