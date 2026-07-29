@@ -1,210 +1,364 @@
-const quizData = [
+let currentUser = null;
+
+firebase.auth().onAuthStateChanged(function(user){
+
+if(user){
+
+currentUser = user;
+
+}else{
+
+window.location.href = "login.html";
+
+}
+
+});
+
+const questions = [
 
 {
-question: "The ear is anatomically divided into how many parts?",
-answers: [
-"Two parts",
-"Three parts",
-"Four parts",
-"Five parts"
+question:"1- The ear is anatomically divided into:",
+answers:[
+"A) Two parts",
+"B) Three parts",
+"C) Four parts",
+"D) Five parts"
 ],
-correct: 1
+correct:1
 },
 
 {
-question: "Which structure connects the middle ear to the pharynx?",
-answers: [
-"Cochlea",
-"Eustachian tube",
-"Optic nerve",
-"External canal"
+question:"2- Which tube connects the middle ear to the pharynx?",
+answers:[
+"A) Cochlear tube",
+"B) Eustachian tube",
+"C) Auditory nerve",
+"D) External canal"
 ],
-correct: 1
+correct:1
 },
 
 {
-question: "The main function of ear wax (Cerumen) is:",
-answers: [
-"Improve hearing",
-"Trap dust and protect the ear",
-"Balance pressure",
-"Produce sound"
+question:"3- Cerumen is another name for:",
+answers:[
+"A) Ear bone",
+"B) Ear wax",
+"C) Ear drum",
+"D) Cochlea"
 ],
-correct: 1
+correct:1
 },
 
 {
-question: "Which type of otitis externa is common in diabetic patients?",
-answers: [
-"Diffuse otitis externa",
-"Otomycosis",
-"Malignant otitis externa",
-"Furuncle"
+question:"4- The main function of ear wax is:",
+answers:[
+"A) Improve hearing",
+"B) Protect the ear by trapping dust",
+"C) Balance pressure",
+"D) Produce sound"
 ],
-correct: 2
+correct:1
 },
 
 {
-question: "Acute otitis media commonly occurs after:",
-answers: [
-"Eye infection",
-"Common cold",
-"Skin allergy",
-"Kidney disease"
+question:"5- Otitis externa affects the:",
+answers:[
+"A) Inner ear",
+"B) Middle ear",
+"C) External auditory canal",
+"D) Cochlea"
 ],
-correct: 1
+correct:2
 },
 
 {
-question: "The most common symptom of acute otitis media is:",
-answers: [
-"Chest pain",
-"Ear pain",
-"Abdominal pain",
-"Back pain"
+question:"6- Acute otitis media commonly follows:",
+answers:[
+"A) Eye infection",
+"B) Upper respiratory infection",
+"C) Kidney disease",
+"D) Skin infection"
 ],
-correct: 1
+correct:1
 },
 
 {
-question: "The doctor performs Myringotomy to:",
-answers: [
-"Remove ear wax",
-"Drain pus from the middle ear",
-"Treat hearing loss",
-"Repair the cochlea"
+question:"7- Myringotomy is done to:",
+answers:[
+"A) Remove ear wax",
+"B) Drain pus from the middle ear",
+"C) Repair the cochlea",
+"D) Improve vision"
 ],
-correct: 1
+correct:1
 },
 
 {
-question: "The correct first aid for epistaxis is:",
-answers: [
-"Lie flat",
-"Tilt the head backward",
-"Sit leaning forward and pinch the nose",
-"Drink cold water"
+question:"8- The correct first aid for epistaxis is:",
+answers:[
+"A) Tilt head backward",
+"B) Lie flat",
+"C) Sit leaning forward and pinch the nose",
+"D) Drink cold water"
 ],
-correct: 2
+correct:2
 },
 
 {
-question: "Which of the following is a common symptom of sinusitis?",
-answers: [
-"Headache",
-"Leg pain",
-"Chest pain",
-"Palpitations"
+question:"9- The definitive treatment for chronic tonsillitis is:",
+answers:[
+"A) Eye drops",
+"B) Tonsillectomy",
+"C) Nasal spray",
+"D) Bed rest only"
 ],
-correct: 0
+correct:1
 },
 
 {
-question: "The definitive treatment of chronic tonsillitis is:",
-answers: [
-"Antibiotics only",
-"Tonsillectomy",
-"Nasal drops",
-"Eye ointment"
+question:"10- Tracheostomy is performed to:",
+answers:[
+"A) Improve hearing",
+"B) Treat sinusitis",
+"C) Create an artificial airway",
+"D) Remove tonsils"
 ],
-correct: 1
+correct:2
 }
 
 ];
 
 let currentQuestion = 0;
 let score = 0;
+let answered = false;
+
+const question = document.getElementById("question");
+const answers = document.getElementById("answers");
+const nextBtn = document.getElementById("nextBtn");
+
+function loadQuestion(){
+
+answered = false;
+
+answers.innerHTML = "";
+
+question.innerHTML = questions[currentQuestion].question;
+
+document.getElementById("questionNumber").innerHTML =
+"السؤال " + (currentQuestion + 1) + " / " + questions.length;
+
+document.getElementById("progressFill").style.width =
+((currentQuestion + 1) / questions.length) * 100 + "%";
+
+questions[currentQuestion].answers.forEach((answer,index)=>{
+
+let button=document.createElement("button");
+
+button.innerHTML=answer;
+
+button.className="quiz-answer";
+
+button.onclick=function(){
+
+if(answered) return;
+
+answered=true;
+
+let buttons=document.querySelectorAll("#answers button");
+
+buttons.forEach(btn=>{
+
+btn.disabled=true;
+
+});
+
+if(index===questions[currentQuestion].correct){
+
+score++;
+
+button.style.background="green";
+button.style.color="#fff";
+
+}else{
+
+button.style.background="red";
+button.style.color="#fff";
+
+buttons[questions[currentQuestion].correct].style.background="green";
+buttons[questions[currentQuestion].correct].style.color="#fff";
+
+}
+
+};
+
+answers.appendChild(button);
+
+});
+
+}
+nextBtn.onclick=function(){
+
+if(!answered){
+
+alert("من فضلك اختر إجابة أولاً");
+
+return;
+
+}
+
+currentQuestion++;
+
+if(currentQuestion<questions.length){
+
+loadQuestion();
+
+}else{
+
+let percentage=Math.round(
+(score/questions.length)*100
+);
+
+saveResult(percentage);
+
+}
+
+};
+
+function saveResult(percentage){
+
+if(currentUser){
+
+db.collection("users")
+.doc(currentUser.uid)
+.get()
+
+.then((doc)=>{
+
+let userData=doc.data();
+
+return db.collection("results").add({
+
+uid:currentUser.uid,
+
+name:userData.name,
+
+grade:userData.grade,
+
+email:currentUser.email,
+
+subject:"General Surgery",
+
+chapter:"Chapter 9",
+
+score:score,
+
+total:questions.length,
+
+percentage:percentage,
+
+date:firebase.firestore.FieldValue.serverTimestamp()
+
+});
+
+})
+
+.then(()=>{
+
+showResult(percentage);
+
+})
+
+.catch(()=>{
+
+showResult(percentage);
+
+});
+
+}else{
+
+showResult(percentage);
+
+}
+
+}
+
+function showResult(percentage){
+
+question.innerHTML="🎉 انتهى الاختبار";
+
+answers.innerHTML=`
+
+<h2>درجتك: ${score} / ${questions.length}</h2>
+
+<h2>النسبة: ${percentage}%</h2>
+
+<h3>
+
+${percentage>=50?
+
+"🎉 مبروك لقد نجحت"
+
+:
+
+"❌ حاول مرة أخرى"
+
+}
+
+</h3>
+
+`;
+
+nextBtn.innerHTML="إعادة الاختبار";
+
+nextBtn.onclick=function(){
+
+location.reload();
+
+};
+
+  }
 
 let timeLeft = 360;
 
+let timerInterval;
+
 const timer = document.getElementById("timer");
 
-const countdown = setInterval(() => {
+function startTimer(){
+
+timerInterval = setInterval(()=>{
 
 let minutes = Math.floor(timeLeft / 60);
+
 let seconds = timeLeft % 60;
 
-timer.textContent =
-`⏳ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+if(seconds < 10){
+
+seconds = "0" + seconds;
+
+}
+
+timer.innerHTML =
+"⏱️ الوقت: " + minutes + ":" + seconds;
 
 timeLeft--;
 
 if(timeLeft < 0){
 
-clearInterval(countdown);
+clearInterval(timerInterval);
 
-showResult();
+let percentage = Math.round(
+(score / questions.length) * 100
+);
+
+showResult(percentage);
 
 }
 
 },1000);
-const quizContainer = document.getElementById("quiz");
-const submitBtn = document.getElementById("submit-btn");
-const result = document.getElementById("result");
 
-function loadQuiz() {
-  let output = "";
-
-  quizData.forEach((q, index) => {
-    output += `
-      <div class="question">
-        <h3>${index + 1}. ${q.question}</h3>
-
-        <label>
-          <input type="radio" name="q${index}" value="A">
-          A) ${q.options.A}
-        </label><br>
-
-        <label>
-          <input type="radio" name="q${index}" value="B">
-          B) ${q.options.B}
-        </label><br>
-
-        <label>
-          <input type="radio" name="q${index}" value="C">
-          C) ${q.options.C}
-        </label><br>
-
-        <label>
-          <input type="radio" name="q${index}" value="D">
-          D) ${q.options.D}
-        </label>
-      </div>
-      <hr>
-    `;
-  });
-
-  quizContainer.innerHTML = output;
 }
 
-loadQuiz();
+loadQuestion();
 
-submitBtn.addEventListener("click", () => {
-  let score = 0;
-
-  quizData.forEach((q, index) => {
-    const answer = document.querySelector(
-      `input[name="q${index}"]:checked`
-    );
-
-    if (answer && answer.value === q.correct) {
-      score++;
-    }
-  });
-
-  clearInterval(timer);
-
-  const percentage = Math.round((score / quizData.length) * 100);
-
-  result.innerHTML = `
-    <h2>✅ النتيجة</h2>
-    <p>الإجابات الصحيحة: <strong>${score}</strong> من <strong>${quizData.length}</strong></p>
-    <p>النسبة: <strong>${percentage}%</strong></p>
-  `;
-
-  submitBtn.disabled = true;
-
-  document
-    .querySelectorAll("input[type='radio']")
-    .forEach((input) => (input.disabled = true));
-});
+startTimer();
