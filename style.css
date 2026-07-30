@@ -1521,12 +1521,79 @@ background:#0066ff;
 border-radius:20px;
 
 }
-/* إخفاء روابط الـ navbar في الموبايل */
+/* ==========================
+   Mobile Menu Fix
+========================== */
+
 @media(max-width:991px){
 
-nav ul{
+nav{
+    position:relative;
+}
 
-display:none;
+
+/* إخفاء القائمة في البداية */
+#menu{
+
+    display:none;
+
+    position:absolute;
+
+    top:75px;
+
+    left:15px;
+
+    right:15px;
+
+    background:#ffffff;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    z-index:999;
+
+}
+
+
+/* ظهور القائمة عند الضغط */
+#menu.show{
+
+    display:flex;
+
+}
+
+
+/* شكل الروابط */
+#menu a{
+
+    background:linear-gradient(135deg,#0d6efd,#20c997);
+
+    color:#fff;
+
+    border-radius:15px;
+
+    padding:14px;
+
+    text-align:center;
+
+}
+
+
+/* زر الثلاث شرط */
+.menu-toggle{
+
+    display:flex;
+
+    position:absolute;
+
+    left:20px;
+
+    top:15px;
+
+    z-index:1001;
 
 }
 
