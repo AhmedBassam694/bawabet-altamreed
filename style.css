@@ -1,50 +1,72 @@
-/====================================
-بوابة التمريض - Mobile First
-PART 1
-====================================/
+/*====================================
+   بوابة التمريض
+   Mobile First Style
+   PART 1
+====================================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
 
 :root{
 
 --primary:#0d6efd;
 --primary-dark:#084298;
 --secondary:#20c997;
---bg:#f5f8fc;
+--danger:#dc3545;
+--bg:#f4f8fc;
 --white:#ffffff;
 --text:#222;
 --gray:#666;
+
 --radius:18px;
---shadow:0 8px 20px rgba(0,0,0,.08);
+
+--shadow:
+0 8px 25px rgba(0,0,0,.08);
 
 }
 
+
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
+
 html{
+
 scroll-behavior:smooth;
+
 }
+
 
 body{
 
 font-family:'Cairo',sans-serif;
+
 background:var(--bg);
+
 color:var(--text);
+
 line-height:1.8;
+
 overflow-x:hidden;
 
 }
 
+
+/* الروابط */
+
 a{
 
 text-decoration:none;
-color:inherit;
 
 }
+
+
+/* القوائم */
 
 ul{
 
@@ -52,353 +74,116 @@ list-style:none;
 
 }
 
+
+/* الصور */
+
 img{
 
 max-width:100%;
-display:block;
 
 }
 
-button{
 
-font-family:'Cairo',sans-serif;
-cursor:pointer;
-border:none;
 
-}
+/*==============================
+        NAVBAR MOBILE
+==============================*/
 
-/=====================
-NAVBAR
-=====================/
 
 nav{
 
-background:var(--primary);
+height:70px;
 
-padding:15px 20px;
+background:linear-gradient(
+135deg,
+#0d6efd,
+#36a2ff
+);
 
 display:flex;
-
-justify-content:space-between;
 
 align-items:center;
 
-flex-wrap:wrap;
+justify-content:space-between;
 
-box-shadow:0 5px 15px rgba(0,0,0,.12);
+padding:0 15px;
+
+position:relative;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.15);
 
 }
+
+
+
+/* اللوجو */
 
 .logo{
 
-font-size:24px;
-
-font-weight:800;
-
-color:#fff;
-
-}
-
-nav ul{
-
-width:100%;
-
-display:flex;
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-nav ul li{
-
-width:100%;
-
-}
-
-nav ul li a{
-
-display:block;
-
-padding:14px;
-
-background:rgba(255,255,255,.10);
-
-color:#fff;
-
-border-radius:12px;
-
-text-align:center;
-
-font-weight:700;
-
-transition:.3s;
-
-}
-
-nav ul li a:hover{
-
-background:rgba(255,255,255,.20);
-
-}
-
-nav button{
-
-width:100%;
-
-padding:14px;
-
-border-radius:12px;
-
-background:#fff;
-
-color:var(--primary);
-
-font-weight:bold;
-
-}
-/====================================
-بوابة التمريض - Mobile First
-PART 2
-====================================/
-
-/========== HEADER ==========/
-
-header{
-
-background:linear-gradient(135deg,#0d6efd,#36a2ff);
-
-color:#fff;
-
-text-align:center;
-
-padding:45px 20px;
-
-}
-
-header h1{
-
-font-size:28px;
-
-font-weight:800;
-
-margin-bottom:12px;
-
-}
-
-header p{
-
-font-size:16px;
-
-line-height:1.9;
-
-max-width:650px;
-
-margin:auto;
-
-}
-
-/========== MAIN ==========/
-
-.years{
-
-width:94%;
-
-margin:30px auto;
-
-}
-
-.years h2{
-
-text-align:center;
-
-font-size:24px;
-
-color:#0d6efd;
-
-margin-bottom:20px;
-
-}
-
-/========== CARDS ==========/
-
-.cards{
-
-display:grid;
-
-grid-template-columns:1fr;
-
-gap:18px;
-
-}
-
-.card{
-
-background:#fff;
-
-border-radius:22px;
-
-padding:28px 22px;
-
-text-align:center;
-
-box-shadow:0 12px 30px rgba(0,0,0,.08);
-
-border:1px solid #e8eef7;
-
-transition:.3s;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
-
-min-height:250px;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 18px 35px rgba(0,0,0,.12);
-
-}
-
-.card h3{
+color:white;
 
 font-size:22px;
 
-color:#0d6efd;
-
-margin-bottom:15px;
-
 font-weight:800;
 
 }
 
-.card p{
 
-font-size:15px;
+/* زر الثلاث شرط */
 
-color:#666;
+.menu-toggle{
 
-line-height:1.9;
+display:flex;
 
-margin-bottom:20px;
+align-items:center;
 
-flex:1;
+justify-content:center;
 
-}
+width:45px;
 
-/====================================
-بوابة التمريض - Mobile First
-PART 3
-====================================/
+height:45px;
 
-/========== BUTTONS ==========/
-
-.button-link,
-.card button{
-
-display:block;
-
-width:100%;
-
-padding:15px;
-
-border-radius:14px;
-
-background:linear-gradient(135deg,#0d6efd,#36a2ff);
-
-color:#fff;
-
-font-size:16px;
-
-font-weight:700;
-
-text-align:center;
-
-transition:.3s;
-
-}
-
-.button-link:hover,
-.card button:hover{
-
-transform:scale(1.03);
-
-opacity:.95;
-
-}
-
-/========== LESSONS ==========/
-
-.lesson-box{
-
-background:#fff;
-
-padding:18px;
-
-border-radius:16px;
-
-margin-bottom:15px;
-
-box-shadow:0 6px 15px rgba(0,0,0,.08);
-
-border-right:5px solid #0d6efd;
-
-}
-
-.lesson-box h4{
-
-font-size:18px;
+background:white;
 
 color:#0d6efd;
 
-margin-bottom:8px;
+border-radius:12px;
+
+font-size:27px;
 
 }
 
-.lesson-box p{
 
-font-size:14px;
+/* القائمة */
 
-color:#666;
+nav ul,
+#menu{
 
-margin-bottom:15px;
+display:none;
 
-}
+position:absolute;
 
-/========== QUIZ ==========/
+top:70px;
 
-.quiz-container{
+right:0;
 
-background:#fff;
+width:100%;
 
-padding:20px;
+background:#0d6efd;
 
-border-radius:18px;
+padding:15px;
 
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.question{
-
-font-size:20px;
-
-font-weight:700;
-
-margin-bottom:20px;
-
-color:#222;
+z-index:1000;
 
 }
 
-.options{
+
+
+/* عند الفتح */
+
+nav ul.show,
+#menu.show{
 
 display:flex;
 
@@ -408,385 +193,27 @@ gap:12px;
 
 }
 
-.options label{
 
-display:flex;
 
-align-items:center;
-
-gap:10px;
-
-padding:14px;
-
-border-radius:12px;
-
-background:#eef5ff;
-
-border:2px solid transparent;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.options label:hover{
-
-border-color:#0d6efd;
-
-background:#dcecff;
-
-}
-
-.options input{
-
-transform:scale(1.15);
-
-}
-/====================================
-بوابة التمريض - Mobile First
-PART 4
-====================================/
-
-/========== FOOTER ==========/
-
-footer{
-background:#06283d;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-}
-
-footer p{
-font-size:15px;
-}
-
-/========== FORM ==========/
-
-input,
-select,
-textarea{
-
-width:100%;
-padding:14px;
-
-border:1px solid #d8d8d8;
-border-radius:12px;
-
-font-size:15px;
-
-font-family:'Cairo',sans-serif;
-
-margin-bottom:15px;
-
-background:#fff;
-
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-
-outline:none;
-border-color:#0d6efd;
-
-box-shadow:0 0 0 3px rgba(13,110,253,.15);
-
-}
-
-/========== TABLE ==========/
-
-.table-box{
-
-overflow-x:auto;
-
-border-radius:15px;
-
-}
-
-table{
+nav li{
 
 width:100%;
 
-border-collapse:collapse;
-
-background:#fff;
-
 }
 
-th{
 
-background:#0d6efd;
 
-color:#fff;
-
-padding:14px;
-
-white-space:nowrap;
-
-}
-
-td{
-
-padding:14px;
-
-border-bottom:1px solid #eee;
-
-text-align:center;
-
-white-space:nowrap;
-
-}
-
-/========== PROGRESS ==========/
-
-.progress{
-
-width:100%;
-
-height:10px;
-
-background:#e5e5e5;
-
-border-radius:20px;
-
-overflow:hidden;
-
-margin:20px 0;
-
-}
-
-.progress-bar{
-
-height:100%;
-
-width:0%;
-
-background:#0d6efd;
-
-transition:.4s;
-
-}
-
-/========== ANIMATION ==========/
-
-.card{
-
-animation:fadeUp .5s ease;
-
-}
-
-@keyframes fadeUp{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/====================================
-بوابة التمريض - Mobile First
-PART 5
-====================================/
-
-/* Containers */
-
-.container{
-width:94%;
-max-width:1200px;
-margin:auto;
-}
-
-/* Titles */
-
-h1,h2,h3,h4{
-font-weight:700;
-}
-
-.text-center{
-text-align:center;
-}
-
-/* Spacing */
-
-.mt-20{margin-top:20px;}
-.mt-30{margin-top:30px;}
-.mt-40{margin-top:40px;}
-
-.mb-20{margin-bottom:20px;}
-.mb-30{margin-bottom:30px;}
-.mb-40{margin-bottom:40px;}
-
-/* Images */
-
-img{
-
-border-radius:15px;
-
-}
-
-/* Shadow */
-
-.shadow{
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-/* Alerts */
-
-.success{
-
-background:#d4edda;
-
-color:#155724;
-
-padding:15px;
-
-border-radius:12px;
-
-}
-
-.error{
-
-background:#f8d7da;
-
-color:#721c24;
-
-padding:15px;
-
-border-radius:12px;
-
-}
-
-.info{
-
-background:#cff4fc;
-
-color:#055160;
-
-padding:15px;
-
-border-radius:12px;
-
-}
-
-/* Loading */
-
-.spinner{
-
-width:45px;
-
-height:45px;
-
-border:5px solid #ddd;
-
-border-top:5px solid #0d6efd;
-
-border-radius:50%;
-
-animation:spin 1s linear infinite;
-
-margin:auto;
-
-}
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-/====================================
-NAVBAR MOBILE & DESKTOP
-====================================/
-
-/* زر القائمة */
-
-.menu-toggle{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-width:48px;
-
-height:48px;
-
-background:#fff;
-
-color:#0d6efd;
-
-font-size:28px;
-
-border:none;
-
-border-radius:12px;
-
-cursor:pointer;
-
-margin-right:auto;
-
-}
-
-/* القائمة */
-
-#menu{
-
-display:none;
-
-flex-direction:column;
-
-width:100%;
-
-gap:10px;
-
-margin-top:10px;
-
-}
-
-#menu.show{
-
-display:flex;
-
-}
-
-#menu li{
-
-width:100%;
-
-}
-
-#menu a{
+nav a{
 
 display:block;
 
-padding:14px;
+background:rgba(255,255,255,.15);
 
-background:rgba(255,255,255,.12);
+color:white;
 
-color:#fff;
+padding:13px;
 
-border-radius:12px;
+border-radius:14px;
 
 text-align:center;
 
@@ -796,133 +223,193 @@ transition:.3s;
 
 }
 
-#menu a:hover{
 
-background:rgba(255,255,255,.25);
+
+nav a:hover{
+
+background:white;
+
+color:#0d6efd;
 
 }
+
+
+
+/* زر تسجيل الخروج */
 
 .logout-btn{
 
 width:100%;
 
-padding:14px;
+padding:13px;
+
+border-radius:14px;
 
 background:#dc3545;
 
-color:#fff;
+color:white;
 
-border:none;
+font-size:16px;
 
-border-radius:12px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-transition:.3s;
+font-weight:700;
 
 }
 
-.logout-btn:hover{
 
-background:#bb2d3b;
 
-}
+/*==============================
+        HEADER
+==============================*/
 
-/==========================
-DESKTOP
-==========================/
 
-@media(min-width:992px){
+header{
 
-nav{
+background:
+linear-gradient(
+135deg,
+#0d6efd,
+#20c997
+);
 
-flex-direction:row;
+color:white;
 
-justify-content:space-between;
+text-align:center;
 
-align-items:center;
-
-padding:18px 6%;
-
-}
-
-.menu-toggle{
-
-display:none;
+padding:40px 20px;
 
 }
 
-#menu{
 
-display:flex !important;
 
-flex-direction:row;
+header h1{
 
-align-items:center;
+font-size:28px;
 
-justify-content:flex-end;
+font-weight:800;
 
-gap:15px;
-
-width:auto;
-
-margin:0;
+margin-bottom:10px;
 
 }
 
-#menu li{
 
-width:auto;
 
-}
+header p{
 
-#menu a{
+font-size:16px;
 
-background:transparent;
-
-padding:10px 14px;
+line-height:2;
 
 }
 
-.logout-btn{
 
-width:auto;
+/*==============================
+        SECTIONS
+==============================*/
 
-padding:10px 18px;
+
+.years{
+
+width:92%;
+
+margin:30px auto;
 
 }
 
+
+
+.years h2{
+
+text-align:center;
+
+font-size:23px;
+
+color:#0d6efd;
+
+margin-bottom:25px;
+
 }
 
-.card-icon{
 
-width:80px;
+/*==============================
+        CARDS
+==============================*/
 
-height:80px;
 
-margin:0 auto 18px;
-
-background:linear-gradient(135deg,#0d6efd,#36a2ff);
-
-border-radius:50%;
+.cards{
 
 display:flex;
 
-justify-content:center;
+flex-direction:column;
 
-align-items:center;
-
-font-size:36px;
-
-color:#fff;
-
-box-shadow:0 8px 20px rgba(13,110,253,.25);
+gap:18px;
 
 }
 
-/* تحسين كروت الصفحة الرئيسية */
+
+
+.card{
+
+background:white;
+
+border-radius:var(--radius);
+
+padding:25px 20px;
+
+box-shadow:var(--shadow);
+
+border:1px solid #e7edf5;
+
+text-align:center;
+
+overflow:hidden;
+
+}
+
+
+
+.card h2{
+
+font-size:22px;
+
+color:#0d6efd;
+
+margin-bottom:15px;
+
+}
+
+
+
+.card h3{
+
+font-size:21px;
+
+color:#0d6efd;
+
+font-weight:800;
+
+margin-bottom:12px;
+
+}
+
+
+
+.card p{
+
+color:var(--gray);
+
+font-size:15px;
+
+margin-bottom:20px;
+
+line-height:2;
+
+}
+
+
+/*==============================
+        ICONS
+==============================*/
+
 
 .card-icon{
 
@@ -932,73 +419,370 @@ height:75px;
 
 margin:0 auto 18px;
 
+border-radius:20px;
+
+background:
+linear-gradient(
+135deg,
+#0d6efd,
+#20c997
+);
+
 display:flex;
 
 align-items:center;
 
 justify-content:center;
 
-background:linear-gradient(135deg,#0d6efd,#36a2ff);
+font-size:35px;
 
-border-radius:20px;
+box-shadow:
 
-font-size:34px;
-
-color:#fff;
-
-box-shadow:0 10px 25px rgba(13,110,253,.25);
+0 8px 20px rgba(13,110,253,.25);
 
 }
 
-.card{
+/*====================================
+   بوابة التمريض
+   Mobile First Style
+   PART 2
+====================================*/
 
-overflow:hidden;
 
-}
+/*==============================
+        BUTTONS
+==============================*/
 
-.card h3{
 
-margin-top:8px;
+.button-link,
+button{
 
-}
+display:block;
 
-.card p{
+width:100%;
 
-min-height:65px;
+padding:14px;
 
-}
+border:none;
 
-.card:hover .card-icon{
+border-radius:14px;
 
-transform:rotate(-5deg) scale(1.08);
+background:
+
+linear-gradient(
+135deg,
+#0d6efd,
+#36a2ff
+);
+
+color:white;
+
+font-family:'Cairo',sans-serif;
+
+font-size:16px;
+
+font-weight:700;
+
+text-align:center;
+
+cursor:pointer;
 
 transition:.3s;
 
 }
 
-/* Quiz Improvements */
 
-.quiz-info{
+.button-link:hover,
+button:hover{
+
+transform:scale(1.03);
+
+opacity:.9;
+
+}
+
+
+
+/*==============================
+        LOGIN & SIGNUP
+==============================*/
+
+
+body > .card{
+
+width:92%;
+
+margin:40px auto;
+
+max-width:450px;
+
+}
+
+
+
+.input-box{
 
 display:flex;
 
-justify-content:space-between;
-
 align-items:center;
+
+gap:10px;
+
+background:white;
+
+border-radius:14px;
+
+border:1px solid #ddd;
+
+padding:5px 12px;
 
 margin-bottom:15px;
 
-font-weight:700;
+}
+
+
+
+.input-box .icon{
+
+font-size:22px;
+
+}
+
+
+
+.input-box input{
+
+border:none;
+
+margin:0;
+
+}
+
+
+
+.input-box input:focus{
+
+box-shadow:none;
+
+}
+
+
+
+input,
+select,
+textarea{
+
+
+width:100%;
+
+padding:14px;
+
+border-radius:14px;
+
+border:1px solid #ddd;
+
+background:white;
+
+font-family:'Cairo',sans-serif;
+
+font-size:15px;
+
+margin-bottom:15px;
+
+
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+
+outline:none;
+
+border-color:#0d6efd;
+
+box-shadow:
+
+0 0 0 3px rgba(13,110,253,.15);
+
+
+}
+
+
+
+.footer{
+
+margin-top:25px;
+
+color:#777;
+
+font-size:14px;
+
+text-align:center;
+
+}
+
+
+/*==============================
+        LESSON / CHAPTER STYLE
+==============================*/
+
+
+.card ul{
+
+text-align:right;
+
+padding-right:20px;
+
+margin:15px 0;
+
+
+}
+
+
+
+.card li{
+
+margin-bottom:10px;
+
+font-size:15px;
+
+color:#444;
+
+}
+
+
+
+.card li::marker{
 
 color:#0d6efd;
 
 }
 
+
+
+
+/* جدول المحتويات */
+
+.card a{
+
+color:#0d6efd;
+
+font-weight:700;
+
+}
+
+
+
+
+/* نصائح الامتحان */
+
+.exam-tip{
+
+background:#d1f7e8;
+
+color:#087f5b;
+
+padding:15px;
+
+border-radius:14px;
+
+margin-top:20px;
+
+font-weight:700;
+
+border-right:5px solid #20c997;
+
+text-align:right;
+
+}
+
+
+
+/* تحذير */
+
+.warning{
+
+background:#ffe5e5;
+
+color:#b02a37;
+
+padding:15px;
+
+border-radius:14px;
+
+margin-top:20px;
+
+font-weight:700;
+
+border-right:5px solid #dc3545;
+
+text-align:right;
+
+}
+
+
+
+/*==============================
+        QUIZ STYLE
+==============================*/
+
+
+.quiz-top{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin-bottom:15px;
+
+}
+
+
+
+#timer{
+
+background:#eef5ff;
+
+color:#0d6efd;
+
+padding:10px 20px;
+
+border-radius:30px;
+
+font-weight:800;
+
+font-size:18px;
+
+}
+
+
+
+.quiz-info{
+
+display:flex;
+
+justify-content:center;
+
+margin:15px 0;
+
+color:#0d6efd;
+
+font-weight:800;
+
+font-size:17px;
+
+}
+
+
+
 .progress{
 
-width:100%;
-
-height:10px;
+height:12px;
 
 background:#e5e5e5;
 
@@ -1006,9 +790,11 @@ border-radius:20px;
 
 overflow:hidden;
 
-margin-bottom:25px;
+margin:20px 0;
 
 }
+
+
 
 .progress-bar{
 
@@ -1016,11 +802,31 @@ height:100%;
 
 width:0%;
 
-background:linear-gradient(90deg,#0d6efd,#20c997);
+background:
+
+linear-gradient(
+90deg,
+#0d6efd,
+#20c997
+);
 
 transition:.4s;
 
 }
+
+
+
+#question{
+
+font-size:20px;
+
+margin:20px 0;
+
+line-height:1.8;
+
+}
+
+
 
 #answers{
 
@@ -1030,131 +836,483 @@ flex-direction:column;
 
 gap:12px;
 
-margin:20px 0;
-
 }
 
-#answers button{
 
-width:100%;
 
-padding:15px;
+#answers button,
+.quiz-answer{
 
-border-radius:12px;
 
-border:none;
-
-background:#eef5ff;
-
-font-size:16px;
-
-font-family:'Cairo',sans-serif;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-#answers button:hover{
-
-background:#d9eaff;
-
-}
-
-#nextBtn{
-
-width:100%;
-
-margin-top:15px;
-
-}
-
-/* Quiz Answers Fix */
-
-#answers button{
-
-display:block;
-
-width:100%;
-
-padding:15px;
-
-margin-bottom:12px;
-
-background:#eef5ff;
+background:white;
 
 color:#222;
 
 border:2px solid #dbeafe;
 
-border-radius:15px;
-
-font-size:16px;
-
-font-weight:600;
-
 text-align:right;
 
-font-family:'Cairo',sans-serif;
-
-cursor:pointer;
-
-transition:.3s;
-
 }
 
-#answers button:hover{
 
-background:#dbeafe;
 
-border-color:#0d6efd;
-
-}
-
-#answers button:disabled{
-
-cursor:not-allowed;
-
-opacity:1;
-
-}
-.quiz-answer{
-
-display:block;
-width:100%;
-padding:15px;
-margin:12px 0;
-background:#ffffff;
-color:#222;
-border:2px solid #0d6efd;
-border-radius:15px;
-font-size:17px;
-font-weight:bold;
-text-align:right;
-cursor:pointer;
-transition:.3s;
-
-}
-
+#answers button:hover,
 .quiz-answer:hover{
+
 
 background:#eaf3ff;
 
+border-color:#0d6efd;
+
+
 }
+
+
+
+#nextBtn{
+
+margin-top:20px;
+
+}
+
+
+
+/*==============================
+        DASHBOARD
+==============================*/
+
+
+#studentInfo,
+#results,
+#average,
+#stats,
+#students{
+
+font-size:16px;
+
+line-height:2;
+
+}
+
+
 
 .leaderboard-card{
 
-text-align:center;
-margin:20px auto;
-max-width:400px;
+margin:auto;
 
 }
+
+
 
 .leader-score{
 
 font-size:22px;
-margin:15px;
-font-weight:bold;
+
+font-weight:800;
+
+color:#0d6efd;
+
+}
+
+
+
+/*==============================
+        TABLES
+==============================*/
+
+
+.table-box{
+
+overflow-x:auto;
+
+}
+
+
+
+table{
+
+width:100%;
+
+background:white;
+
+border-collapse:collapse;
+
+border-radius:15px;
+
+overflow:hidden;
+
+}
+
+
+
+th{
+
+background:#0d6efd;
+
+color:white;
+
+padding:12px;
+
+}
+
+
+
+td{
+
+padding:12px;
+
+border-bottom:1px solid #eee;
+
+text-align:center;
+
+}
+/*====================================
+   بوابة التمريض
+   Mobile First Style
+   PART 3
+====================================*/
+
+
+/*==============================
+        FOOTER
+==============================*/
+
+
+footer{
+
+background:#06283d;
+
+color:white;
+
+text-align:center;
+
+padding:25px 15px;
+
+margin-top:40px;
+
+}
+
+
+
+footer p{
+
+font-size:14px;
+
+}
+
+
+
+/*==============================
+        ADMIN DASHBOARD
+==============================*/
+
+
+#stats .card,
+#students .card,
+#results .card{
+
+
+margin-bottom:15px;
+
+text-align:center;
+
+}
+
+
+
+#stats{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+
+
+#students{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+
+
+
+/*==============================
+        LEADERBOARD
+==============================*/
+
+
+#leaderboard{
+
+margin-top:20px;
+
+}
+
+
+
+#leaderboard .card{
+
+border-right:5px solid #0d6efd;
+
+margin-bottom:15px;
+
+}
+
+
+
+
+/*==============================
+        LOADING
+==============================*/
+
+
+.spinner{
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+border:5px solid #ddd;
+
+border-top-color:#0d6efd;
+
+animation:spin 1s linear infinite;
+
+margin:20px auto;
+
+}
+
+
+
+@keyframes spin{
+
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+
+}
+
+
+
+/*==============================
+        ALERTS
+==============================*/
+
+
+.success{
+
+background:#d1f7e8;
+
+color:#087f5b;
+
+padding:15px;
+
+border-radius:14px;
+
+}
+
+
+
+.error{
+
+background:#ffe5e5;
+
+color:#b02a37;
+
+padding:15px;
+
+border-radius:14px;
+
+}
+
+
+
+.info{
+
+background:#dcecff;
+
+color:#084298;
+
+padding:15px;
+
+border-radius:14px;
+
+}
+
+
+
+/*==============================
+        ANIMATION
+==============================*/
+
+
+.card{
+
+animation:fadeUp .4s ease;
+
+}
+
+
+
+@keyframes fadeUp{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+/*==============================
+        MOBILE TOUCH
+==============================*/
+
+
+button,
+.button-link,
+nav a{
+
+
+-webkit-tap-highlight-color:transparent;
+
+}
+
+
+
+button:active,
+.button-link:active{
+
+
+transform:scale(.97);
+
+}
+
+
+
+/*==============================
+        CHAPTER READING
+==============================*/
+
+
+.card h2{
+
+border-bottom:2px solid #eef5ff;
+
+padding-bottom:10px;
+
+}
+
+
+
+.card h3{
+
+margin-top:15px;
+
+}
+
+
+
+section .card + .card{
+
+margin-top:18px;
+
+}
+
+
+
+/*==============================
+        HOME PAGE
+==============================*/
+
+
+.years .card{
+
+min-height:230px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+}
+
+
+
+/*==============================
+        SMALL SCREEN FIX
+==============================*/
+
+
+@media(max-width:360px){
+
+
+.logo{
+
+font-size:18px;
+
+}
+
+
+header h1{
+
+font-size:24px;
+
+}
+
+
+.card{
+
+padding:20px 15px;
+
+}
+
+
+.card h3{
+
+font-size:19px;
+
+}
+
+
+.button-link,
+button{
+
+font-size:15px;
+
+}
+
+
 
 }
