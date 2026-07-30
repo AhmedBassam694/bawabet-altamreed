@@ -1,6 +1,6 @@
 /*====================================
    بوابة التمريض
-   Mobile First Style
+   Mobile App Style
    PART 1
 ====================================*/
 
@@ -9,19 +9,20 @@
 
 :root{
 
---primary:#0d6efd;
---primary-dark:#084298;
---secondary:#20c997;
---danger:#dc3545;
---bg:#f4f8fc;
+--primary:#0066ff;
+--primary-dark:#0047b3;
+--secondary:#00c9a7;
+--background:#f4f8ff;
 --white:#ffffff;
---text:#222;
---gray:#666;
-
---radius:18px;
+--text:#1f2937;
+--gray:#6b7280;
+--danger:#dc3545;
+--warning:#ffb703;
 
 --shadow:
-0 8px 25px rgba(0,0,0,.08);
+0 10px 25px rgba(0,102,255,.12);
+
+--radius:20px;
 
 }
 
@@ -46,27 +47,30 @@ body{
 
 font-family:'Cairo',sans-serif;
 
-background:var(--bg);
+background:
+linear-gradient(
+180deg,
+#f4f8ff,
+#ffffff
+);
 
 color:var(--text);
 
-line-height:1.8;
+direction:rtl;
 
 overflow-x:hidden;
 
 }
 
 
-/* الروابط */
-
 a{
 
 text-decoration:none;
 
+color:inherit;
+
 }
 
-
-/* القوائم */
 
 ul{
 
@@ -75,30 +79,32 @@ list-style:none;
 }
 
 
-/* الصور */
+button{
 
-img{
+font-family:'Cairo',sans-serif;
 
-max-width:100%;
+cursor:pointer;
+
+border:none;
 
 }
 
 
-
-/*==============================
-        NAVBAR MOBILE
-==============================*/
+/*========================
+ NAVBAR
+========================*/
 
 
 nav{
 
-height:70px;
-
-background:linear-gradient(
+background:
+linear-gradient(
 135deg,
-#0d6efd,
-#36a2ff
+#0066ff,
+#00c9a7
 );
+
+padding:15px 18px;
 
 display:flex;
 
@@ -106,18 +112,10 @@ align-items:center;
 
 justify-content:space-between;
 
-padding:0 15px;
-
-position:relative;
-
-box-shadow:
-0 5px 15px rgba(0,0,0,.15);
+box-shadow:0 5px 20px rgba(0,0,0,.15);
 
 }
 
-
-
-/* اللوجو */
 
 .logo{
 
@@ -130,160 +128,101 @@ font-weight:800;
 }
 
 
-/* زر الثلاث شرط */
 
-.menu-toggle{
+/* روابط النافبار الموجودة */
 
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-width:45px;
-
-height:45px;
-
-background:white;
-
-color:#0d6efd;
-
-border-radius:12px;
-
-font-size:27px;
-
-}
-
-
-/* القائمة */
-
-nav ul,
-#menu{
-
-display:none;
-
-position:absolute;
-
-top:70px;
-
-right:0;
-
-width:100%;
-
-background:#0d6efd;
-
-padding:15px;
-
-z-index:1000;
-
-}
-
-
-
-/* عند الفتح */
-
-nav ul.show,
-#menu.show{
+nav ul{
 
 display:flex;
 
-flex-direction:column;
-
-gap:12px;
+gap:10px;
 
 }
 
 
-
-nav li{
-
-width:100%;
-
-}
-
-
-
-nav a{
+nav ul li a{
 
 display:block;
 
-background:rgba(255,255,255,.15);
+padding:8px 14px;
+
+border-radius:12px;
 
 color:white;
 
-padding:13px;
-
-border-radius:14px;
-
-text-align:center;
-
 font-weight:700;
+
+font-size:14px;
+
+background:
+rgba(255,255,255,.15);
 
 transition:.3s;
 
 }
 
 
-
-nav a:hover{
+nav ul li a:hover{
 
 background:white;
 
-color:#0d6efd;
+color:var(--primary);
 
 }
-
 
 
 /* زر تسجيل الخروج */
 
 .logout-btn{
 
-width:100%;
-
-padding:13px;
-
-border-radius:14px;
-
-background:#dc3545;
+background:#ff4757;
 
 color:white;
 
-font-size:16px;
+padding:10px 16px;
 
-font-weight:700;
+border-radius:12px;
+
+font-weight:bold;
 
 }
 
 
-
-/*==============================
-        HEADER
-==============================*/
+/*========================
+ HEADER
+========================*/
 
 
 header{
 
 background:
+
 linear-gradient(
 135deg,
-#0d6efd,
-#20c997
+#0066ff,
+#00c9a7
 );
 
 color:white;
 
 text-align:center;
 
-padding:40px 20px;
+padding:45px 20px;
+
+border-radius:
+
+0 0 35px 35px;
+
+box-shadow:
+
+0 10px 30px rgba(0,102,255,.25);
 
 }
 
 
-
 header h1{
 
-font-size:28px;
+font-size:30px;
 
 font-weight:800;
 
@@ -292,19 +231,20 @@ margin-bottom:10px;
 }
 
 
-
 header p{
 
 font-size:16px;
 
-line-height:2;
+line-height:1.8;
+
+opacity:.95;
 
 }
 
 
-/*==============================
-        SECTIONS
-==============================*/
+/*========================
+ SECTIONS
+========================*/
 
 
 .years{
@@ -316,74 +256,97 @@ margin:30px auto;
 }
 
 
-
 .years h2{
 
 text-align:center;
 
-font-size:23px;
+color:var(--primary);
 
-color:#0d6efd;
+font-size:24px;
+
+font-weight:800;
 
 margin-bottom:25px;
 
 }
 
 
-/*==============================
-        CARDS
-==============================*/
+
+/*========================
+ CARDS
+========================*/
 
 
 .cards{
 
-display:flex;
+display:grid;
 
-flex-direction:column;
+grid-template-columns:1fr;
 
-gap:18px;
+gap:20px;
 
 }
-
 
 
 .card{
 
 background:white;
 
-border-radius:var(--radius);
+border-radius:25px;
 
 padding:25px 20px;
 
 box-shadow:var(--shadow);
 
-border:1px solid #e7edf5;
+border:1px solid #e5efff;
 
 text-align:center;
+
+transition:.3s;
+
+position:relative;
 
 overflow:hidden;
 
 }
 
 
+.card::before{
 
-.card h2{
+content:"";
 
-font-size:22px;
+position:absolute;
 
-color:#0d6efd;
+top:0;
 
-margin-bottom:15px;
+right:0;
+
+width:100%;
+
+height:5px;
+
+background:
+
+linear-gradient(
+90deg,
+#0066ff,
+#00c9a7
+);
 
 }
 
 
+.card:hover{
 
+transform:translateY(-5px);
+
+}
+
+
+.card h2,
 .card h3{
 
-font-size:21px;
-
-color:#0d6efd;
+color:var(--primary);
 
 font-weight:800;
 
@@ -392,41 +355,34 @@ margin-bottom:12px;
 }
 
 
-
 .card p{
 
 color:var(--gray);
+
+line-height:1.9;
 
 font-size:15px;
 
 margin-bottom:20px;
 
-line-height:2;
-
 }
 
 
-/*==============================
-        ICONS
-==============================*/
+
+/*========================
+ CARD ICON
+========================*/
 
 
 .card-icon{
 
-width:75px;
+width:80px;
 
-height:75px;
+height:80px;
 
 margin:0 auto 18px;
 
-border-radius:20px;
-
-background:
-linear-gradient(
-135deg,
-#0d6efd,
-#20c997
-);
+border-radius:25px;
 
 display:flex;
 
@@ -434,58 +390,70 @@ align-items:center;
 
 justify-content:center;
 
-font-size:35px;
-
-box-shadow:
-
-0 8px 20px rgba(13,110,253,.25);
-
-}
-
-/*====================================
-   بوابة التمريض
-   Mobile First Style
-   PART 2
-====================================*/
-
-
-/*==============================
-        BUTTONS
-==============================*/
-
-
-.button-link,
-button{
-
-display:block;
-
-width:100%;
-
-padding:14px;
-
-border:none;
-
-border-radius:14px;
+font-size:38px;
 
 background:
 
 linear-gradient(
 135deg,
-#0d6efd,
-#36a2ff
+#0066ff,
+#00c9a7
 );
 
 color:white;
 
-font-family:'Cairo',sans-serif;
+box-shadow:
+
+0 10px 25px rgba(0,102,255,.3);
+
+}
+/*====================================
+   بوابة التمريض
+   PART 2
+====================================*/
+
+
+/*========================
+ BUTTONS
+========================*/
+
+
+.button-link,
+.card button,
+button{
+
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+width:100%;
+
+padding:15px 18px;
+
+border-radius:16px;
+
+background:
+
+linear-gradient(
+135deg,
+#0066ff,
+#00c9a7
+);
+
+color:white;
 
 font-size:16px;
 
-font-weight:700;
+font-weight:800;
 
-text-align:center;
+box-shadow:
 
-cursor:pointer;
+0 8px 20px rgba(0,102,255,.25);
 
 transition:.3s;
 
@@ -493,48 +461,56 @@ transition:.3s;
 
 
 .button-link:hover,
+.card button:hover,
 button:hover{
 
-transform:scale(1.03);
+transform:translateY(-3px);
 
-opacity:.9;
+box-shadow:
+
+0 12px 25px rgba(0,102,255,.35);
 
 }
 
 
 
-/*==============================
-        LOGIN & SIGNUP
-==============================*/
+/*========================
+ LOGIN & SIGNUP CARD
+========================*/
 
 
 body > .card{
 
-width:92%;
 
-margin:40px auto;
+width:90%;
 
-max-width:450px;
+max-width:420px;
+
+margin:50px auto;
+
+padding:35px 25px;
+
+background:white;
+
+border-radius:30px;
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,.12);
+
+text-align:center;
 
 }
 
 
 
-.input-box{
+/* اللوجو في صفحة الدخول */
 
-display:flex;
 
-align-items:center;
+.logo:first-child{
 
-gap:10px;
 
-background:white;
-
-border-radius:14px;
-
-border:1px solid #ddd;
-
-padding:5px 12px;
+font-size:55px;
 
 margin-bottom:15px;
 
@@ -542,30 +518,37 @@ margin-bottom:15px;
 
 
 
-.input-box .icon{
+/* العناوين */
 
-font-size:22px;
+
+body > .card h2{
+
+
+font-size:27px;
+
+color:#0066ff;
+
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+
+body > .card p{
+
+
+color:#777;
+
+margin-bottom:20px;
 
 }
 
 
 
-.input-box input{
-
-border:none;
-
-margin:0;
-
-}
-
-
-
-.input-box input:focus{
-
-box-shadow:none;
-
-}
-
+/*========================
+ INPUTS
+========================*/
 
 
 input,
@@ -575,20 +558,23 @@ textarea{
 
 width:100%;
 
-padding:14px;
+padding:16px;
 
-border-radius:14px;
+margin-bottom:15px;
 
-border:1px solid #ddd;
+border-radius:16px;
 
-background:white;
+border:2px solid #e1eaff;
+
+background:#f8fbff;
 
 font-family:'Cairo',sans-serif;
 
 font-size:15px;
 
-margin-bottom:15px;
+outline:none;
 
+transition:.3s;
 
 }
 
@@ -599,144 +585,38 @@ select:focus,
 textarea:focus{
 
 
-outline:none;
+border-color:#0066ff;
 
-border-color:#0d6efd;
+background:white;
 
 box-shadow:
 
-0 0 0 3px rgba(13,110,253,.15);
+0 0 0 4px rgba(0,102,255,.12);
 
 
 }
 
 
 
-.footer{
+/* صندوق الايميل في Login */
 
-margin-top:25px;
 
-color:#777;
+.input-box{
 
-font-size:14px;
-
-text-align:center;
-
-}
-
-
-/*==============================
-        LESSON / CHAPTER STYLE
-==============================*/
-
-
-.card ul{
-
-text-align:right;
-
-padding-right:20px;
-
-margin:15px 0;
-
-
-}
-
-
-
-.card li{
-
-margin-bottom:10px;
-
-font-size:15px;
-
-color:#444;
-
-}
-
-
-
-.card li::marker{
-
-color:#0d6efd;
-
-}
-
-
-
-
-/* جدول المحتويات */
-
-.card a{
-
-color:#0d6efd;
-
-font-weight:700;
-
-}
-
-
-
-
-/* نصائح الامتحان */
-
-.exam-tip{
-
-background:#d1f7e8;
-
-color:#087f5b;
-
-padding:15px;
-
-border-radius:14px;
-
-margin-top:20px;
-
-font-weight:700;
-
-border-right:5px solid #20c997;
-
-text-align:right;
-
-}
-
-
-
-/* تحذير */
-
-.warning{
-
-background:#ffe5e5;
-
-color:#b02a37;
-
-padding:15px;
-
-border-radius:14px;
-
-margin-top:20px;
-
-font-weight:700;
-
-border-right:5px solid #dc3545;
-
-text-align:right;
-
-}
-
-
-
-/*==============================
-        QUIZ STYLE
-==============================*/
-
-
-.quiz-top{
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
+
+gap:10px;
+
+background:#f8fbff;
+
+border:2px solid #e1eaff;
+
+border-radius:16px;
+
+padding:0 15px;
 
 margin-bottom:15px;
 
@@ -744,243 +624,67 @@ margin-bottom:15px;
 
 
 
-#timer{
+.input-box .icon{
 
-background:#eef5ff;
-
-color:#0d6efd;
-
-padding:10px 20px;
-
-border-radius:30px;
-
-font-weight:800;
-
-font-size:18px;
-
-}
-
-
-
-.quiz-info{
-
-display:flex;
-
-justify-content:center;
-
-margin:15px 0;
-
-color:#0d6efd;
-
-font-weight:800;
-
-font-size:17px;
-
-}
-
-
-
-.progress{
-
-height:12px;
-
-background:#e5e5e5;
-
-border-radius:20px;
-
-overflow:hidden;
-
-margin:20px 0;
-
-}
-
-
-
-.progress-bar{
-
-height:100%;
-
-width:0%;
-
-background:
-
-linear-gradient(
-90deg,
-#0d6efd,
-#20c997
-);
-
-transition:.4s;
-
-}
-
-
-
-#question{
-
-font-size:20px;
-
-margin:20px 0;
-
-line-height:1.8;
-
-}
-
-
-
-#answers{
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
-}
-
-
-
-#answers button,
-.quiz-answer{
-
-
-background:white;
-
-color:#222;
-
-border:2px solid #dbeafe;
-
-text-align:right;
-
-}
-
-
-
-#answers button:hover,
-.quiz-answer:hover{
-
-
-background:#eaf3ff;
-
-border-color:#0d6efd;
-
-
-}
-
-
-
-#nextBtn{
-
-margin-top:20px;
-
-}
-
-
-
-/*==============================
-        DASHBOARD
-==============================*/
-
-
-#studentInfo,
-#results,
-#average,
-#stats,
-#students{
-
-font-size:16px;
-
-line-height:2;
-
-}
-
-
-
-.leaderboard-card{
-
-margin:auto;
-
-}
-
-
-
-.leader-score{
 
 font-size:22px;
 
-font-weight:800;
+}
 
-color:#0d6efd;
+
+
+.input-box input{
+
+
+border:none;
+
+margin:0;
+
+background:transparent;
 
 }
 
 
 
-/*==============================
-        TABLES
-==============================*/
+
+/* روابط الدخول والتسجيل */
 
 
-.table-box{
-
-overflow-x:auto;
-
-}
+.card a{
 
 
+color:#0066ff;
 
-table{
-
-width:100%;
-
-background:white;
-
-border-collapse:collapse;
-
-border-radius:15px;
-
-overflow:hidden;
+font-weight:700;
 
 }
 
 
 
-th{
+.card a:hover{
 
-background:#0d6efd;
-
-color:white;
-
-padding:12px;
+color:#00a884;
 
 }
 
 
 
-td{
-
-padding:12px;
-
-border-bottom:1px solid #eee;
-
-text-align:center;
-
-}
-/*====================================
-   بوابة التمريض
-   Mobile First Style
-   PART 3
-====================================*/
-
-
-/*==============================
-        FOOTER
-==============================*/
+/*========================
+ FOOTER
+========================*/
 
 
 footer{
 
-background:#06283d;
+
+background:
+
+linear-gradient(
+135deg,
+#003b73,
+#0066ff
+);
+
 
 color:white;
 
@@ -989,6 +693,8 @@ text-align:center;
 padding:25px 15px;
 
 margin-top:40px;
+
+border-radius:30px 30px 0 0;
 
 }
 
@@ -1002,55 +708,245 @@ font-size:14px;
 
 
 
-/*==============================
-        ADMIN DASHBOARD
-==============================*/
+/*========================
+ TABLES
+========================*/
 
 
-#stats .card,
-#students .card,
-#results .card{
+.table-box{
+
+overflow-x:auto;
+
+border-radius:20px;
+
+}
 
 
-margin-bottom:15px;
+
+table{
+
+width:100%;
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+border-collapse:collapse;
+
+}
+
+
+
+th{
+
+background:#0066ff;
+
+color:white;
+
+padding:15px;
+
+}
+
+
+
+td{
+
+padding:14px;
 
 text-align:center;
 
-}
+border-bottom:1px solid #eee;
+
+   }
+/*====================================
+   بوابة التمريض
+   PART 3
+====================================*/
 
 
-
-#stats{
-
-display:flex;
-
-flex-direction:column;
-
-gap:15px;
-
-}
+/*========================
+ LESSON CONTENT
+========================*/
 
 
+.card ul{
 
-#students{
+text-align:right;
 
-display:flex;
+margin:15px 0;
 
-flex-direction:column;
-
-gap:15px;
+padding-right:20px;
 
 }
 
 
+.card ul li{
+
+margin-bottom:10px;
+
+color:#444;
+
+line-height:1.8;
+
+position:relative;
+
+}
 
 
-/*==============================
-        LEADERBOARD
-==============================*/
+.card ul li::marker{
+
+color:#0066ff;
+
+font-size:18px;
+
+}
 
 
-#leaderboard{
+
+/* عناوين داخل الشابتر */
+
+.card h3{
+
+margin-top:20px;
+
+color:#0056d6;
+
+font-size:20px;
+
+}
+
+
+
+
+/*========================
+ TABLE OF CONTENTS
+========================*/
+
+
+.card:first-child ul a{
+
+display:block;
+
+background:#f0f7ff;
+
+padding:12px;
+
+border-radius:14px;
+
+margin-bottom:10px;
+
+color:#0066ff;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+
+.card:first-child ul a:hover{
+
+background:#0066ff;
+
+color:white;
+
+}
+
+
+
+/*========================
+ EXAM TIP
+========================*/
+
+
+.exam-tip{
+
+
+background:
+
+linear-gradient(
+135deg,
+#e7fff8,
+#ffffff
+);
+
+
+border-right:6px solid #00c9a7;
+
+
+padding:18px;
+
+border-radius:18px;
+
+margin:20px 0;
+
+
+font-weight:700;
+
+color:#087f5b;
+
+
+box-shadow:
+
+0 8px 20px rgba(0,201,167,.15);
+
+
+}
+
+
+
+/*========================
+ WARNING
+========================*/
+
+
+.warning{
+
+
+background:
+
+linear-gradient(
+135deg,
+#fff3f3,
+#ffffff
+);
+
+
+border-right:6px solid #ff4757;
+
+
+padding:18px;
+
+border-radius:18px;
+
+margin:20px 0;
+
+
+font-weight:700;
+
+color:#c92a2a;
+
+
+box-shadow:
+
+0 8px 20px rgba(255,71,87,.15);
+
+
+}
+
+
+
+
+/*========================
+ QUIZ DESIGN
+========================*/
+
+
+.quiz-container,
+#answers{
+
 
 margin-top:20px;
 
@@ -1058,9 +954,246 @@ margin-top:20px;
 
 
 
-#leaderboard .card{
+/* السؤال */
 
-border-right:5px solid #0d6efd;
+
+#question{
+
+
+background:#f5f9ff;
+
+padding:20px;
+
+border-radius:20px;
+
+font-size:20px;
+
+font-weight:800;
+
+color:#222;
+
+margin:20px 0;
+
+
+}
+
+
+
+/* رقم السؤال */
+
+
+#questionNumber,
+.quiz-info{
+
+
+background:#eaf3ff;
+
+color:#0066ff;
+
+padding:12px;
+
+border-radius:15px;
+
+font-weight:800;
+
+}
+
+
+
+
+/* الوقت */
+
+
+#timer{
+
+
+background:#ff4757;
+
+color:white;
+
+padding:10px 18px;
+
+border-radius:20px;
+
+font-weight:800;
+
+display:inline-block;
+
+}
+
+
+
+/* الاختيارات */
+
+
+#answers button,
+.quiz-answer{
+
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-start;
+
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:12px;
+
+
+background:white;
+
+color:#222;
+
+
+border:2px solid #dbe8ff;
+
+
+border-radius:18px;
+
+
+font-weight:700;
+
+text-align:right;
+
+
+box-shadow:
+
+0 5px 15px rgba(0,0,0,.05);
+
+
+transition:.3s;
+
+
+}
+
+
+
+#answers button:hover,
+.quiz-answer:hover{
+
+
+background:#0066ff;
+
+color:white;
+
+border-color:#0066ff;
+
+
+}
+
+
+
+/* زر التالي */
+
+
+#nextBtn{
+
+
+margin-top:20px;
+
+background:
+
+linear-gradient(
+135deg,
+#00c9a7,
+#0066ff
+);
+
+
+}
+
+
+
+/*========================
+ PROGRESS BAR
+========================*/
+
+
+.progress{
+
+
+height:12px;
+
+background:#e5e7eb;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin:20px 0;
+
+}
+
+
+
+.progress-bar{
+
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+#0066ff,
+#00c9a7
+);
+
+
+border-radius:20px;
+
+transition:.4s;
+
+
+}
+
+
+
+
+/*========================
+ DASHBOARD
+========================*/
+
+
+#studentInfo,
+#results,
+#average{
+
+
+background:#f8fbff;
+
+padding:18px;
+
+border-radius:18px;
+
+margin-top:15px;
+
+font-weight:700;
+
+}
+
+
+
+
+/*========================
+ LEADERBOARD
+========================*/
+
+
+.leaderboard-card{
+
+
+background:white;
+
+border-radius:25px;
+
+padding:20px;
+
+box-shadow:var(--shadow);
 
 margin-bottom:15px;
 
@@ -1068,107 +1201,204 @@ margin-bottom:15px;
 
 
 
-
-/*==============================
-        LOADING
-==============================*/
+.leader-score{
 
 
-.spinner{
+font-size:24px;
 
-width:45px;
+font-weight:800;
 
-height:45px;
+color:#0066ff;
 
-border-radius:50%;
+}
+/*====================================
+   بوابة التمريض
+   PART 4 FINAL
+====================================*/
 
-border:5px solid #ddd;
 
-border-top-color:#0d6efd;
+/*========================
+ MOBILE OPTIMIZATION
+========================*/
 
-animation:spin 1s linear infinite;
 
-margin:20px auto;
+@media(max-width:600px){
+
+
+nav{
+
+padding:14px 12px;
+
+}
+
+
+.logo{
+
+font-size:20px;
 
 }
 
 
 
-@keyframes spin{
+nav ul{
 
+position:absolute;
 
-100%{
+top:70px;
 
-transform:rotate(360deg);
+right:0;
 
-}
+left:0;
 
-
-}
-
-
-
-/*==============================
-        ALERTS
-==============================*/
-
-
-.success{
-
-background:#d1f7e8;
-
-color:#087f5b;
+background:#0066ff;
 
 padding:15px;
 
-border-radius:14px;
+display:flex;
+
+flex-direction:column;
+
+z-index:100;
 
 }
 
 
 
-.error{
+nav ul li a{
 
-background:#ffe5e5;
+padding:13px;
 
-color:#b02a37;
-
-padding:15px;
-
-border-radius:14px;
+text-align:center;
 
 }
 
 
 
-.info{
+header{
 
-background:#dcecff;
-
-color:#084298;
-
-padding:15px;
-
-border-radius:14px;
+padding:35px 15px;
 
 }
 
 
 
-/*==============================
-        ANIMATION
-==============================*/
+header h1{
+
+font-size:25px;
+
+}
+
+
+
+header p{
+
+font-size:14px;
+
+}
+
+
+
+.years{
+
+width:94%;
+
+}
+
 
 
 .card{
 
-animation:fadeUp .4s ease;
+padding:22px 16px;
 
 }
 
 
 
-@keyframes fadeUp{
+.card h2{
+
+font-size:21px;
+
+}
+
+
+
+.card h3{
+
+font-size:19px;
+
+}
+
+
+
+.card p{
+
+font-size:14px;
+
+}
+
+
+
+.button-link,
+button{
+
+
+font-size:15px;
+
+padding:14px;
+
+}
+
+
+
+.card-icon{
+
+
+width:70px;
+
+height:70px;
+
+font-size:32px;
+
+}
+
+
+
+body > .card{
+
+
+margin:30px auto;
+
+width:92%;
+
+
+}
+
+
+
+}
+
+
+/*========================
+ SMOOTH ANIMATION
+========================*/
+
+
+.card,
+.button-link,
+button,
+.exam-tip,
+.warning{
+
+
+animation:
+
+fadeIn .5s ease;
+
+}
+
+
+
+@keyframes fadeIn{
 
 
 from{
@@ -1194,125 +1424,100 @@ transform:translateY(0);
 
 
 
-/*==============================
-        MOBILE TOUCH
-==============================*/
+/*========================
+ SPECIAL BOXES
+========================*/
 
 
-button,
-.button-link,
-nav a{
+.lesson-box{
 
 
--webkit-tap-highlight-color:transparent;
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+border-right:5px solid #0066ff;
+
+box-shadow:var(--shadow);
+
+margin-bottom:18px;
+
 
 }
 
 
 
-button:active,
-.button-link:active{
+
+.lesson-box h4{
 
 
-transform:scale(.97);
+color:#0066ff;
 
-}
-
-
-
-/*==============================
-        CHAPTER READING
-==============================*/
-
-
-.card h2{
-
-border-bottom:2px solid #eef5ff;
-
-padding-bottom:10px;
+margin-bottom:10px;
 
 }
 
 
 
-.card h3{
 
-margin-top:15px;
-
-}
-
+/*========================
+ BOOK PAGE
+========================*/
 
 
-section .card + .card{
-
-margin-top:18px;
-
-}
+.card .book-icon{
 
 
+font-size:45px;
 
-/*==============================
-        HOME PAGE
-==============================*/
-
-
-.years .card{
-
-min-height:230px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
+margin-bottom:15px;
 
 }
 
 
 
-/*==============================
-        SMALL SCREEN FIX
-==============================*/
+/*========================
+ EMPTY / LOADING
+========================*/
 
 
-@media(max-width:360px){
+.card p:only-child{
 
 
-.logo{
-
-font-size:18px;
+color:#777;
 
 }
 
 
-header h1{
 
-font-size:24px;
-
-}
-
-
-.card{
-
-padding:20px 15px;
-
-}
+/*========================
+ REMOVE OLD LOOK ISSUES
+========================*/
 
 
-.card h3{
+img{
 
-font-size:19px;
+max-width:100%;
+
+border-radius:20px;
 
 }
 
 
-.button-link,
-button{
 
-font-size:15px;
+::-webkit-scrollbar{
+
+width:6px;
 
 }
 
 
+::-webkit-scrollbar-thumb{
+
+background:#0066ff;
+
+border-radius:20px;
 
 }
