@@ -1521,3 +1521,13 @@ background:#0066ff;
 border-radius:20px;
 
 }
+/* إخفاء روابط الـ navbar في الموبايل */
+@media(max-width:991px){
+
+nav ul{
+
+display:none;
+
+}
+
+}
