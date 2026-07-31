@@ -12,6 +12,16 @@
 
 </head>
 
+<script>
+
+function toggleMenu(){
+
+document.getElementById("menu").classList.toggle("show");
+
+}
+
+</script>
+  
 <body>
 
 <nav>
@@ -20,10 +30,47 @@
 
 <ul>
 
-<li><a href="index.html">الرئيسية</a></li>
-<li><a href="admission.html">اختبارات القبول</a></li>
-<li><a href="first-year.html">الصف الأول</a></li>
-<li><a href="second-year.html">الصف الثاني</a></li>
+<button class="menu-toggle" onclick="toggleMenu()">
+☰
+</button>
+
+<ul id="menu">
+
+<li>
+<a href="index.html">
+🏠 الرئيسية
+</a>
+</li>
+
+<li>
+<a href="admission.html">
+📝 اختبارات القبول
+</a>
+</li>
+
+<li>
+<a href="first-year.html">
+📘 الصف الأول
+</a>
+</li>
+
+<li>
+<a href="second-year.html">
+📗 الصف الثاني
+</a>
+</li>
+
+<li>
+<a href="books.html">
+📚 الكتب
+</a>
+</li>
+
+<li>
+<a href="dashboard.html">
+👨‍🎓 لوحة الطالب
+</a>
+</li>
 
 </ul>
 
