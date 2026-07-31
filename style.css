@@ -1704,3 +1704,18 @@ nav ul#menu li a{
 }
 
        }
+@media(max-width:991px){
+
+.menu-toggle{
+
+    left:10px !important;
+
+    right:auto !important;
+
+    top:18px !important;
+
+    transform:none !important;
+
+}
+
+}
