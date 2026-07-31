@@ -1597,16 +1597,110 @@ nav{
 
 }
 
-}
+}/* ==========================
+   FINAL MOBILE MENU POSITION
+========================== */
+
+@media(max-width:991px){
+
 nav{
     position:relative;
-    min-height:70px;
+    height:70px;
 }
 
+
+/* زر الثلاث شرط */
 .menu-toggle{
+
+    display:flex !important;
+
     position:absolute;
+
     left:15px;
-    top:50%;
-    transform:translateY(-50%);
-    z-index:9999;
+
+    top:15px;
+
+    width:45px;
+
+    height:45px;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    color:#0066ff;
+
+    border-radius:15px;
+
+    font-size:28px;
+
+    z-index:2000;
+
 }
+
+
+/* اخفاء القائمة */
+nav ul#menu{
+
+    display:none;
+
+}
+
+
+/* عند الفتح */
+nav ul#menu.show{
+
+    display:flex;
+
+    position:absolute;
+
+    top:75px;
+
+    left:15px;
+
+    right:15px;
+
+    flex-direction:column;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+    z-index:1999;
+
+}
+
+
+/* شكل الروابط */
+nav ul#menu li a{
+
+    background:linear-gradient(135deg,#0066ff,#00c9a7);
+
+    color:white;
+
+    padding:14px;
+
+    margin-bottom:10px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+
+.logout-btn{
+
+    width:100%;
+
+    background:#ff4757;
+
+}
+
+       }
