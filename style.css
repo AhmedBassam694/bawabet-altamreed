@@ -1611,3 +1611,28 @@ nav ul:not(#menu){
 }
 
 }
+/* إخفاء قوائم الصفحات الداخلية في الموبايل */
+
+@media(max-width:991px){
+
+nav > ul{
+
+    display:none !important;
+
+}
+
+
+nav > ul#menu{
+
+    display:none;
+
+}
+
+
+nav > ul#menu.show{
+
+    display:flex !important;
+
+}
+
+}
