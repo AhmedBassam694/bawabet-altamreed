@@ -1598,3 +1598,16 @@ nav ul#menu.show{
 }
 
 }
+/* ==========================
+   HIDE OLD NAV MENUS
+========================== */
+
+@media(max-width:991px){
+
+nav ul:not(#menu){
+
+    display:none !important;
+
+}
+
+}
