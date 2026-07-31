@@ -1636,3 +1636,14 @@ nav > ul#menu.show{
 }
 
 }
+/* إخفاء أي قائمة جانبية أو قائمة روابط في الصفحات الداخلية */
+
+@media(max-width:991px){
+
+ul:not(#menu){
+
+display:none !important;
+
+}
+
+}
