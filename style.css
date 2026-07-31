@@ -1647,3 +1647,23 @@ display:none !important;
 }
 
 }
+/* إصلاح نص القائمة */
+
+#menu li a{
+    color:#ffffff !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    display:flex !important;
+    align-items:center;
+    justify-content:flex-start;
+    gap:10px;
+}
+
+#menu li{
+    display:block !important;
+}
+
+#menu.show{
+    display:flex !important;
+    flex-direction:column;
+}
