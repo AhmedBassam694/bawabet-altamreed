@@ -1719,3 +1719,40 @@ nav ul#menu li a{
 }
 
 }
+/* FIX MENU BUTTON POSITION */
+
+@media(max-width:991px){
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.menu-toggle{
+
+    position:absolute !important;
+
+    left:15px !important;
+
+    right:auto !important;
+
+    top:12px !important;
+
+    margin:0 !important;
+
+    transform:none !important;
+
+    z-index:9999 !important;
+
+}
+
+
+.logo{
+
+    margin-right:auto;
+
+}
+
+}
