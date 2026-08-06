@@ -74,7 +74,7 @@ return;
 const student = doc.data();
 alert(JSON.stringify(student));
 
-if(student.password.trim() !== password.trim()){
+if(String(student.password) !== String(password)){
 
 alert("❌ كلمة المرور غير صحيحة");
 return;
