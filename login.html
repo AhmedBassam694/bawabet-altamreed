@@ -73,9 +73,11 @@ return;
 
 const student = doc.data();
 
-if(student.password !== password){
+if(student.password.trim() !== password.trim()){
+
 alert("❌ كلمة المرور غير صحيحة");
 return;
+
 }
 
 alert("✅ تم تسجيل الدخول");
