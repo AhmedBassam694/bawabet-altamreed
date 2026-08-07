@@ -318,10 +318,7 @@
 </section>
 <!-- =========================
       FOOTER
-========================= -->
-
-<footer>
-
+==============================
 <p>
 © 2026 بوابة التمريض - جميع الحقوق محفوظة
 </p>
@@ -333,9 +330,6 @@
 ========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 <script src="firebase.js"></script>
@@ -354,52 +348,27 @@ document.getElementById("menu").classList.toggle("show");
 
 }
 
-     auth.onAuthStateChanged(function(user){
+// التحقق من تسجيل الدخول
 
-    if(!user){
-        window.location.href = "login.html";
-        return;
-    }
+const studentCode = localStorage.getItem("studentCode");
 
-    db.collection("users")
-    .doc(user.uid)
-    .get()
-    .then(function(doc){
+if(!studentCode){
 
-        if(doc.exists){
+window.location.href = "login.html";
 
-            const data = doc.data();
+}
 
-            if(data.role === "admin"){
-                document.getElementById("adminCard").style.display = "block";
-            }
-
-        }
-
-    })
-    .catch(function(error){
-        console.log(error);
-    });
-
-});
+// تسجيل الخروج
 
 function logout(){
 
-auth.signOut()
+localStorage.removeItem("studentCode");
+localStorage.removeItem("studentName");
+localStorage.removeItem("studentGrade");
 
-.then(function(){
+alert("تم تسجيل الخروج");
 
-alert("تم تسجيل الخروج بنجاح");
-
-window.location.href="login.html";
-
-})
-
-.catch(function(error){
-
-alert(error.message);
-
-});
+window.location.href = "login.html";
 
 }
 
