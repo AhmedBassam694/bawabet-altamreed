@@ -109,6 +109,23 @@ deviceId: deviceId
 
 .then(function(){
 
+alert("✅ تم حفظ الجهاز");
+
+localStorage.setItem("studentCode",code);
+localStorage.setItem("studentName",student.name);
+localStorage.setItem("studentGrade",student.grade);
+
+window.location.href="index.html";
+
+})
+
+.catch(function(error){
+
+alert(error.message);
+console.log(error);
+
+});
+
 localStorage.setItem("studentCode",code);
 localStorage.setItem("studentName",student.name);
 localStorage.setItem("studentGrade",student.grade);
