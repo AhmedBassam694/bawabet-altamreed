@@ -54,7 +54,7 @@
 
 <script>
 
-function login(){
+  function login(){
 
 const code = document.getElementById("code").value.trim();
 const password = document.getElementById("password").value.trim();
@@ -64,101 +64,112 @@ alert("من فضلك أدخل كود الاشتراك وكلمة المرور");
 return;
 }
 
+
 db.collection("students").doc(code).get()
 
 .then(function(doc){
+
 
 if(!doc.exists){
 alert("❌ كود الاشتراك غير صحيح");
 return;
 }
 
+
 const student = doc.data();
 
-// معرف الجهاز
 
 let deviceId = localStorage.getItem("deviceId");
+
 
 if(!deviceId){
 
 deviceId = Date.now().toString();
 
-localStorage.setItem("deviceId", deviceId);
+localStorage.setItem("deviceId",deviceId);
 
 }
-  
+
+
+
 if(student.password !== password){
+
 alert("❌ كلمة المرور غير صحيحة");
 return;
+
 }
+
+
 
 if(student.active !== true){
+
 alert("❌ هذا الاشتراك غير مفعل");
 return;
+
 }
 
-// أول تسجيل دخول
 
-if(student.deviceId === "null"){
+
+// أول دخول
+
+if(student.deviceId === "null" || student.deviceId === ""){
+
 
 db.collection("students").doc(code).update({
 
-deviceId: deviceId
+deviceId:deviceId
 
 })
-
 .then(function(){
 
-alert("✅ تم حفظ الجهاز");
 
 localStorage.setItem("studentCode",code);
 localStorage.setItem("studentName",student.name);
 localStorage.setItem("studentGrade",student.grade);
 
-window.location.href="index.html";
-
-})
-
-.catch(function(error){
-
-alert(error.message);
-console.log(error);
-
-});
-
-localStorage.setItem("studentCode",code);
-localStorage.setItem("studentName",student.name);
-localStorage.setItem("studentGrade",student.grade);
 
 alert("✅ تم تسجيل الدخول");
 
 window.location.href="index.html";
 
+
 });
 
+
 }
+
 
 // نفس الجهاز
 
 else if(student.deviceId === deviceId){
 
+
 localStorage.setItem("studentCode",code);
 localStorage.setItem("studentName",student.name);
 localStorage.setItem("studentGrade",student.grade);
+
 
 alert("✅ تم تسجيل الدخول");
 
 window.location.href="index.html";
 
+
 }
+
 
 // جهاز آخر
 
 else{
 
-alert("❌ هذا الاشتراك مستخدم على جهاز آخر.");
+
+alert("❌ هذا الاشتراك مستخدم على جهاز آخر");
+
 
 }
+
+
+})
+
 
 .catch(function(error){
 
@@ -168,7 +179,8 @@ alert(error.message);
 
 });
 
-}
+
+  }
 
 </script>
 
