@@ -74,11 +74,18 @@ return;
 const student = doc.data();
 alert(JSON.stringify(student));
 
-if(String(student.password) !== String(password)){
+const savedPassword = String(student.password);
+const enteredPassword = String(password);
 
-alert("❌ كلمة المرور غير صحيحة");
-return;
+alert(
+"المحفوظ: [" + savedPassword + "]\n" +
+"المكتوب: [" + enteredPassword + "]\n" +
+"هل متساويين؟ " + (savedPassword === enteredPassword)
+);
 
+if (savedPassword !== enteredPassword) {
+    alert("❌ كلمة المرور غير صحيحة");
+    return;
 }
 
 alert("✅ تم تسجيل الدخول");
