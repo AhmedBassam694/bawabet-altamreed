@@ -1,216 +1,147 @@
 const leaderboardDiv = document.getElementById("leaderboard");
 
-
-// تحميل لوحة المتصدرين حسب الصف
 function loadLeaderboard(grade){
 
-leaderboardDiv.innerHTML = "⏳ جاري تحميل الترتيب...";
-
+leaderboardDiv.innerHTML="⏳ جاري تحميل البيانات...";
 
 db.collection("results")
+
 .where("grade","==",grade)
+
 .get()
 
-.then((snapshot)=>{
-
+.then(function(snapshot){
 
 if(snapshot.empty){
 
-leaderboardDiv.innerHTML =
-"❌ لا توجد نتائج لهذا الصف حتى الآن";
+leaderboardDiv.innerHTML="❌ لا توجد نتائج";
 
 return;
 
 }
 
+let students={};
 
+// تجميع أفضل درجة لكل Chapter لكل طالب
 
-let students = {};
+snapshot.forEach(function(doc){
 
+let data=doc.data();
 
-// تجميع نتائج كل طالب
+let code=data.studentCode;
 
-snapshot.forEach((doc)=>{
+if(!students[code]){
 
-let data = doc.data();
+students[code]={
 
-
-if(!students[data.uid]){
-
-students[data.uid] = {
+studentCode:code,
 
 name:data.name,
 
 grade:data.grade,
 
-scores:[]
+chapters:{}
 
 };
 
 }
 
+if(
 
-students[data.uid].scores.push(data.percentage);
+!students[code].chapters[data.chapter] ||
 
+data.percentage>
 
-});
+students[code].chapters[data.chapter].percentage
 
+){
 
+students[code].chapters[data.chapter]=data;
 
-
-// حساب المتوسط النهائي لكل طالب
-
-let leaderboard = Object.values(students);
-
-
-leaderboard.forEach(student=>{
-
-
-let sum = 0;
-
-
-student.scores.forEach(score=>{
-
-sum += score;
+}
 
 });
 
+let leaderboard=[];
 
-student.average =
-(sum / student.scores.length).toFixed(2);
+// حساب المتوسط النهائي
 
+for(let code in students){
 
-});
+let student=students[code];
 
+let total=0;
 
+let count=0;
 
+for(let chapter in student.chapters){
+
+total+=student.chapters[chapter].percentage;
+
+count++;
+
+}
+
+student.average=(total/count).toFixed(2);
+
+student.count=count;
+
+leaderboard.push(student);
+
+}
 
 // ترتيب الطلاب
 
-leaderboard.sort((a,b)=>{
+leaderboard.sort(function(a,b){
 
-return b.average - a.average;
+return b.average-a.average;
 
 });
-
-
-
 
 // عرض البيانات
 
-let html = "";
+let html="";
 
+leaderboard.forEach(function(student,index){
 
-leaderboard.forEach((student,index)=>{
+let medal="🏅";
 
+if(index==0) medal="🥇";
+if(index==1) medal="🥈";
+if(index==2) medal="🥉";
 
-let medal;
-
-
-if(index === 0){
-
-medal="🥇";
-
-}else if(index === 1){
-
-medal="🥈";
-
-}else if(index === 2){
-
-medal="🥉";
-
-}else{
-
-medal="🏅";
-
-}
-
-
-
-html += `
+html+=`
 
 <div class="card leaderboard-card">
 
+<h2>${medal} المركز ${index+1}</h2>
 
-<h2>
+<h3>👨‍🎓 ${student.name}</h3>
 
-${medal} المركز ${index+1}
+<p>📚 ${student.grade}</p>
 
-</h2>
+<p>⭐ المتوسط النهائي: <b>${student.average}%</b></p>
 
-
-<h3>
-
-👨‍🎓 ${student.name}
-
-</h3>
-
-
-<p>
-
-📚 ${student.grade}
-
-</p>
-
-
-<div class="leader-score">
-
-⭐ المتوسط النهائي
-
-<br>
-
-<b>
-
-${student.average}%
-
-</b>
-
+<p>📝 عدد الاختبارات: ${student.count}</p>
 
 </div>
-
-
-<p>
-
-📝 عدد الاختبارات:
-${student.scores.length}
-
-</p>
-
-
-</div>
-
 
 `;
 
-
-
 });
 
-
-
-leaderboardDiv.innerHTML = html;
-
+leaderboardDiv.innerHTML=html;
 
 })
 
-
-.catch((error)=>{
-
+.catch(function(error){
 
 console.log(error);
 
-
-leaderboardDiv.innerHTML =
-"❌ حدث خطأ في تحميل لوحة المتصدرين";
-
+leaderboardDiv.innerHTML="❌ حدث خطأ";
 
 });
 
-
 }
-
-
-
-// فتح الصفحة على الصف الثاني افتراضيًا
 
 loadLeaderboard("الصف الثاني الثانوي التمريض");
