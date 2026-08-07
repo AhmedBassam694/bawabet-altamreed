@@ -488,6 +488,16 @@ href="quiz.html">
 
 </footer>
 
+<script>
+
+const studentCode = localStorage.getItem("studentCode");
+
+if (!studentCode) {
+    window.location.href = "login.html";
+}
+
+</script>
+  
 </body>
 
 </html>
