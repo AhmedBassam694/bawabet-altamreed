@@ -1,18 +1,19 @@
-let currentUser = null;
+// ===============================
+// بيانات الطالب
+// ===============================
 
-firebase.auth().onAuthStateChanged(function(user){
+const studentCode = localStorage.getItem("studentCode");
+const studentName = localStorage.getItem("studentName");
+const studentGrade = localStorage.getItem("studentGrade");
 
-if(user){
-
-currentUser = user;
-
-}else{
-
-window.location.href = "login.html";
-
+// التحقق من تسجيل الدخول
+if (!studentCode) {
+    window.location.href = "login.html";
 }
 
-});
+// ===============================
+// أسئلة الاختبار
+// ===============================
 
 const questions = [
 
@@ -70,7 +71,8 @@ answers:[
 ],
 correct:1
 },
-  {
+
+{
 question:"6- Attrition is:",
 answers:[
 "A) Chemical wear of enamel",
@@ -127,6 +129,8 @@ correct:2
 
 ];
 
+// ===============================
+
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
@@ -134,115 +138,108 @@ let answered = false;
 const question = document.getElementById("question");
 const answers = document.getElementById("answers");
 const nextBtn = document.getElementById("nextBtn");
-function loadQuestion(){
+function loadQuestion() {
 
-answered = false;
+    answered = false;
 
-answers.innerHTML = "";
+    answers.innerHTML = "";
 
-question.innerHTML = questions[currentQuestion].question;
+    question.innerHTML = questions[currentQuestion].question;
 
-document.getElementById("questionNumber").innerHTML =
-"السؤال " + (currentQuestion + 1) + " / " + questions.length;
+    document.getElementById("questionNumber").innerHTML =
+        "السؤال " + (currentQuestion + 1) + " / " + questions.length;
 
-document.getElementById("progressFill").style.width =
-((currentQuestion + 1) / questions.length) * 100 + "%";
+    document.getElementById("progressFill").style.width =
+        ((currentQuestion + 1) / questions.length) * 100 + "%;
 
-questions[currentQuestion].answers.forEach((answer,index)=>{
+    questions[currentQuestion].answers.forEach((answer, index) => {
 
-let button = document.createElement("button");
+        let button = document.createElement("button");
 
-button.innerHTML = answer;
+        button.innerHTML = answer;
 
-button.className = "quiz-answer";
+        button.className = "quiz-answer";
 
-button.onclick = function(){
+        button.onclick = function () {
 
-if(answered) return;
+            if (answered) return;
 
-answered = true;
+            answered = true;
 
-let buttons = document.querySelectorAll("#answers button");
+            let buttons = document.querySelectorAll("#answers button");
 
-buttons.forEach(btn=>{
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
 
-btn.disabled = true;
+            if (index === questions[currentQuestion].correct) {
 
-});
+                score++;
 
-if(index === questions[currentQuestion].correct){
+                button.style.background = "green";
+                button.style.color = "#fff";
 
-score++;
+            } else {
 
-button.style.background = "green";
-button.style.color = "#fff";
+                button.style.background = "red";
+                button.style.color = "#fff";
 
-}else{
+                buttons[questions[currentQuestion].correct].style.background = "green";
+                buttons[questions[currentQuestion].correct].style.color = "#fff";
 
-button.style.background = "red";
-button.style.color = "#fff";
+            }
 
-buttons[questions[currentQuestion].correct].style.background = "green";
-buttons[questions[currentQuestion].correct].style.color = "#fff";
+        };
+
+        answers.appendChild(button);
+
+    });
 
 }
+
+
+
+nextBtn.onclick = function () {
+
+    if (!answered) {
+
+        alert("من فضلك اختر إجابة أولاً");
+
+        return;
+
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        let percentage = Math.round(
+
+            (score / questions.length) * 100
+
+        );
+
+        saveResult(percentage);
+
+    }
 
 };
 
-answers.appendChild(button);
-
-});
-
-}
-
-nextBtn.onclick = function(){
-
-if(!answered){
-
-alert("من فضلك اختر إجابة أولاً");
-
-return;
-
-}
-
-currentQuestion++;
-
-if(currentQuestion < questions.length){
-
-loadQuestion();
-
-}else{
-
-let percentage = Math.round(
-(score / questions.length) * 100
-);
-
-saveResult(percentage);
-
-}
-
-};
 function saveResult(percentage){
 
-if(currentUser){
+db.collection("results")
 
-db.collection("users")
-.doc(currentUser.uid)
-.get()
+.add({
 
-.then((doc)=>{
+studentCode: studentCode,
 
-let userData = doc.data();
+name: studentName,
 
-return db.collection("results").add({
-
-uid: currentUser.uid,
-
-name: userData.name,
-
-grade: userData.grade,
-
-email: currentUser.email,
+grade: studentGrade,
 
 subject: "General Surgery",
 
@@ -256,27 +253,21 @@ percentage: percentage,
 
 date: firebase.firestore.FieldValue.serverTimestamp()
 
-});
+})
+
+.then(function(){
+
+showResult(percentage);
 
 })
 
-.then(()=>{
+.catch(function(error){
 
-showResult(percentage);
-
-})
-
-.catch(()=>{
+console.log(error);
 
 showResult(percentage);
 
 });
-
-}else{
-
-showResult(percentage);
-
-}
 
 }
 
@@ -318,6 +309,12 @@ location.reload();
 
 }
 
+
+
+// ===============================
+// المؤقت
+// ===============================
+
 let timeLeft = 360;
 
 let timerInterval;
@@ -326,7 +323,7 @@ const timer = document.getElementById("timer");
 
 function startTimer(){
 
-timerInterval = setInterval(()=>{
+timerInterval = setInterval(function(){
 
 let minutes = Math.floor(timeLeft / 60);
 
@@ -338,9 +335,7 @@ seconds = "0" + seconds;
 
 }
 
-timer.innerHTML =
-
-"⏱️ الوقت: " + minutes + ":" + seconds;
+timer.innerHTML = "⏱️ الوقت: " + minutes + ":" + seconds;
 
 timeLeft--;
 
@@ -354,13 +349,19 @@ let percentage = Math.round(
 
 );
 
-showResult(percentage);
+saveResult(percentage);
 
 }
 
 },1000);
 
 }
+
+
+
+// ===============================
+// بدء الاختبار
+// ===============================
 
 loadQuestion();
 
