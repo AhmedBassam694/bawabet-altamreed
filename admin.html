@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>لوحة الأدمن - بوابة التمريض</title>
-
+<title>لوحة الأدمن | بوابة التمريض</title>
 
 <style>
 
@@ -58,7 +57,7 @@ table{
 }
 
 
-td,th{
+th,td{
 
     border:1px solid #ddd;
     padding:10px;
@@ -73,8 +72,8 @@ h1{
 
 }
 
-</style>
 
+</style>
 
 </head>
 
@@ -91,7 +90,6 @@ h1{
 <h2>إضافة كود اشتراك</h2>
 
 
-
 <input id="code" placeholder="كود الاشتراك">
 
 
@@ -99,6 +97,7 @@ h1{
 
 
 <input id="days" type="number" placeholder="مدة الاشتراك بالأيام">
+
 
 
 <button onclick="addCode()">
@@ -109,8 +108,7 @@ h1{
 
 
 
-<h2>الأكواد</h2>
-
+<h2>الأكواد الموجودة</h2>
 
 
 <table>
@@ -124,13 +122,12 @@ h1{
 
 <th>الحالة</th>
 
-<th>الانتهاء</th>
+<th>تاريخ الانتهاء</th>
 
 </tr>
 
 
 </thead>
-
 
 
 <tbody id="codesTable">
@@ -146,73 +143,43 @@ h1{
 
 
 
-<script type="module">
 
 
-import { initializeApp }
+<!-- Firebase -->
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-
-
-import { getFirestore, collection, addDoc, getDocs }
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
 
+<!-- ملف إعدادات Firebase -->
 
-
-// ضع إعدادات Firebase الخاصة بك هنا
-
-const firebaseConfig = {
-
-
-apiKey: "YOUR_API_KEY",
-
-authDomain: "YOUR_AUTH_DOMAIN",
-
-projectId: "YOUR_PROJECT_ID",
-
-storageBucket: "YOUR_STORAGE_BUCKET",
-
-messagingSenderId: "YOUR_SENDER_ID",
-
-appId: "YOUR_APP_ID"
-
-
-};
-
-
-
-const app = initializeApp(firebaseConfig);
-
-
-const db = getFirestore(app);
+<script src="firebase.js"></script>
 
 
 
 
+<script>
 
-window.addCode = async function(){
+
+
+function addCode(){
 
 
 
 let code = document.getElementById("code").value.trim();
 
-
 let password = document.getElementById("password").value.trim();
-
 
 let days = Number(document.getElementById("days").value);
 
 
 
 
-if(!code || !password || !days){
+if(code === "" || password === "" || !days){
 
 
-alert("اكمل البيانات");
-
+alert("من فضلك أكمل البيانات");
 
 return;
 
@@ -222,24 +189,22 @@ return;
 
 
 
-
 let expire = new Date();
 
 
-expire.setDate(expire.getDate()+days);
+expire.setDate(expire.getDate() + days);
 
 
 
 
 
-await addDoc(collection(db,"students"),{
+db.collection("students").doc(code).set({
 
 
+code: code,
 
-code:code,
 
-
-password:password,
+password: password,
 
 
 active:true,
@@ -258,16 +223,36 @@ grade:""
 
 
 
-});
+})
+
+.then(function(){
 
 
+alert("✅ تم إنشاء كود الاشتراك");
 
 
-alert("✅ تم إضافة الكود");
+document.getElementById("code").value="";
 
+document.getElementById("password").value="";
+
+document.getElementById("days").value="";
 
 
 loadCodes();
+
+
+})
+
+
+.catch(function(error){
+
+
+console.log(error);
+
+alert(error.message);
+
+
+});
 
 
 
@@ -277,22 +262,27 @@ loadCodes();
 
 
 
-async function loadCodes(){
+function loadCodes(){
 
 
 
 let table = document.getElementById("codesTable");
 
+
 table.innerHTML="";
 
 
 
-let querySnapshot = await getDocs(collection(db,"students"));
+
+db.collection("students").get()
 
 
 
+.then(function(snapshot){
 
-querySnapshot.forEach((doc)=>{
+
+
+snapshot.forEach(function(doc){
 
 
 
@@ -308,9 +298,9 @@ table.innerHTML += `
 
 <td>${data.code}</td>
 
-<td>${data.active ? "فعال" : "متوقف"}</td>
+<td>${data.active ? "فعال ✅" : "متوقف ❌"}</td>
 
-<td>${data.expiresAt}</td>
+<td>${new Date(data.expiresAt).toLocaleDateString("ar-EG")}</td>
 
 </tr>
 
@@ -323,8 +313,21 @@ table.innerHTML += `
 
 
 
-}
+})
 
+.catch(function(error){
+
+
+console.log(error);
+
+alert(error.message);
+
+
+});
+
+
+
+}
 
 
 
@@ -334,7 +337,6 @@ loadCodes();
 
 
 </script>
-
 
 
 </body>
