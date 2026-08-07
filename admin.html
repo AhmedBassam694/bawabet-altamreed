@@ -1,94 +1,140 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>لوحة الأدمن - بوابة التمريض</title>
 
+
 <style>
+
 body{
     font-family: Arial;
     background:#f2f6fa;
     padding:20px;
 }
 
+
 .container{
+
     max-width:900px;
     margin:auto;
     background:white;
     padding:20px;
     border-radius:15px;
+
 }
 
+
 input,button{
+
     width:100%;
     padding:12px;
     margin:8px 0;
     border-radius:8px;
     border:1px solid #ccc;
+
 }
 
+
 button{
+
     background:#0066cc;
     color:white;
     cursor:pointer;
+
 }
 
+
 table{
+
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
+
 }
 
+
 td,th{
+
     border:1px solid #ddd;
     padding:10px;
     text-align:center;
+
 }
 
+
 h1{
+
     color:#0066cc;
+
 }
+
 </style>
+
 
 </head>
 
+
 <body>
 
+
 <div class="container">
+
 
 <h1>🩺 لوحة إدارة بوابة التمريض</h1>
 
 
 <h2>إضافة كود اشتراك</h2>
 
+
+
 <input id="code" placeholder="كود الاشتراك">
 
+
 <input id="password" placeholder="كلمة المرور">
+
 
 <input id="days" type="number" placeholder="مدة الاشتراك بالأيام">
 
 
 <button onclick="addCode()">
+
 إضافة الكود
+
 </button>
+
 
 
 <h2>الأكواد</h2>
 
+
+
 <table>
 
+
 <thead>
+
 <tr>
+
 <th>الكود</th>
+
 <th>الحالة</th>
+
 <th>الانتهاء</th>
+
 </tr>
+
+
 </thead>
 
 
+
 <tbody id="codesTable">
+
 
 </tbody>
 
@@ -102,17 +148,24 @@ h1{
 
 <script type="module">
 
-import { initializeApp } 
+
+import { initializeApp }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
+
 import { getFirestore, collection, addDoc, getDocs }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// ضع إعدادات مشروعك هنا
+
+
+// ضع إعدادات Firebase الخاصة بك هنا
 
 const firebaseConfig = {
+
 
 apiKey: "YOUR_API_KEY",
 
@@ -126,67 +179,100 @@ messagingSenderId: "YOUR_SENDER_ID",
 
 appId: "YOUR_APP_ID"
 
+
 };
+
 
 
 const app = initializeApp(firebaseConfig);
 
+
 const db = getFirestore(app);
+
+
 
 
 
 window.addCode = async function(){
 
 
-let code = document.getElementById("code").value;
 
-let password = document.getElementById("password").value;
+let code = document.getElementById("code").value.trim();
+
+
+let password = document.getElementById("password").value.trim();
+
 
 let days = Number(document.getElementById("days").value);
 
 
 
+
 if(!code || !password || !days){
+
 
 alert("اكمل البيانات");
 
+
 return;
+
 
 }
 
 
 
+
+
 let expire = new Date();
+
 
 expire.setDate(expire.getDate()+days);
 
 
 
-await addDoc(collection(db,"subscriptions"),{
+
+
+await addDoc(collection(db,"students"),{
+
 
 
 code:code,
 
+
 password:password,
+
 
 active:true,
 
+
 expiresAt:expire.toISOString(),
 
-deviceId:"",
 
-studentName:""
+deviceId:"null",
+
+
+name:"",
+
+
+grade:""
+
 
 
 });
 
 
 
-alert("تم إضافة الكود");
+
+alert("✅ تم إضافة الكود");
+
+
 
 loadCodes();
 
+
+
 }
+
 
 
 
@@ -194,33 +280,40 @@ loadCodes();
 async function loadCodes(){
 
 
-let table=document.getElementById("codesTable");
+
+let table = document.getElementById("codesTable");
 
 table.innerHTML="";
 
 
-let querySnapshot = await getDocs(collection(db,"subscriptions"));
+
+let querySnapshot = await getDocs(collection(db,"students"));
+
 
 
 
 querySnapshot.forEach((doc)=>{
 
 
-let data=doc.data();
+
+let data = doc.data();
+
 
 
 
 table.innerHTML += `
 
+
 <tr>
 
 <td>${data.code}</td>
 
-<td>${data.active ? "فعال":"متوقف"}</td>
+<td>${data.active ? "فعال" : "متوقف"}</td>
 
 <td>${data.expiresAt}</td>
 
 </tr>
+
 
 `;
 
@@ -229,7 +322,10 @@ table.innerHTML += `
 });
 
 
+
 }
+
+
 
 
 
@@ -240,6 +336,7 @@ loadCodes();
 </script>
 
 
-</body>
-</html>
 
+</body>
+
+</html>
