@@ -108,7 +108,20 @@ return;
 
 }
 
+// فحص تاريخ الاشتراك
 
+let today = new Date();
+
+let expiry = new Date(student.expiresAt);
+
+
+if(today > expiry){
+
+alert("❌ انتهى اشتراكك، يرجى تجديد الاشتراك");
+
+return;
+
+}
 
 // أول دخول
 
