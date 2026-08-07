@@ -75,6 +75,18 @@ return;
 
 const student = doc.data();
 
+// معرف الجهاز
+
+let deviceId = localStorage.getItem("deviceId");
+
+if(!deviceId){
+
+deviceId = Date.now().toString();
+
+localStorage.setItem("deviceId", deviceId);
+
+}
+  
 if(student.password !== password){
 alert("❌ كلمة المرور غير صحيحة");
 return;
@@ -85,6 +97,18 @@ alert("❌ هذا الاشتراك غير مفعل");
 return;
 }
 
+// أول تسجيل دخول
+
+if(student.deviceId === "null"){
+
+db.collection("students").doc(code).update({
+
+deviceId: deviceId
+
+})
+
+.then(function(){
+
 localStorage.setItem("studentCode",code);
 localStorage.setItem("studentName",student.name);
 localStorage.setItem("studentGrade",student.grade);
@@ -93,7 +117,31 @@ alert("✅ تم تسجيل الدخول");
 
 window.location.href="index.html";
 
-})
+});
+
+}
+
+// نفس الجهاز
+
+else if(student.deviceId === deviceId){
+
+localStorage.setItem("studentCode",code);
+localStorage.setItem("studentName",student.name);
+localStorage.setItem("studentGrade",student.grade);
+
+alert("✅ تم تسجيل الدخول");
+
+window.location.href="index.html";
+
+}
+
+// جهاز آخر
+
+else{
+
+alert("❌ هذا الاشتراك مستخدم على جهاز آخر.");
+
+}
 
 .catch(function(error){
 
