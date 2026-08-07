@@ -1,235 +1,149 @@
-let currentUser = null;
+// ===============================
+// بيانات الطالب
+// ===============================
 
+const studentCode = localStorage.getItem("studentCode");
 
-firebase.auth().onAuthStateChanged(function(user){
+if (!studentCode) {
+    window.location.href = "login.html";
+}
 
-
-if(user){
-
-currentUser = user;
+const studentInfo = document.getElementById("studentInfo");
+const resultsDiv = document.getElementById("results");
+const averageDiv = document.getElementById("average");
 
 loadStudentDashboard();
 
+function loadStudentDashboard() {
 
-}else{
+    db.collection("students")
+    .doc(studentCode)
+    .get()
 
+    .then(function(doc){
 
-window.location.href = "login.html";
+        if(!doc.exists){
 
+            studentInfo.innerHTML = "❌ الطالب غير موجود";
 
-}
+            return;
+        }
 
+        const student = doc.data();
 
-});
+        studentInfo.innerHTML = `
 
+        <h3>👨‍🎓 ${student.name}</h3>
 
+        <p>📚 ${student.grade}</p>
 
+        <p>🆔 ${studentCode}</p>
 
+        `;
 
-function loadStudentDashboard(){
+        return db.collection("results")
+        .where("studentCode","==",studentCode)
+        .get();
 
+    })
 
+    .then(function(snapshot){
 
-// جلب بيانات الطالب
+        if(!snapshot){
 
-db.collection("users")
-.doc(currentUser.uid)
-.get()
+            return;
+        }
 
+        if(snapshot.empty){
 
-.then((doc)=>{
+            resultsDiv.innerHTML =
+            "<p>❌ لم يتم حل أي اختبار حتى الآن</p>";
 
+            averageDiv.innerHTML =
+            "<h2>0%</h2>";
 
-if(!doc.exists){
+            return;
+        }
 
-document.getElementById("studentInfo").innerHTML =
-"❌ لا توجد بيانات للطالب";
+        let chapters = {};
 
-return;
+        snapshot.forEach(function(doc){
 
-}
+            let data = doc.data();
 
+            if(
+                !chapters[data.chapter] ||
+                data.percentage > chapters[data.chapter].percentage
+            ){
 
+                chapters[data.chapter] = data;
 
-let userData = doc.data();
+            }
 
+        });
 
+        let html = "";
 
-document.getElementById("studentInfo").innerHTML = `
+        let total = 0;
 
-<h3>
-👨‍🎓 الاسم: ${userData.name}
-</h3>
+        let count = 0;
+              for (let chapter in chapters) {
 
-<p>
-📚 الصف: ${userData.grade}
-</p>
+            let result = chapters[chapter];
 
-<p>
-📧 البريد: ${userData.email}
-</p>
+            total += result.percentage;
+            count++;
 
-`;
+            html += `
 
+            <div class="card">
 
+                <h3>📘 ${result.chapter}</h3>
 
-// جلب الاختبارات
+                <p>📚 المادة: ${result.subject}</p>
 
-return db.collection("results")
+                <p>✅ الدرجة: ${result.score} / ${result.total}</p>
 
-.where("uid","==",currentUser.uid)
+                <p>⭐ النسبة: ${result.percentage}%</p>
 
-.get()
+            </div>
 
+            `;
 
+        }
 
-.then((snapshot)=>{
+        resultsDiv.innerHTML = html;
 
+        let average = 0;
 
+        if(count > 0){
 
-if(snapshot.empty){
+            average = (total / count).toFixed(2);
 
+        }
 
-document.getElementById("results").innerHTML =
-"❌ لم يتم عمل أي اختبارات حتى الآن";
+        averageDiv.innerHTML = `
 
+        <h2>⭐ ${average}%</h2>
 
-document.getElementById("average").innerHTML =
-"0%";
+        <p>
 
+        عدد الاختبارات المختلفة: ${count}
 
-return;
+        </p>
 
+        `;
 
-}
+    })
 
+    .catch(function(error){
 
+        console.log(error);
 
+        studentInfo.innerHTML =
 
-let totalPercentage = 0;
+        "<p>❌ حدث خطأ أثناء تحميل البيانات</p>";
 
-let count = 0;
-
-
-let html = "";
-
-
-
-snapshot.forEach((doc)=>{
-
-
-let data = doc.data();
-
-
-totalPercentage += data.percentage;
-
-count++;
-
-
-
-html += `
-
-
-<div class="card">
-
-
-<h3>
-
-📘 ${data.chapter}
-
-</h3>
-
-
-<p>
-
-المادة:
-${data.subject}
-
-</p>
-
-
-<p>
-
-الدرجة:
-${data.score}/${data.total}
-
-</p>
-
-
-<p>
-
-⭐ النسبة:
-${data.percentage}%
-
-</p>
-
-
-</div>
-
-
-`;
-
-
-
-});
-
-
-
-
-// عرض النتائج
-
-document.getElementById("results").innerHTML = html;
-
-
-
-
-// حساب المتوسط النهائي
-
-
-let average = (totalPercentage / count).toFixed(2);
-
-
-
-document.getElementById("average").innerHTML = `
-
-
-<h1>
-
-⭐ ${average}%
-
-</h1>
-
-
-<p>
-
-عدد الاختبارات:
-${count}
-
-</p>
-
-
-`;
-
-
-
-});
-
-
-
-})
-
-
-.catch((error)=>{
-
-
-console.log(error);
-
-
-document.getElementById("studentInfo").innerHTML =
-"حدث خطأ في تحميل البيانات";
-
-
-});
-
+    });
 
 }
